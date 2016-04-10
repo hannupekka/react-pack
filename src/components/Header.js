@@ -7,6 +7,7 @@ const Header = () => {
   return (
     <header styleName="header">
       <h1>Example application</h1>
+      <img src={require('../assets/logo.png')} />
       <nav>
         <ul>
           <li><Link to={'/'}>Index</Link></li>
