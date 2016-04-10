@@ -1,0 +1,24 @@
+import 'styles/index.less';
+
+import 'es5-shim';
+import 'es6-shim';
+import React from 'react';
+import { render } from 'react-dom';
+import { useRouterHistory } from 'react-router';
+import createHistory from 'history/lib/createBrowserHistory';
+import configureStore from 'store/configureStore';
+
+// Containers.
+import Root from 'containers/Root';
+
+// Create store.
+const store = configureStore();
+
+// Create history.
+const browserHistory = useRouterHistory(createHistory)();
+
+// Render.
+render(
+  <Root store={store} history={browserHistory}/>,
+  document.getElementById('app')
+);
