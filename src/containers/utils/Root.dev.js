@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import Routes from 'containers/Routes';
+import DevTools from 'containers/utils/DevTools';
+import Routes from 'containers/utils/Routes';
 
 module.exports = class Root extends Component {
   render() {
@@ -9,6 +10,7 @@ module.exports = class Root extends Component {
       <Provider store={store}>
         <div>
           <Routes history={history} />
+          <DevTools />
         </div>
       </Provider>
     );

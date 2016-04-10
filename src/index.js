@@ -8,7 +8,7 @@ import createHistory from 'history/lib/createBrowserHistory';
 import configureStore from 'store/configureStore';
 
 // Containers.
-import Root from 'containers/Root';
+import Root from 'containers/utils/Root';
 
 // Create store.
 const store = configureStore();
