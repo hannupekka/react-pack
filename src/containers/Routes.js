@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
-import Application from './Application';
-import Index from './Index';
-import Data from './Data';
+import Application from 'containers/Application';
+import Index from 'containers/Index';
+import Image from 'containers/Image';
 
 class Routes extends Component {
   render() {
@@ -10,7 +10,7 @@ class Routes extends Component {
       <Router history={this.props.history}>
         <Route path="/" component={Application}>
           <IndexRoute component={Index} />
-          <Route path="data" component={Data} />
+          <Route path="image" component={Image} />
         </Route>
       </Router>
     );

@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -23,9 +22,6 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/html/index.dev.html'
     })
   ],
   module: {
@@ -33,12 +29,23 @@ module.exports = {
       {
         test: /\.js?/,
         exclude: [/node_modules/, /styles/],
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        loaders: ['babel']
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        ]
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader?sourceMap!postcss-loader!less-loader'
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss',
+          'less'
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -54,13 +61,13 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      actions: path.join(__dirname, 'src/actions'),
-      components: path.join(__dirname, 'src/components'),
-      constants: path.join(__dirname, 'src/constants'),
-      containers: path.join(__dirname, 'src/containers'),
-      reducers: path.join(__dirname, 'src/reducers'),
-      store: path.join(__dirname, 'src/store'),
-      styles: path.join(__dirname, 'src/styles')
+      actions: path.join(__dirname, '../src/actions'),
+      components: path.join(__dirname, '../src/components'),
+      constants: path.join(__dirname, '../src/constants'),
+      containers: path.join(__dirname, '../src/containers'),
+      reducers: path.join(__dirname, '../src/reducers'),
+      store: path.join(__dirname, '../src/store'),
+      styles: path.join(__dirname, '../src/styles')
     }
   }
 };

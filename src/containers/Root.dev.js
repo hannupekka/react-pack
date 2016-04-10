@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import DevTools from './DevTools';
-import Routes from './Routes';
+import DevTools from 'containers/DevTools';
+import Routes from 'containers/Routes';
 
 module.exports = class Root extends Component {
   render() {

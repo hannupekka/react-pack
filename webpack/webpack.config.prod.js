@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -9,11 +10,14 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, '../dist'),
+    filename: 'bundle.[hash].js',
     publicPath: '/'
   },
   plugins: [
+    new ExtractTextPlugin('styles.[hash].css', {
+      allChunks: true
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -32,11 +36,14 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'src')
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!less-loader')
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -52,13 +59,13 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      actions: path.join(__dirname, 'src/actions'),
-      components: path.join(__dirname, 'src/components'),
-      constants: path.join(__dirname, 'src/constants'),
-      containers: path.join(__dirname, 'src/containers'),
-      reducers: path.join(__dirname, 'src/reducers'),
-      store: path.join(__dirname, 'src/store'),
-      styles: path.join(__dirname, 'src/styles')
+      actions: path.join(__dirname, '../src/actions'),
+      components: path.join(__dirname, '../src/components'),
+      constants: path.join(__dirname, '../src/constants'),
+      containers: path.join(__dirname, '../src/containers'),
+      reducers: path.join(__dirname, '../src/reducers'),
+      store: path.join(__dirname, '../src/store'),
+      styles: path.join(__dirname, '../src/styles')
     }
   }
 };

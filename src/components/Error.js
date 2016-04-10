@@ -1,13 +1,13 @@
-import 'styles/error.less';
-
+import styles from 'styles/error.less';
 import React from 'react';
+import CSSModules from 'react-css-modules';
 
 const Error = ({ message }) => {
   return (
-    <div className="error">
+    <div styleName="error">
       {message}
     </div>
   );
 };
 
-export default Error;
+export default CSSModules(Error, styles);;

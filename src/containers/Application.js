@@ -1,16 +1,16 @@
+import styles from 'styles/application.less';
 import React, { Component, PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 import Header from 'components/header';
-import Footer from 'components/footer';
 
 class Application extends Component {
   render() {
     return (
       <div>
         <Header />
-        <section>
+        <section styleName="content">
           {this.props.children}
         </section>
-        <Footer />
       </div>
     );
   }
@@ -20,4 +20,4 @@ Application.propTypes = {
   children: PropTypes.object
 };
 
-export default Application;
+export default CSSModules(Application, styles);

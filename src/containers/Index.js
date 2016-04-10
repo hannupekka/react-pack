@@ -1,35 +1,31 @@
-import 'styles/index.less';
-
+import styles from 'styles/index.less';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import CSSModules from 'react-css-modules';
 import * as UiActions from 'actions/ui';
-import Loader from 'components/loader';
-import Error from 'components/error';
 
 class Index extends Component {
   render() {
+    const { showGreeting, actions } = this.props;
     return (
-      <div>This be index</div>
+      <div>
+        <button onClick={() => actions.toggleGreeting(!showGreeting)}>Toggle greeting</button>
+        {showGreeting && <h1>Hello world!</h1>}
+      </div>
     );
   }
 }
 
 Index.propTypes = {
   actions: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-  showGreeting: ImmutablePropTypes.bool.isError,
-  params: PropTypes.object // Inserted by react-router-redux
+  showGreeting: PropTypes.bool.isRequired,
+  params: PropTypes.object
 };
 
 const select = store => {
   return {
-    isLoading: store.article.getIn(['article', 'isLoading']),
-    isError: store.article.getIn(['article', 'isError']),
-    article: store.article.getIn(['article', 'article'])
+    showGreeting: store.ui.get('showGreeting')
   };
 };
 
@@ -42,4 +38,4 @@ const mapActions = dispatch => {
 export default connect(
   select,
   mapActions
-)(Index);
+)(CSSModules(Index, styles));

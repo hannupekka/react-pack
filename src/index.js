@@ -1,7 +1,6 @@
-import 'styles/index.less';
-
 import 'es5-shim';
 import 'es6-shim';
+import 'normalize.css/normalize.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { useRouterHistory } from 'react-router';
