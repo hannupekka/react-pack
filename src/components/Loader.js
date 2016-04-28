@@ -1,4 +1,4 @@
-import styles from 'styles/loader.less';
+import styles from 'styles/components/Loader.less';
 import React from 'react';
 import CSSModules from 'react-css-modules';
 

@@ -1,5 +1,6 @@
-import styles from 'styles/header.less';
+import styles from 'styles/components/Header.less';
 import React from 'react';
+import { pure } from 'recompose';
 import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 
@@ -18,4 +19,4 @@ const Header = () => {
   );
 };
 
-export default CSSModules(Header, styles);
+export default pure(CSSModules(Header, styles));

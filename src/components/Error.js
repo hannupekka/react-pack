@@ -1,5 +1,5 @@
-import styles from 'styles/error.less';
-import React from 'react';
+import styles from 'styles/components/Error.less';
+import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
 const Error = ({ message }) => {
@@ -10,4 +10,8 @@ const Error = ({ message }) => {
   );
 };
 
-export default CSSModules(Error, styles);;
+Error.propTypes = {
+  message: PropTypes.string.isRequired
+}
+
+export default CSSModules(Error, styles);

@@ -7,8 +7,8 @@
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development npm start",
-    "start": "node devServer.js",
-    "lint": "eslint src"
+    "start": "node server/devServer.js",
+    "lint": "eslint src && jscs src"
   },
   "author": "Hannu-Pekka Heinäjärvi <hannupekka@gmail.com>",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "es5-shim": "^4.5.8",
     "es6-shim": "^0.35.0",
     "fetch": "^1.0.1",
+    "helmet": "^1.3.0",
     "history": "^2.0.1",
     "immutable": "^3.7.6",
     "normalize.css": "^4.0.0",
@@ -57,6 +58,7 @@
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "postcss-loader": "^0.8.2",
+    "pre-commit": "^1.1.2",
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.9",
@@ -66,5 +68,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }

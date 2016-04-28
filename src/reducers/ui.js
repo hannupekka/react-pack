@@ -11,7 +11,7 @@ const initialState = Immutable.fromJS({
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_GREETING:
-      return state.merge({ showGreeting: action.payload });
+      return state.merge({ showGreeting: !state.get('showGreeting') });
     default:
       return state;
   }

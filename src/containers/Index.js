@@ -1,4 +1,4 @@
-import styles from 'styles/index.less';
+import styles from 'styles/containers/Index.less';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,33 +7,34 @@ import * as UiActions from 'actions/ui';
 
 class Index extends Component {
   render() {
-    const { showGreeting, actions } = this.props;
+    const { showGreeting } = this.props;
     return (
       <div>
-        <button onClick={() => actions.toggleGreeting(!showGreeting)}>Toggle greeting</button>
+        <button onClick={this._toggleGreeting}>Toggle greeting</button>
         {showGreeting && <h1>Hello world!</h1>}
       </div>
     );
+  }
+
+  constructor(props) {
+    super(props);
+    this._toggleGreeting = () => props.actions.toggleGreeting();
   }
 }
 
 Index.propTypes = {
   actions: PropTypes.object.isRequired,
-  showGreeting: PropTypes.bool.isRequired,
-  params: PropTypes.object
+  params: PropTypes.object,
+  showGreeting: PropTypes.bool.isRequired
 };
 
-const select = store => {
-  return {
-    showGreeting: store.ui.get('showGreeting')
-  };
-};
+const select = store => ({
+  showGreeting: store.ui.get('showGreeting')
+});
 
-const mapActions = dispatch => {
-  return {
-    actions: bindActionCreators(UiActions, dispatch)
-  };
-};
+const mapActions = dispatch => ({
+  actions: bindActionCreators(UiActions, dispatch)
+});
 
 export default connect(
   select,
