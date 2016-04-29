@@ -14,10 +14,6 @@ class ImageSearch extends Component {
   render() {
     const { isLoading, isError, image } = this.props;
 
-    if (isLoading) {
-      return <Loader />;
-    }
-
     if (isError) {
       return <Error message="Error requesting image!" />;
     }
@@ -27,6 +23,7 @@ class ImageSearch extends Component {
         <label htmlFor="search">Search word</label>
         <input type="text" ref="search" />
         <button onClick={this._requestImage}>Get random image</button>
+        {isLoading && <Loader />}
         <Image src={image.get('fixed_height_downsampled_url')} />
       </div>
     );
@@ -60,4 +57,4 @@ const mapActions = dispatch => ({
 export default connect(
   select,
   mapActions
-)(onlyUpdateForKeys(['image'])(CSSModules(ImageSearch, styles)));
+)(onlyUpdateForKeys(['isLoading', 'isError', 'image'])(CSSModules(ImageSearch, styles)));
