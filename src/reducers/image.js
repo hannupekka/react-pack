@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
       return state.merge({
         isLoading: false,
         isError: false,
-        image: Immutable.fromJS(action.payload)
+        image: Immutable.fromJS(action.payload.data)
       });
     case REQUEST_IMAGE_ERROR:
       return state.merge({ isLoading: false, isError: true });
