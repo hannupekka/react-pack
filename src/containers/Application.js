@@ -1,7 +1,7 @@
 import styles from 'styles/containers/Application.less';
 import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
-import Header from 'components/header';
+import Header from 'components/Header';
 
 class Application extends Component {
   render() {
