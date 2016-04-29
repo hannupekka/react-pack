@@ -1,5 +1,8 @@
 import 'es5-shim';
+import 'es5-shim/es5-sham';
 import 'es6-shim';
+import 'es6-shim/es6-sham';
+import 'babel-polyfill';
 import 'normalize.css/normalize.css';
 import React from 'react';
 import { render } from 'react-dom';
