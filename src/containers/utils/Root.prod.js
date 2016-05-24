@@ -7,9 +7,7 @@ module.exports = class Root extends Component {
     const { store, history } = this.props;
     return (
       <Provider store={store}>
-        <div>
-          <Routes history={history} />
-        </div>
+        <Routes history={history} />
       </Provider>
     );
   }
