@@ -5,6 +5,7 @@ const UTILS = require('../utils/http');
 const REQUEST_IMAGE = 'FETCH_IMAGE';
 const RECEIVE_IMAGE = 'RECEIVE_IMAGE';
 const REQUEST_IMAGE_ERROR = 'REQUEST_IMAGE_ERROR';
+const TOGGLE_GREETING = 'TOGGLE_GREETING';
 
 const requestImage = (tag) => {
   return dispatch => {
@@ -17,9 +18,15 @@ const requestImage = (tag) => {
   };
 };
 
+const toggleGreeting = () => {
+  return dispatch => dispatch({ type: TOGGLE_GREETING });
+};
+
 export {
   REQUEST_IMAGE,
   RECEIVE_IMAGE,
   REQUEST_IMAGE_ERROR,
-  requestImage
+  TOGGLE_GREETING,
+  requestImage,
+  toggleGreeting
 };

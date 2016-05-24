@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
-import * as UiActions from 'actions/ui';
+import * as actionCreators from 'actions/actionCreators';
 
 class Index extends Component {
   render() {
@@ -33,7 +33,7 @@ const select = store => ({
 });
 
 const mapActions = dispatch => ({
-  actions: bindActionCreators(UiActions, dispatch)
+  actions: bindActionCreators(actionCreators, dispatch)
 });
 
 export default connect(

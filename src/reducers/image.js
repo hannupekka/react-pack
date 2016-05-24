@@ -4,7 +4,7 @@ import {
   REQUEST_IMAGE,
   RECEIVE_IMAGE,
   REQUEST_IMAGE_ERROR
-} from 'actions/image';
+} from 'actions/actionCreators';
 
 const initialState = Immutable.fromJS({
   isLoading: false,

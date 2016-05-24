@@ -3,8 +3,7 @@ const fetchMock = require('fetch-mock');
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import expect from 'expect'
-import * as UiActions from '../src/actions/ui';
-import * as ImageActions from '../src/actions/image';
+import * as actionCreators from '../src/actions/actionCreators';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -12,11 +11,11 @@ const mockStore = configureMockStore(middlewares);
 describe('UI actions', () => {
   it('should create an action to toggle greeting message', () => {
     const expectedAction = {
-      type: UiActions.TOGGLE_GREETING
+      type: actionCreators.TOGGLE_GREETING
     }
 
     const store = mockStore({});
-    expect(store.dispatch(UiActions.toggleGreeting())).toEqual(expectedAction);
+    expect(store.dispatch(actionCreators.toggleGreeting())).toEqual(expectedAction);
   })
 })
 
@@ -31,14 +30,14 @@ describe('Image actions', () => {
     });
 
     const expectedActions = [
-      { type: ImageActions.REQUEST_IMAGE, payload: 'coffee' },
-      { type: ImageActions.RECEIVE_IMAGE, payload: {
+      { type: actionCreators.REQUEST_IMAGE, payload: 'coffee' },
+      { type: actionCreators.RECEIVE_IMAGE, payload: {
         caption: 'this is coffee'
       }}
     ];
 
     const store = mockStore();
-    return store.dispatch(ImageActions.requestImage('coffee'))
+    return store.dispatch(actionCreators.requestImage('coffee'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
@@ -48,12 +47,12 @@ describe('Image actions', () => {
     fetchMock.mock(CONFIG.API_HOST + '/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=coffee', 400);
 
     const expectedActions = [
-      { type: ImageActions.REQUEST_IMAGE, payload: 'coffee' },
-      { type: ImageActions.REQUEST_IMAGE_ERROR, error: 'Error: Bad Request' }
+      { type: actionCreators.REQUEST_IMAGE, payload: 'coffee' },
+      { type: actionCreators.REQUEST_IMAGE_ERROR, error: 'Error: Bad Request' }
     ];
 
     const store = mockStore();
-    return store.dispatch(ImageActions.requestImage('coffee'))
+    return store.dispatch(actionCreators.requestImage('coffee'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import CSSModules from 'react-css-modules';
 import { onlyUpdateForKeys } from 'recompose';
-import * as ImageActions from 'actions/image';
+import * as actionCreators from 'actions/actionCreators';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Image from 'components/Image';
@@ -51,7 +51,7 @@ const select = store => ({
 });
 
 const mapActions = dispatch => ({
-  actions: bindActionCreators(ImageActions, dispatch)
+  actions: bindActionCreators(actionCreators, dispatch)
 });
 
 export default connect(
