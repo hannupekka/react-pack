@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "check-node-version --package && npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development node server/devServer.js",
     "start": "node server/server.js",
     "lint": "eslint src && jscs src",
@@ -63,6 +63,7 @@
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-preset-react-hmre": "^1.1.1",
+    "check-node-version": "^1.1.1",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-import-resolver-webpack": "^0.5.1",
@@ -84,5 +85,9 @@
   },
   "pre-commit": [
     "lint"
-  ]
+  ],
+  "engines": {
+    "npm": ">=3.3.12 <4",
+    "node": ">=5.2.0 <6"
+  }
 }
