@@ -8,6 +8,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { useRouterHistory } from 'react-router';
 import createHistory from 'history/lib/createBrowserHistory';
+import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from 'store/configureStore';
 
 // Containers.
@@ -18,9 +19,10 @@ const store = configureStore();
 
 // Create history.
 const browserHistory = useRouterHistory(createHistory)();
+const history = syncHistoryWithStore(browserHistory, store);
 
 // Render.
 render(
-  <Root store={store} history={browserHistory}/>,
+  <Root store={store} history={history} />,
   document.getElementById('app')
 );
