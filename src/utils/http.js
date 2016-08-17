@@ -7,8 +7,8 @@ const handleErrors = response => {
     throw Error(response.statusText);
   }
   return response;
-}
+};
 
-export {
+export default {
   handleErrors
-}
+};

@@ -1,20 +1,18 @@
 import styles from 'styles/containers/Application.less';
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import Header from 'components/Header';
 
-class Application extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <section styleName="content">
-          {this.props.children}
-        </section>
-      </div>
-    );
-  }
-}
+const Application = ({ children }) => {
+  return (
+    <div>
+      <Header />
+      <section styleName="content">
+        {children}
+      </section>
+    </div>
+  );
+};
 
 Application.propTypes = {
   children: PropTypes.object

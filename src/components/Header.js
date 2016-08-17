@@ -4,11 +4,13 @@ import { pure } from 'recompose';
 import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 
+const logo = require('../assets/logo.png');
+
 const Header = () => {
   return (
     <header styleName="header">
       <h1>Example application</h1>
-      <img src={require('../assets/logo.png')} />
+      <img src={logo} role="presentation" />
       <nav>
         <ul>
           <li><Link to={'/'}>Index</Link></li>

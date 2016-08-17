@@ -7,12 +7,12 @@ const Image = ({ src }) => {
   }
 
   return (
-    <img src={src} />
+    <img src={src} role="presentation" />
   );
 };
 
 Image.propTypes = {
   src: PropTypes.string
-}
+};
 
 export default pure(Image);

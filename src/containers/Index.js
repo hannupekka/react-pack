@@ -6,19 +6,23 @@ import CSSModules from 'react-css-modules';
 import * as actionCreators from 'actions/actionCreators';
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.onToggleGreeting = this.onToggleGreeting.bind(this);
+  }
+
+  onToggleGreeting() {
+    this.props.actions.toggleGreeting();
+  }
+
   render() {
     const { showGreeting } = this.props;
     return (
       <div>
-        <button onClick={this._toggleGreeting}>Toggle greeting</button>
+        <button onClick={this.onToggleGreeting}>Toggle greeting</button>
         {showGreeting && <h1>Hello world!</h1>}
       </div>
     );
-  }
-
-  constructor(props) {
-    super(props);
-    this._toggleGreeting = () => props.actions.toggleGreeting();
   }
 }
 

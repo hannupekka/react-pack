@@ -2,6 +2,8 @@
   "extends": "airbnb",
   "rules": {
     "no-global-assign": 0,
+    "no-underscore-dangle": 0,
+    "new-cap": 0,
     "no-unsafe-negation": 0,
     "comma-dangle": 0,
     "arrow-body-style": 0,

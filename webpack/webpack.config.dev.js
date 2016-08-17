@@ -33,10 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-        ]
+        loader: 'style!css!postcss'
       },
       {
         test: /\.less$/,
@@ -46,6 +43,19 @@ module.exports = {
           'postcss',
           'less'
         ]
+      },
+      {
+        test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      }, {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream'
+      }, {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml'
+      }, {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file'
       },
       {
         test: /\.(png|jpg|gif)$/,

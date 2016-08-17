@@ -11,6 +11,18 @@ import Error from 'components/Error';
 import Image from 'components/Image';
 
 class ImageSearch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.bindSearch = (c) => (this.search = c);
+    this.onRequestImage = this.onRequestImage.bind(this);
+  }
+
+  onRequestImage() {
+    const search = this.search.value;
+    this.props.actions.requestImage(search);
+  }
+
   render() {
     const { isLoading, isError, image } = this.props;
 
@@ -21,18 +33,14 @@ class ImageSearch extends Component {
     return (
       <div styleName="image-search">
         <label htmlFor="search">Search word</label>
-        <input type="text" ref="search" />
-        <button onClick={this._requestImage}>Get random image</button>
+        <input type="text" ref={this.bindSearch} />
+        <button onClick={this.onRequestImage}>
+          Get random image <i className="fa fa-search"></i>
+        </button>
         {isLoading && <Loader />}
         <Image src={image.get('fixed_height_downsampled_url')} />
       </div>
     );
-  }
-
-  constructor(props) {
-    super(props);
-
-    this._requestImage = () => props.actions.requestImage(this.refs.search.value);
   }
 }
 

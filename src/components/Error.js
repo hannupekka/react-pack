@@ -12,6 +12,6 @@ const Error = ({ message }) => {
 
 Error.propTypes = {
   message: PropTypes.string.isRequired
-}
+};
 
 export default CSSModules(Error, styles);

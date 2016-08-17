@@ -13,9 +13,11 @@ const DevTools = createDevTools(
   // Consult their repositories to learn about those props.
   // Here, we put LogMonitor inside a DockMonitor.
   // Note: DockMonitor is hidden by default.
-  <DockMonitor toggleVisibilityKey="ctrl-h"
+  <DockMonitor
+    toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
-    defaultIsVisible={false}>
+    defaultIsVisible={false}
+  >
     <LogMonitor theme="tomorrow" />
   </DockMonitor>
 );
