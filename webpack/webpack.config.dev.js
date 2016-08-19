@@ -33,7 +33,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css!postcss'
+        loaders: [
+          'style?sourceMap',
+          'css?importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss',
+        ]
       },
       {
         test: /\.less$/,
@@ -41,7 +45,7 @@ module.exports = {
           'style?sourceMap',
           'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
           'postcss',
-          'less'
+          'less?sourceMap'
         ]
       },
       {
