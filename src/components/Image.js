@@ -1,15 +1,19 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { pure } from 'recompose';
 
-const Image = ({ src }) => {
-  if (!src) {
-    return null;
-  }
+class Image extends Component {
+  render() {
+    const { src } = this.props;
 
-  return (
-    <img src={src} role="presentation" />
-  );
-};
+    if (!src) {
+      return null;
+    }
+
+    return (
+      <img src={src} role="presentation" />
+    );
+  }
+}
 
 Image.propTypes = {
   src: PropTypes.string

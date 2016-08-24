@@ -20,6 +20,7 @@
         ]
       }
     ],
+    "react/prefer-stateless-function": 0,
     "react/self-closing-comp": 0
   },
   "globals": {

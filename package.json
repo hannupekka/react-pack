@@ -8,7 +8,7 @@
     "build": "check-node-version --package && npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development node server/devServer.js",
     "start": "node server/server.js",
-    "lint": "eslint src && jscs src",
+    "lint": "eslint src",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "postinstall": "npm run build"
