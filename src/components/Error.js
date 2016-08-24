@@ -1,18 +1,14 @@
 import styles from 'styles/components/Error';
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
-class Error extends Component {
-  render() {
-    const { message } = this.props;
-
-    return (
-      <div styleName="error">
-        {message}
-      </div>
-    );
-  }
-}
+const Error = ({ message }) => {
+  return (
+    <div styleName="error">
+      {message}
+    </div>
+  );
+};
 
 Error.propTypes = {
   message: PropTypes.string.isRequired

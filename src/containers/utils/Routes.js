@@ -1,23 +1,23 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import Application from 'containers/Application';
 import Index from 'containers/Index';
 import ImageSearch from 'containers/ImageSearch';
 
-class Routes extends Component {
-  render() {
-    const { history } = this.props;
+const routes = (
+  <Route path="/" component={Application}>
+    <IndexRoute component={Index} />
+    <Route path="image" component={ImageSearch} />
+  </Route>
+);
 
-    return (
-      <Router history={history}>
-        <Route path="/" component={Application}>
-          <IndexRoute component={Index} />
-          <Route path="image" component={ImageSearch} />
-        </Route>
-      </Router>
-    );
-  }
-}
+const Routes = ({ history }) => {
+  return (
+    <Router history={history}>
+      {routes}
+    </Router>
+  );
+};
 
 Routes.propTypes = {
   history: PropTypes.object.isRequired
