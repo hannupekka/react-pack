@@ -1,4 +1,4 @@
-import styles from 'styles/containers/Application.less';
+import styles from 'styles/containers/Application';
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import Header from 'components/Header';

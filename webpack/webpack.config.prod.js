@@ -73,7 +73,7 @@ module.exports = {
     })];
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.less'],
     alias: {
       actions: path.join(__dirname, '../src/actions'),
       components: path.join(__dirname, '../src/components'),

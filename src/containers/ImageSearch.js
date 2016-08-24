@@ -1,4 +1,4 @@
-import styles from 'styles/containers/ImageSearch.less';
+import styles from 'styles/containers/ImageSearch';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

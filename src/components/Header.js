@@ -1,4 +1,4 @@
-import styles from 'styles/components/Header.less';
+import styles from 'styles/components/Header';
 import React from 'react';
 import { pure } from 'recompose';
 import { Link } from 'react-router';

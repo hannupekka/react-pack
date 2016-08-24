@@ -1,4 +1,4 @@
-import styles from 'styles/containers/Index.less';
+import styles from 'styles/containers/Index';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
