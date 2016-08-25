@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 
 import {
-  REQUEST_IMAGE,
-  RECEIVE_IMAGE,
-  REQUEST_IMAGE_ERROR
-} from 'actions/actionCreators';
+  IMAGE_REQUEST,
+  IMAGE_SUCCESS,
+  IMAGE_FAILURE
+} from 'actions/image';
 
 const initialState = Immutable.fromJS({
   isLoading: false,
@@ -14,15 +14,15 @@ const initialState = Immutable.fromJS({
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_IMAGE:
+    case IMAGE_REQUEST:
       return state.merge({ isLoading: true, isError: false });
-    case RECEIVE_IMAGE:
+    case IMAGE_SUCCESS:
       return state.merge({
         isLoading: false,
         isError: false,
-        image: Immutable.fromJS(action.payload.data)
+        image: action.payload.data
       });
-    case REQUEST_IMAGE_ERROR:
+    case IMAGE_FAILURE:
       return state.merge({ isLoading: false, isError: true });
     default:
       return state;

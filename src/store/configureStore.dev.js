@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
+import { apiMiddleware } from 'redux-api-middleware';
 import rootReducer from 'reducers/index';
 import DevTools from 'containers/utils/DevTools';
 
@@ -21,6 +22,7 @@ const enhancer = compose(
   // Middleware you want to use in development:
   applyMiddleware(
     thunkMiddleware,
+    apiMiddleware,
     loggerMiddleware
   ),
   // Required! Enable Redux DevTools with the monitors you chose

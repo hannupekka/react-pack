@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 
 import {
   TOGGLE_GREETING
-} from 'actions/actionCreators';
+} from 'actions/ui';
 
 const initialState = Immutable.fromJS({
   showGreeting: false

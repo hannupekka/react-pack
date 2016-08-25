@@ -1,11 +1,10 @@
 import styles from 'styles/containers/ImageSearch';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import CSSModules from 'react-css-modules';
 import { onlyUpdateForKeys } from 'recompose';
-import * as actionCreators from 'actions/actionCreators';
+import * as imageActions from 'actions/image';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Image from 'components/Image';
@@ -15,12 +14,12 @@ class ImageSearch extends Component {
     super(props);
 
     this.bindSearch = (c) => (this.search = c);
-    this.onRequestImage = this.onRequestImage.bind(this);
+    this.onFetchImage = this.onFetchImage.bind(this);
   }
 
-  onRequestImage() {
+  onFetchImage() {
     const search = this.search.value;
-    this.props.actions.requestImage(search);
+    this.props.fetchImage(search);
   }
 
   render() {
@@ -34,7 +33,7 @@ class ImageSearch extends Component {
       <div styleName="image-search">
         <label htmlFor="search">Search word</label>
         <input type="text" ref={this.bindSearch} />
-        <button onClick={this.onRequestImage}>
+        <button onClick={this.onFetchImage}>
           Get random image <i className="fa fa-search"></i>
         </button>
         {isLoading && <Loader />}
@@ -45,9 +44,9 @@ class ImageSearch extends Component {
 }
 
 ImageSearch.propTypes = {
-  actions: PropTypes.object.isRequired,
+  fetchImage: PropTypes.func.isRequired,
   params: PropTypes.object,
-  image: ImmutablePropTypes.map,
+  image: ImmutablePropTypes.map.isRequired,
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired
 };
@@ -58,9 +57,11 @@ const select = store => ({
   isLoading: store.image.get('isLoading')
 });
 
-const mapActions = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapActions = dispatch => {
+  return {
+    fetchImage: tag => dispatch(imageActions.fetchImage(tag))
+  };
+};
 
 export default connect(
   select,

@@ -1,9 +1,8 @@
 import styles from 'styles/containers/Index';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
-import * as actionCreators from 'actions/actionCreators';
+import * as uiActions from 'actions/ui';
 
 class Index extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class Index extends Component {
   }
 
   onToggleGreeting() {
-    this.props.actions.toggleGreeting();
+    this.props.toggleGreeting();
   }
 
   render() {
@@ -27,7 +26,7 @@ class Index extends Component {
 }
 
 Index.propTypes = {
-  actions: PropTypes.object.isRequired,
+  toggleGreeting: PropTypes.func.isRequired,
   params: PropTypes.object,
   showGreeting: PropTypes.bool.isRequired
 };
@@ -36,9 +35,11 @@ const select = store => ({
   showGreeting: store.ui.get('showGreeting')
 });
 
-const mapActions = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapActions = dispatch => {
+  return {
+    toggleGreeting: () => dispatch(uiActions.toggleGreeting())
+  };
+};
 
 export default connect(
   select,
