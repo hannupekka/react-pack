@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const config = require('../webpack/webpack.config.dev');
 
 new WebpackDevServer(webpack(config), {
+  quiet: true,
   publicPath: config.output.publicPath,
   hot: true,
   stats: {

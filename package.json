@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
     "build": "check-node-version --package && npm run clean && npm run build:webpack",
-    "dev": "NODE_ENV=development node server/devServer.js",
+    "dev": "NODE_ENV=development webpack-dashboard node server/devServer.js",
     "start": "node server/server.js",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-register --recursive",
@@ -80,6 +80,7 @@
     "redux-devtools-log-monitor": "^1.0.9",
     "redux-logger": "^2.6.1",
     "redux-mock-store": "^1.1.2",
+    "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.12.1"
   },
   "pre-commit": [
