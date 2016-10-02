@@ -1,6 +1,5 @@
 // @flow
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import Application from 'containers/Application';
 import Index from 'containers/Index';
@@ -19,10 +18,6 @@ const Routes = (props: { history: Object }) => {
       {routes}
     </Router>
   );
-};
-
-Routes.propTypes = {
-  history: PropTypes.object.isRequired
 };
 
 export default Routes;

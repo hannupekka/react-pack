@@ -1,18 +1,18 @@
 // @flow
 import styles from 'styles/components/Error';
-import React, { PropTypes } from 'react';
+import React from 'react';
 import CSSModules from 'react-css-modules';
 
-const Error = ({ message }) => {
+type Props = {
+  message: string
+}
+
+const Error = ({ message }: Props) => {
   return (
     <div styleName="error">
       {message}
     </div>
   );
-};
-
-Error.propTypes = {
-  message: PropTypes.string.isRequired
 };
 
 export default CSSModules(Error, styles);

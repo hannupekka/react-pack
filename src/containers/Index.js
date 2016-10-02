@@ -1,13 +1,19 @@
 // @flow
-
 import styles from 'styles/containers/Index';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
+type Props = {
+  params: Object,
+  showGreeting: bool,
+  toggleGreeting: () => void
+};
+
 class Index extends Component {
+  props: Props;
   onToggleGreeting = () => {
     this.props.toggleGreeting();
   }
@@ -42,12 +48,6 @@ class Index extends Component {
     );
   }
 }
-
-Index.propTypes = {
-  toggleGreeting: PropTypes.func.isRequired,
-  params: PropTypes.object,
-  showGreeting: PropTypes.bool.isRequired
-};
 
 const select = store => ({
   showGreeting: store.ui.get('showGreeting')

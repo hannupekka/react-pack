@@ -1,5 +1,4 @@
 // @flow
-
 import 'babel-polyfill';
 import 'normalize.css/normalize.css';
 import 'font-awesome/css/font-awesome.min.css';

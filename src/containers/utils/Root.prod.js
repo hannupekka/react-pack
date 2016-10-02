@@ -1,13 +1,12 @@
 // @flow
-
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import Routes from 'containers/utils/Routes';
 
-const Root = (props: { store: Object, history: Object }) => {
+const Root = ({ store, history }: { store: Object, history: Object }) => {
   return (
-    <Provider store={props.store}>
-      <Routes history={props.history} />
+    <Provider store={store}>
+      <Routes history={history} />
     </Provider>
   );
 };

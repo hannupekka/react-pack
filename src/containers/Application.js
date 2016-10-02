@@ -1,12 +1,16 @@
 // @flow
-
 import styles from 'styles/containers/Application';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import Header from 'components/Header';
 
+type Props = {
+  children: Object
+}
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Application extends Component {
+  props: Props;
   render() {
     const { children } = this.props;
 
@@ -20,9 +24,5 @@ class Application extends Component {
     );
   }
 }
-
-Application.propTypes = {
-  children: PropTypes.object
-};
 
 export default CSSModules(Application, styles);
