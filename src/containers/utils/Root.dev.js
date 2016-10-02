@@ -1,13 +1,15 @@
+// @flow
+
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import DevTools from 'containers/utils/DevTools';
 import Routes from 'containers/utils/Routes';
 
-const Root = ({ store, history }) => {
+const Root = (props: { store: Object, history: Object }) => {
   return (
-    <Provider store={store}>
+    <Provider store={props.store}>
       <div>
-        <Routes history={history} />
+        <Routes history={props.history} />
         <DevTools />
       </div>
     </Provider>

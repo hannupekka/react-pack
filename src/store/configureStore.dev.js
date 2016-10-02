@@ -1,3 +1,5 @@
+// @flow
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
@@ -31,13 +33,15 @@ const enhancer = compose(
   persistState(getDebugSessionKey())
 );
 
-module.exports = function configureStore(initialState) {
+module.exports = function configureStore(initialState?: Object) {
   // Note: only Redux >= 3.1.0 supports passing enhancer as third argument.
   // See https://github.com/rackt/redux/releases/tag/v3.1.0
   const store = createStore(rootReducer, initialState, enhancer);
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
+    // eslint-disable-next-line max-len
+    // $FixMe Line below produces "call of method `accept`. Method cannot be called on 'hot' of unknown type".
     module.hot.accept('redux/modules/index', () =>
       store.replaceReducer(reducers)
     );

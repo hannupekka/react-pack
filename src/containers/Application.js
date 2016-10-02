@@ -1,3 +1,5 @@
+// @flow
+
 import styles from 'styles/containers/Application';
 import React, { Component, PropTypes } from 'react';
 import CSSModules from 'react-css-modules';

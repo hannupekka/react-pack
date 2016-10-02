@@ -1,3 +1,4 @@
+// @flow
 import styles from 'styles/components/Error';
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';

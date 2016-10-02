@@ -1,5 +1,9 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
     "no-global-assign": 0,
     "no-underscore-dangle": 0,
@@ -20,7 +24,19 @@
         ]
       }
     ],
-    "react/self-closing-comp": 0
+    "react/sort-comp": [1, {
+      order: [
+        'props',
+        'static-methods',
+        'lifecycle',
+        'everything-else',
+        'render'
+      ]
+    }],
+    "react/self-closing-comp": 0,
+    "react/jsx-key": 2,
+    "flowtype/define-flow-type": 2,
+    "generator-star-spacing": 0
   },
   "globals": {
     "describe": false,
