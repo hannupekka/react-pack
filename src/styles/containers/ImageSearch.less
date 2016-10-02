@@ -1,12 +1,17 @@
-@import '~styles/variables.less';
+@import '~styles/main';
 
 .image-search {
-  input[type=text] {
-    margin: 0 10px;
-  }
-
   img {
     display: block;
-    margin-top: 10px;
+    margin-top: @padding;
   }
+}
+
+.input {
+  composes: base--input;
+  margin: 0 @padding;
+}
+
+.button {
+  composes: base--button;
 }

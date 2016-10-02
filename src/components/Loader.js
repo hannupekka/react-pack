@@ -6,10 +6,9 @@ import CSSModules from 'react-css-modules';
 
 const Loader = () => {
   return (
-    <div styleName="spinner">
-      <div styleName="bounce1"></div>
-      <div styleName="bounce2"></div>
-      <div></div>
+    <div>
+      <div styleName="spinner"></div>
+      <div styleName="text">Loading</div>
     </div>
   );
 };
