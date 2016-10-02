@@ -1,10 +1,12 @@
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 
-import {
-  TOGGLE_GREETING
-} from 'actions/ui';
+export const TOGGLE_GREETING = 'react-pack/ui/TOGGLE_GREETING';
 
-const initialState = Immutable.fromJS({
+export const toggleGreeting = () => {
+  return dispatch => dispatch({ type: TOGGLE_GREETING });
+};
+
+export const initialState = fromJS({
   showGreeting: false
 });
 
