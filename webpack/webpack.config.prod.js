@@ -74,14 +74,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.less'],
-    alias: {
-      actions: path.join(__dirname, '../src/actions'),
-      components: path.join(__dirname, '../src/components'),
-      constants: path.join(__dirname, '../src/constants'),
-      containers: path.join(__dirname, '../src/containers'),
-      reducers: path.join(__dirname, '../src/reducers'),
-      store: path.join(__dirname, '../src/store'),
-      styles: path.join(__dirname, '../src/styles')
-    }
+    root: [
+     path.resolve('./src')
+   ]
   }
 };

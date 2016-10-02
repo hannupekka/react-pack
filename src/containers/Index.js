@@ -2,7 +2,7 @@ import styles from 'styles/containers/Index';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
-import * as uiActions from 'actions/ui';
+import * as uiActions from 'redux/modules/ui';
 
 class Index extends Component {
   constructor(props) {

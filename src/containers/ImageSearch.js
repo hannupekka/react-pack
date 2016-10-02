@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import CSSModules from 'react-css-modules';
 import { onlyUpdateForKeys } from 'recompose';
-import * as imageActions from 'actions/image';
+import * as imageActions from 'redux/modules/image';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Image from 'components/Image';

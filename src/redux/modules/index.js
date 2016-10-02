@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import ui from 'reducers/ui';
-import image from 'reducers/image';
+import image from 'redux/modules/image';
+import ui from 'redux/modules/ui';
 
 const rootReducer = combineReducers({
-  ui,
   image,
+  ui,
   routing: routerReducer
 });
 

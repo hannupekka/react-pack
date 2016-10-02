@@ -3,10 +3,10 @@ import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { apiMiddleware } from 'redux-api-middleware';
-import rootReducer from 'reducers/index';
+import rootReducer from 'redux/modules/index';
 import DevTools from 'containers/utils/DevTools';
 
-const reducers = require('reducers/index');
+const reducers = require('redux/modules/index');
 
 // Logger.
 const loggerMiddleware = createLogger();
@@ -38,7 +38,7 @@ module.exports = function configureStore(initialState) {
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
-    module.hot.accept('reducers/index', () =>
+    module.hot.accept('redux/modules/index', () =>
       store.replaceReducer(reducers)
     );
   }
