@@ -5,7 +5,10 @@ import { fromJS } from 'immutable';
 export const TOGGLE_GREETING = 'react-pack/ui/TOGGLE_GREETING';
 
 export const toggleGreeting = () => {
-  return (dispatch: Function) => dispatch({ type: TOGGLE_GREETING });
+  return {
+    type: TOGGLE_GREETING,
+    payload: {}
+  };
 };
 
 export const initialState = fromJS({
