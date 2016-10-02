@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import Application from 'containers/Application';
@@ -11,9 +13,9 @@ const routes = (
   </Route>
 );
 
-const Routes = ({ history }) => {
+const Routes = (props: { history: Object }) => {
   return (
-    <Router history={history}>
+    <Router history={props.history}>
       {routes}
     </Router>
   );

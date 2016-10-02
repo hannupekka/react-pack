@@ -1,3 +1,5 @@
+// @flow
+
 import styles from 'styles/containers/Index';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -5,12 +7,7 @@ import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
 class Index extends Component {
-  constructor(props) {
-    super(props);
-    this.onToggleGreeting = this.onToggleGreeting.bind(this);
-  }
-
-  onToggleGreeting() {
+  onToggleGreeting = () => {
     this.props.toggleGreeting();
   }
 

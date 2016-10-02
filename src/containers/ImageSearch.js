@@ -1,3 +1,5 @@
+// @flow
+
 import styles from 'styles/containers/ImageSearch';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -13,12 +15,11 @@ class ImageSearch extends Component {
   constructor(props) {
     super(props);
 
-    this.bindSearch = (c) => (this.search = c);
-    this.onFetchImage = this.onFetchImage.bind(this);
+    (this:any).bindSearch = (c) => ((this:any).search = c);
   }
 
-  onFetchImage() {
-    const search = this.search.value;
+  onFetchImage = () => {
+    const search = (this:any).search.value;
     this.props.fetchImage(search);
   }
 
@@ -32,7 +33,7 @@ class ImageSearch extends Component {
     return (
       <div styleName="image-search">
         <label htmlFor="search">Search word</label>
-        <input type="text" ref={this.bindSearch} />
+        <input type="text" ref={(this:any).bindSearch} />
         <button onClick={this.onFetchImage}>
           Get random image <i className="fa fa-search"></i>
         </button>

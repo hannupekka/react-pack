@@ -1,3 +1,5 @@
+// @flow
+
 const CONFIG = require('../src/constants/config');
 const fetchMock = require('fetch-mock');
 import configureMockStore from 'redux-mock-store'
