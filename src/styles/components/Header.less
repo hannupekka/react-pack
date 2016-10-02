@@ -1,8 +1,12 @@
-@import '~styles/variables.less';
+@import '~styles/main';
 
 .header {
-  background-color: @color-background-header;
-  padding: 10px;
+  background-color: @color__gray--light;
+  padding: @padding;
+
+  img {
+    display: none;
+  }
 
   h1 {
     margin-top: 0;
@@ -17,7 +21,15 @@
     }
 
     li + li {
-      margin-left: 20px;
+      margin-left: @padding * 2;
+    }
+  }
+}
+
+@media @md {
+  .header {
+    img {
+      display: block;
     }
   }
 }

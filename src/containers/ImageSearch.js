@@ -33,8 +33,8 @@ class ImageSearch extends Component {
     return (
       <div styleName="image-search">
         <label htmlFor="search">Search word</label>
-        <input type="text" ref={(this:any).bindSearch} />
-        <button onClick={this.onFetchImage}>
+        <input type="text" styleName="input" ref={(this:any).bindSearch} />
+        <button styleName="button" onClick={this.onFetchImage}>
           Get random image <i className="fa fa-search"></i>
         </button>
         {isLoading && <Loader />}

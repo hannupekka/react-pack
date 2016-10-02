@@ -1,1 +1,22 @@
-@import '~styles/variables.less';
+@import '~styles/main';
+
+// Animations
+.enter {
+  animation: fadeInDown @duration--enter;
+  opacity: 0.01;
+}
+
+.enter--active {
+  opacity: 1;
+  transition: all @duration--enter ease-in;
+}
+
+.leave {
+  animation: fadeOutUp @duration--enter;
+  opacity: 1;
+}
+
+.leave--active {
+  opacity: 0.01;
+  transition: opacity @duration--leave ease-out;
+}
