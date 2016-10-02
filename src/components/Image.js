@@ -1,9 +1,12 @@
 // @flow
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { pure } from 'recompose';
 
-const Image = ({ src }) => {
+type Props = {
+  src?: string
+}
+
+const Image = ({ src }: Props) => {
   if (!src) {
     return null;
   }
@@ -11,10 +14,6 @@ const Image = ({ src }) => {
   return (
     <img src={src} role="presentation" />
   );
-};
-
-Image.propTypes = {
-  src: PropTypes.string
 };
 
 export default pure(Image);

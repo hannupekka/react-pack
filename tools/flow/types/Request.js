@@ -5,6 +5,10 @@ declare type HTTPMethodType =
   | 'PATCH'
   | 'DELETE';
 
+declare type RequestTypesType =
+  | string
+  | Object;
+
 declare type ApiMiddlewareRequestType = {
   [CALL_API: Symbol]: Object
 }
@@ -12,5 +16,5 @@ declare type ApiMiddlewareRequestType = {
 declare type ApiMiddlewareRequestParamsType = {
   method: HTTPMethodType,
   endpoint: string,
-  types: Array<string>
+  types: Array<RequestTypesType>
 }

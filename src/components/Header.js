@@ -1,5 +1,4 @@
 // @flow
-
 import styles from 'styles/components/Header';
 import React from 'react';
 import { pure } from 'recompose';

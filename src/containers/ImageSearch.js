@@ -1,9 +1,8 @@
 // @flow
-
 import styles from 'styles/containers/ImageSearch';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Map } from 'immutable';
 import CSSModules from 'react-css-modules';
 import { onlyUpdateForKeys } from 'recompose';
 import * as imageActions from 'redux/modules/image';
@@ -11,7 +10,16 @@ import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Image from 'components/Image';
 
+type Props = {
+  fetchImage: (search: string) => void,
+  image: Map<string, any>,
+  isError: bool,
+  isLoading: bool,
+  params: Object
+}
+
 class ImageSearch extends Component {
+  props: Props;
   constructor(props) {
     super(props);
 
@@ -43,14 +51,6 @@ class ImageSearch extends Component {
     );
   }
 }
-
-ImageSearch.propTypes = {
-  fetchImage: PropTypes.func.isRequired,
-  params: PropTypes.object,
-  image: ImmutablePropTypes.map.isRequired,
-  isError: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired
-};
 
 const select = store => ({
   image: store.image.get('image'),
