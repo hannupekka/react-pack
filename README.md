@@ -11,8 +11,6 @@ HMR-enabled boilerplate for:
 
 Application gets random GIF from [Giphy](http://giphy.com/) and shows it to user.
 
-Such thanks to [@anttti](https://github.com/anttti/) for his [yet-another-redux-example](https://github.com/anttti/yet-another-redux-example) and providing base for this project.
-
 ### Development server
 
 Install dependencies and start development server with:
@@ -37,3 +35,10 @@ Redux DevTools are hidden by default. You can change this behavior and other set
 ```
 npm run build
 ```
+
+
+## Acknowledgements
+
+This project is a grateful recipient of the [Futurice Open Source sponsorship program](http://futurice.com/blog/sponsoring-free-time-open-source-activities).
+
+Also thanks to [@anttti](https://github.com/anttti/) for his [yet-another-redux-example](https://github.com/anttti/yet-another-redux-example) and providing base for this project.
