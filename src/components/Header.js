@@ -7,7 +7,7 @@ import CSSModules from 'react-css-modules';
 
 const logo = require('../assets/logo.png');
 
-const Header = () => {
+const Header = (): React$Element<*> => {
   return (
     <header styleName="header">
       <h1 styleName="title">Example application</h1>

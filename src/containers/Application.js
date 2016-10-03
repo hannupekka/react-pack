@@ -11,7 +11,7 @@ type Props = {
 // eslint-disable-next-line react/prefer-stateless-function
 class Application extends Component {
   props: Props;
-  render() {
+  render(): React$Element<*> {
     const { children } = this.props;
 
     return (

@@ -12,7 +12,7 @@ import Image from 'components/Image';
 
 type Props = {
   fetchImage: (search: string) => void,
-  image: Map<string, any>,
+  image: Map<string, Object>,
   isError: bool,
   isLoading: bool,
   params: Object
@@ -26,7 +26,7 @@ class ImageSearch extends Component {
     (this:any).bindSearch = (c) => ((this:any).search = c);
   }
 
-  onFetchImage = () => {
+  onFetchImage = (): void => {
     const search = (this:any).search.value;
     this.props.fetchImage(search);
   }
@@ -60,7 +60,7 @@ const select = store => ({
 
 const mapActions = dispatch => {
   return {
-    fetchImage: tag => dispatch(imageActions.fetchImage(tag))
+    fetchImage: (tag: string) => dispatch(imageActions.fetchImage(tag))
   };
 };
 

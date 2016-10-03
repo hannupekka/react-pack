@@ -14,11 +14,11 @@ type Props = {
 
 class Index extends Component {
   props: Props;
-  onToggleGreeting = () => {
+  onToggleGreeting = (): void => {
     this.props.toggleGreeting();
   }
 
-  renderGreeting = () => {
+  renderGreeting = (): ?React$Element<*> => {
     const { showGreeting } = this.props;
 
     if (!showGreeting) {

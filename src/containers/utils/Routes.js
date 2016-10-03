@@ -12,7 +12,7 @@ const routes = (
   </Route>
 );
 
-const Routes = (props: { history: Object }) => {
+const Routes = (props: { history: Object }): React$Element<*> => {
   return (
     <Router history={props.history}>
       {routes}

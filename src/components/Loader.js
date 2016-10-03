@@ -3,7 +3,7 @@ import styles from 'styles/components/Loader';
 import React from 'react';
 import CSSModules from 'react-css-modules';
 
-const Loader = () => {
+const Loader = (): React$Element<*> => {
   return (
     <div>
       <div styleName="spinner"></div>
