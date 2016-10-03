@@ -3,15 +3,13 @@
 .header {
   background-color: @color__gray--light;
   padding: @padding;
+}
 
-  img {
-    display: none;
-  }
+.title {
+  margin-top: 0;
+}
 
-  h1 {
-    margin-top: 0;
-  }
-
+.navigation {
   ul {
     list-style-type: none;
     padding: 0;
@@ -26,10 +24,12 @@
   }
 }
 
+.logo {
+  display: none;
+}
+
 @media @md {
-  .header {
-    img {
-      display: block;
-    }
+  .logo {
+    display: block;
   }
 }

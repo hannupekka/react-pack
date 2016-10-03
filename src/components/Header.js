@@ -10,9 +10,9 @@ const logo = require('../assets/logo.png');
 const Header = () => {
   return (
     <header styleName="header">
-      <h1>Example application</h1>
-      <img src={logo} role="presentation" />
-      <nav>
+      <h1 styleName="title">Example application</h1>
+      <img styleName="logo" src={logo} role="presentation" />
+      <nav styleName="navigation">
         <ul>
           <li><Link to={'/'}>Index</Link></li>
           <li><Link to={'/image'}>Image</Link></li>
