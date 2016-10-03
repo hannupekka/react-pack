@@ -1,20 +1,28 @@
 declare type HTTPMethodType =
-  | 'POST'
   | 'GET'
+  | 'HEAD'
+  | 'POST'
   | 'PUT'
   | 'PATCH'
-  | 'DELETE';
+  | 'DELETE'
+  | 'OPTIONS';
 
-declare type RequestTypesType =
-  | string
-  | Object;
+declare type RequestTypeType = {
+  type: string | Symbol,
+  payload?: any,
+  meta?: any
+}
 
 declare type ApiMiddlewareRequestType = {
   [CALL_API: Symbol]: Object
 }
 
 declare type ApiMiddlewareRequestParamsType = {
+  endpoint: string | Function,
   method: HTTPMethodType,
-  endpoint: string,
-  types: Array<RequestTypesType>
+  types: Array<string | RequestTypeType | Symbol>,
+  body?: string | Object,
+  headers?: Object | Function,
+  credentials?: string,
+  bailout?: bool | Function
 }
