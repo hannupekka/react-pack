@@ -4,14 +4,17 @@ HMR-enabled boilerplate for:
 * React
 * Redux + DevTools
 * React Router
+* Redux API middleware
 * React CSS Modules + LESS
 * ImmutableJS
+* Flowtype
+* Jest
 * Webpack + HMR
 * Heroku
 
 Application gets random GIF from [Giphy](http://giphy.com/) and shows it to user.
 
-### Development server
+## Development server
 
 Install dependencies and start development server with:
 
@@ -30,12 +33,33 @@ Redux DevTools are hidden by default. You can change this behavior and other set
 ***Change the DevTool panel's position during development:***
 <kbd>CTRL</kbd> + <kbd>Q</kbd>
 
-### Production build
+## Production build
 
 ```
 npm run build
 ```
 
+## Structure
+* `server`
+ * Simple NodeJS servers for development and serving production build.
+* `src/assets`
+ * All static assets like images.
+* `src/components`
+ * React components that simply display data they are given.
+* `src/containers`
+ * React containers that have access to Redux state and modify it somehow.
+* `src/html`
+ * HTML templates for development and production. In production build CSS and bundled JS are auto-injected.
+* `src/redux/modules`
+ * Redux [Ducks](https://github.com/erikras/ducks-modular-redux)
+* `src/store`
+ *  Redux store configuration like middlewares.
+* `src/styles`
+ * Container and component styles using [react-css-modules](https://github.com/gajus/react-css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
+* `src/utils`
+ * Helpers for example wrapping [Redux API middleware](https://github.com/agraboso/redux-api-middleware) requests for Flowtype compatibility.
+* `tools`
+ * Flowtype type definitions and annotation check, Jest pre-processors.
 
 ## Acknowledgements
 
