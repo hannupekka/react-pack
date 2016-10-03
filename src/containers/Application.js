@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules';
 import Header from 'components/Header';
 
 type Props = {
-  children: Object
+  children: React$Element<*> | Array<React$Element<*>>
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
