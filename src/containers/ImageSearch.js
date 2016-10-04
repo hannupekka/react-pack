@@ -31,7 +31,7 @@ class ImageSearch extends Component {
     this.props.fetchImage(search);
   }
 
-  render() {
+  render(): ElementType {
     const { isLoading, isError, image } = this.props;
 
     if (isError) {

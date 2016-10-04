@@ -5,13 +5,13 @@ import CSSModules from 'react-css-modules';
 import Header from 'components/Header';
 
 type Props = {
-  children: React$Element<*> | Array<React$Element<*>>
+  children: ElementType | Array<ElementType>
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Application extends Component {
   props: Props;
-  render(): React$Element<*> {
+  render(): ElementType {
     const { children } = this.props;
 
     return (

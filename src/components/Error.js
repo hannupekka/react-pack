@@ -7,7 +7,7 @@ type Props = {
   message: string
 }
 
-const Error = ({ message }: Props): React$Element<*> => {
+const Error = ({ message }: Props): ElementType => {
   return (
     <div styleName="error">
       {message}

@@ -18,7 +18,7 @@ class Index extends Component {
     this.props.toggleGreeting();
   }
 
-  renderGreeting = (): ?React$Element<*> => {
+  renderGreeting = (): ?ElementType => {
     const { showGreeting } = this.props;
 
     if (!showGreeting) {
