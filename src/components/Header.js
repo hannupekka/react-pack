@@ -2,11 +2,13 @@
 import styles from 'styles/components/Header';
 import React from 'react';
 import { Link } from 'react-router';
+import { pure } from 'recompose';
+import type { Component } from 'recompose';
 import CSSModules from 'react-css-modules';
 
 const logo = require('../assets/logo.png');
 
-const Header = (): ElementType => {
+const Header: Component<{}> = (): ElementType => {
   return (
     <header styleName="header">
       <h1 styleName="title">Example application</h1>
@@ -21,4 +23,4 @@ const Header = (): ElementType => {
   );
 };
 
-export default CSSModules(Header, styles);
+export default pure(CSSModules(Header, styles));
