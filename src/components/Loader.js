@@ -1,9 +1,11 @@
 // @flow
 import styles from 'styles/components/Loader';
 import React from 'react';
+import { pure } from 'recompose';
+import type { Component } from 'recompose';
 import CSSModules from 'react-css-modules';
 
-const Loader = (): ElementType => {
+const Loader: Component<{}> = (): ElementType => {
   return (
     <div>
       <div styleName="spinner"></div>
@@ -12,4 +14,4 @@ const Loader = (): ElementType => {
   );
 };
 
-export default CSSModules(Loader, styles);
+export default pure(CSSModules(Loader, styles));

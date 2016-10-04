@@ -12,10 +12,10 @@ new WebpackDevServer(webpack(config), {
   historyApiFallback: {
     index: 'src/html/index.dev.html'
   }
-}).listen(3000, 'localhost', function(err) {
+}).listen(8080, '0.0.0.0', function(err) {
   if (err) {
     return console.log(err);
   }
 
-  console.log('Listening at http://localhost:3000/');
+  console.log('Listening at http://localhost:8080/');
 });
