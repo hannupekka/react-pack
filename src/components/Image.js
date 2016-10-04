@@ -1,9 +1,8 @@
 // @flow
 import React from 'react';
-import { pure } from 'recompose';
 
 type Props = {
-  src?: string
+  src?: string | Object
 }
 
 const Image = ({ src }: Props): ?ElementType => {
@@ -16,4 +15,4 @@ const Image = ({ src }: Props): ?ElementType => {
   );
 };
 
-export default pure(Image);
+export default Image;

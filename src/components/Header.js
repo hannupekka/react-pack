@@ -1,7 +1,6 @@
 // @flow
 import styles from 'styles/components/Header';
 import React from 'react';
-import { pure } from 'recompose';
 import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 
@@ -22,4 +21,4 @@ const Header = (): ElementType => {
   );
 };
 
-export default pure(CSSModules(Header, styles));
+export default CSSModules(Header, styles);
