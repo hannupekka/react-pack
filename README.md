@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Server with HMR should now be running on `http://localhost:3000`
+Server with HMR should now be running on `http://localhost:8080`
 
 Redux DevTools are hidden by default. You can change this behavior and other settings from `src/containers/utils/DevTools.js`.
 
