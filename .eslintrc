@@ -29,6 +29,7 @@
       order: [
         'props',
         'state',
+        'type-annotations',
         'static-methods',
         'lifecycle',
         'everything-else',

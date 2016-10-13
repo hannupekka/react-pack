@@ -20,14 +20,18 @@ type Props = {
 
 class ImageSearch extends Component {
   props: Props;
+
+  bindSearch: Function;
+  search: HTMLInputElement;
+
   constructor(props) {
     super(props);
 
-    (this:any).bindSearch = (c) => ((this:any).search = c);
+    this.bindSearch = (c) => (this.search = c);
   }
 
   onFetchImage = (): void => {
-    const search = (this:any).search.value;
+    const search = this.search.value;
     this.props.fetchImage(search);
   }
 
@@ -41,7 +45,7 @@ class ImageSearch extends Component {
     return (
       <div styleName="image-search">
         <label htmlFor="search">Search word</label>
-        <input type="text" styleName="input" ref={(this:any).bindSearch} />
+        <input type="text" styleName="input" ref={this.bindSearch} />
         <button styleName="button" onClick={this.onFetchImage}>
           Get random image <i className="fa fa-search"></i>
         </button>
