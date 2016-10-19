@@ -47,7 +47,6 @@
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "normalize.css": "^4.2.0",
-    "path": "^0.12.7",
     "postcss-loader": "^0.13.0",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.2",
