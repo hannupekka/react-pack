@@ -4,6 +4,7 @@
   "description": "React project skeleton",
   "scripts": {
     "clean": "rimraf dist",
+    "ban": "ban",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
     "build": "check-node-version --package && npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development webpack-dashboard node server/devServer.js",
@@ -68,6 +69,7 @@
   "devDependencies": {
     "babel-eslint": "^7.0.0",
     "babel-jest": "^15.0.0",
+    "ban-sensitive-files": "^1.8.3",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-import-resolver-webpack": "^0.6.0",
@@ -90,6 +92,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "pre-commit": [
+    "ban",
     "lint",
     "flow",
     "test"
