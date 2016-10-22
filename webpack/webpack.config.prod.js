@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const postcssFixes = require('postcss-fixes');
+const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -46,7 +48,10 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!less')
+        loader: ExtractTextPlugin.extract(
+          'style',
+          // eslint-disable-next-line
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!less')
       },
       {
         test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
@@ -67,15 +72,20 @@ module.exports = {
       }
     ]
   },
-  postcss: function() {
-    return [autoprefixer({
-      browsers:["last 2 version", "IE >= 9"]
-    })];
-  },
+  postcss: () => [
+    postcssFixes(),
+    autoprefixer({
+      browsers: ['last 2 version', 'IE >= 9']
+    }),
+    cssnano({
+      safe: true,
+      calc: false
+    })
+  ],
   resolve: {
     extensions: ['', '.js', '.less'],
     root: [
-     path.resolve('./src')
-   ]
+      path.resolve('./src')
+    ]
   }
 };

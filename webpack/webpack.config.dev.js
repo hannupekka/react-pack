@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const postcssFixes = require('postcss-fixes');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
     new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
+      fetch: 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
     })
   ],
   module: {
@@ -69,15 +70,16 @@ module.exports = {
       }
     ]
   },
-  postcss: function() {
-    return [autoprefixer({
-      browsers:["last 2 version", "IE >= 9"]
-    })];
-  },
+  postcss: () => [
+    postcssFixes(),
+    autoprefixer({
+      browsers: ['last 2 version', 'IE >= 9']
+    })
+  ],
   resolve: {
     extensions: ['', '.js', '.less'],
     root: [
-     path.resolve('./src')
-   ]
+      path.resolve('./src')
+    ]
   }
 };
