@@ -9,7 +9,7 @@ import * as uiActions from 'redux/modules/ui';
 type Props = {
   params: Object,
   showGreeting: bool,
-  toggleGreeting: () => void
+  toggleGreeting: () => ActionType
 };
 
 class Index extends Component {
@@ -49,17 +49,15 @@ class Index extends Component {
   }
 }
 
-const select = store => ({
+const mapState = store => ({
   showGreeting: store.ui.get('showGreeting')
 });
 
-const mapActions = dispatch => {
-  return {
-    toggleGreeting: () => dispatch(uiActions.toggleGreeting())
-  };
+const mapActions = {
+  toggleGreeting: uiActions.toggleGreeting
 };
 
 export default connect(
-  select,
+  mapState,
   mapActions
 )(CSSModules(Index, styles));

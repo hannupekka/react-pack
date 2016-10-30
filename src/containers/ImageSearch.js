@@ -11,7 +11,7 @@ import Error from 'components/Error';
 import Image from 'components/Image';
 
 type Props = {
-  fetchImage: (search: string) => void,
+  fetchImage: (search: string) => ApiMiddlewareRequestType,
   image: Map<string, Object>,
   isError: bool,
   isLoading: bool,
@@ -56,19 +56,17 @@ class ImageSearch extends Component {
   }
 }
 
-const select = store => ({
+const mapState = store => ({
   image: store.image.get('image'),
   isError: store.image.get('isError'),
   isLoading: store.image.get('isLoading')
 });
 
-const mapActions = dispatch => {
-  return {
-    fetchImage: (tag: string) => dispatch(imageActions.fetchImage(tag))
-  };
+const mapActions = {
+  fetchImage: imageActions.fetchImage
 };
 
 export default connect(
-  select,
+  mapState,
   mapActions
 )(onlyUpdateForKeys(['isLoading', 'isError', 'image'])(CSSModules(ImageSearch, styles)));
