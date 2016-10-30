@@ -81,6 +81,7 @@
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.1",
     "eventsource-polyfill": "^0.9.6",
+    "flow-bin": "^0.34.0",
     "jest": "^16.0.2",
     "nock": "^9.0.2",
     "pre-commit": "^1.1.2",
