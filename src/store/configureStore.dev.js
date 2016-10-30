@@ -3,6 +3,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
 import { apiMiddleware } from 'redux-api-middleware';
 import rootReducer from 'redux/modules/index';
 import DevTools from 'containers/utils/DevTools';
@@ -24,7 +26,8 @@ const enhancer = compose(
   applyMiddleware(
     thunkMiddleware,
     apiMiddleware,
-    loggerMiddleware
+    loggerMiddleware,
+    routerMiddleware(browserHistory)
   ),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument(),
