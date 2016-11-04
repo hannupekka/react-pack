@@ -9,8 +9,6 @@ import { apiMiddleware } from 'redux-api-middleware';
 import rootReducer from 'redux/modules/index';
 import DevTools from 'containers/utils/DevTools';
 
-const reducers = require('redux/modules/index');
-
 // Logger.
 const loggerMiddleware = createLogger();
 
@@ -45,7 +43,7 @@ module.exports = function configureStore(initialState?: Object) {
     // eslint-disable-next-line max-len
     // $FixMe Line below produces "call of method `accept`. Method cannot be called on 'hot' of unknown type".
     module.hot.accept('redux/modules/index', () =>
-      store.replaceReducer(reducers)
+      store.replaceReducer(rootReducer)
     );
   }
 
