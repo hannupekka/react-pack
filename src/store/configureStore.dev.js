@@ -43,7 +43,8 @@ module.exports = function configureStore(initialState?: Object) {
     // eslint-disable-next-line max-len
     // $FixMe Line below produces "call of method `accept`. Method cannot be called on 'hot' of unknown type".
     module.hot.accept('redux/modules/index', () =>
-      store.replaceReducer(rootReducer)
+      // eslint-disable-next-line global-require
+      store.replaceReducer(require('redux/modules/index').default)
     );
   }
 
