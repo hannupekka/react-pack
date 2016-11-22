@@ -5,8 +5,7 @@ import 'normalize.css/normalize.css';
 import 'font-awesome/css/font-awesome.min.css';
 import React from 'react';
 import { render } from 'react-dom';
-import { useRouterHistory } from 'react-router';
-import createHistory from 'history/lib/createBrowserHistory';
+import getHistoryInstance from 'utils/history';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from 'store/configureStore';
 
@@ -17,7 +16,7 @@ import Root from 'containers/utils/Root';
 const store = configureStore();
 
 // Create history.
-const browserHistory = useRouterHistory(createHistory)();
+const browserHistory = getHistoryInstance();
 const history = syncHistoryWithStore(browserHistory, store);
 
 // Render.
