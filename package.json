@@ -15,7 +15,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "npm test -- --watch",
-    "postinstall": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "author": "Hannu-Pekka Heinäjärvi <hannupekka@gmail.com>",
   "license": "MIT",
