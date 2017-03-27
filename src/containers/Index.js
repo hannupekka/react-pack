@@ -1,5 +1,5 @@
 // @flow
-import styles from 'styles/containers/Index';
+import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -7,7 +7,6 @@ import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
 type Props = {
-  params: Object,
   showGreeting: bool,
   toggleGreeting: () => ActionType
 };

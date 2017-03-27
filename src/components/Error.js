@@ -1,5 +1,5 @@
 // @flow
-import styles from 'styles/components/Error';
+import styles from 'styles/components/Error.less';
 import React from 'react';
 import { pure } from 'recompose';
 import type { Component } from 'recompose';

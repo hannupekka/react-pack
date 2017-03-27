@@ -15,7 +15,7 @@
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": [
       "error", {
-        "devDependencies": true,
+        "devDependencies": true
       }
     ],
     "react/jsx-filename-extension": [
@@ -26,14 +26,14 @@
       }
     ],
     "react/sort-comp": [1, {
-      order: [
-        'props',
-        'state',
-        'type-annotations',
-        'static-methods',
-        'lifecycle',
-        'everything-else',
-        'render'
+      "order": [
+        "props",
+        "state",
+        "type-annotations",
+        "static-methods",
+        "lifecycle",
+        "everything-else",
+        "rendee"
       ]
     }],
     "react/require-extension": 0,

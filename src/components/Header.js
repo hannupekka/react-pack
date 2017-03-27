@@ -1,5 +1,5 @@
 // @flow
-import styles from 'styles/components/Header';
+import styles from 'styles/components/Header.less';
 import React from 'react';
 import { Link } from 'react-router';
 import { pure } from 'recompose';
@@ -12,7 +12,7 @@ const Header: Component<{}> = (): ElementType => {
   return (
     <header styleName="header">
       <h1 styleName="title">Example application</h1>
-      <img styleName="logo" src={logo} role="presentation" />
+      <img styleName="logo" src={logo} alt="" />
       <nav styleName="navigation">
         <ul>
           <li><Link to={'/'}>Index</Link></li>

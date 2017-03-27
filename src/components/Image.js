@@ -4,7 +4,7 @@ import { pure } from 'recompose';
 import type { Component } from 'recompose';
 
 type Props = {
-  src?: string | Object
+  src: ?string
 }
 
 const Image: Component<Props> = (props: Props): ?ElementType => {
@@ -13,7 +13,7 @@ const Image: Component<Props> = (props: Props): ?ElementType => {
   }
 
   return (
-    <img src={props.src} role="presentation" />
+    <img src={props.src} alt="" />
   );
 };
 

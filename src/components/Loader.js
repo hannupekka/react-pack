@@ -1,5 +1,5 @@
 // @flow
-import styles from 'styles/components/Loader';
+import styles from 'styles/components/Loader.less';
 import React from 'react';
 import { pure } from 'recompose';
 import type { Component } from 'recompose';

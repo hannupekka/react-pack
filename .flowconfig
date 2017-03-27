@@ -1,6 +1,7 @@
 [ignore]
 .*/node_modules/fbjs/.*
 .*/node_modules/reqwest/.*
+.*/node_modules/nock/.*
 .*/node_modules/babel-plugin-flow-react-proptypes/.*
 
 [include]

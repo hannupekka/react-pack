@@ -1,8 +1,7 @@
 // @flow
-import styles from 'styles/containers/ImageSearch';
+import styles from 'styles/containers/ImageSearch.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
 import CSSModules from 'react-css-modules';
 import { onlyUpdateForKeys } from 'recompose';
 import * as imageActions from 'redux/modules/image';
@@ -12,10 +11,9 @@ import Image from 'components/Image';
 
 type Props = {
   fetchImage: (search: string) => ApiMiddlewareRequestType,
-  image: Map<string, Object>,
+  image: Object,
   isError: bool,
-  isLoading: bool,
-  params: Object
+  isLoading: bool
 }
 
 class ImageSearch extends Component {
@@ -27,7 +25,7 @@ class ImageSearch extends Component {
   constructor(props) {
     super(props);
 
-    this.bindSearch = (c) => (this.search = c);
+    this.bindSearch = c => (this.search = c);
   }
 
   onFetchImage = (): void => {
@@ -37,6 +35,7 @@ class ImageSearch extends Component {
 
   render(): ElementType {
     const { isLoading, isError, image } = this.props;
+    const src: string = image.get('fixed_height_downsampled_url');
 
     if (isError) {
       return <Error message="Error requesting image!" />;
@@ -50,7 +49,7 @@ class ImageSearch extends Component {
           Get random image <i className="fa fa-search"></i>
         </button>
         {isLoading && <Loader />}
-        <Image src={image.get('fixed_height_downsampled_url')} />
+        <Image src={src} />
       </div>
     );
   }
