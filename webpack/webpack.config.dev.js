@@ -4,6 +4,15 @@ const autoprefixer = require('autoprefixer');
 const postcssFixes = require('postcss-fixes');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
+const postcssOptions = {
+  plugins: [
+    postcssFixes(),
+    autoprefixer({
+      browsers: ['last 2 version', 'IE >= 9']
+    })
+  ]
+};
+
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -28,57 +37,94 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?/,
         exclude: [/node_modules/, /styles/],
-        loaders: ['react-hot', 'babel']
+        use: ['react-hot-loader', 'babel-loader']
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style?sourceMap',
-          'css?importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'postcss',
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: true,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: postcssOptions
+          }
         ]
       },
       {
         test: /\.less$/,
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'postcss',
-          'less?sourceMap'
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: true,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: postcssOptions
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       },
       {
         test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url'
+        use: 'url-loader'
       }, {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url'
+        use: 'url-loader'
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'image/svg+xml'
+            }
+          }
+        ]
       }, {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file'
+        use: 'file-loader'
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'file'
+        use: 'file-loader'
       }
     ]
   },
-  postcss: () => [
-    postcssFixes(),
-    autoprefixer({
-      browsers: ['last 2 version', 'IE >= 9']
-    })
-  ],
   resolve: {
-    extensions: ['', '.js', '.less'],
-    root: [
+    extensions: ['.js', '.less'],
+    modules: [
+      'node_modules',
       path.resolve('./src')
     ]
   }

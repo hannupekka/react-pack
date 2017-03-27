@@ -6,7 +6,32 @@ const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const postcssOptions = {
+  plugins: [
+    postcssFixes(),
+    autoprefixer({
+      browsers: ['last 2 version', 'IE >= 9']
+    }),
+    cssnano({
+      safe: true,
+      calc: false
+    })
+  ]
+};
+
 module.exports = {
+  stats: {
+    assets: true,
+    cached: false,
+    cachedAssets: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    chunkOrigins: false,
+    modules: false,
+    reasons: false,
+    source: false
+  },
   devtool: 'source-map',
   entry: [
     './src/index'
@@ -17,14 +42,13 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new ExtractTextPlugin('styles.[hash].css', {
+    new ExtractTextPlugin({
+      filename: 'styles.[hash].css',
       allChunks: true
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -36,55 +60,108 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: [/node_modules/, /styles/],
-        loaders: ['babel'],
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1!postcss')
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: postcssOptions
+            }
+          ]
+        })
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          // eslint-disable-next-line
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!less')
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: postcssOptions
+            },
+            {
+              loader: 'less-loader'
+            }
+          ]
+        })
       },
       {
         test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'application/font-woff'
+            }
+          }
+        ]
       }, {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'application/octet-stream'
+            }
+          }
+        ]
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'image/svg+xml'
+            }
+          }
+        ]
       }, {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file'
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'file'
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
       }
     ]
   },
-  postcss: () => [
-    postcssFixes(),
-    autoprefixer({
-      browsers: ['last 2 version', 'IE >= 9']
-    }),
-    cssnano({
-      safe: true,
-      calc: false
-    })
-  ],
   resolve: {
-    extensions: ['', '.js', '.less'],
-    root: [
+    extensions: ['.js', '.less'],
+    modules: [
+      'node_modules',
       path.resolve('./src')
     ]
   }
