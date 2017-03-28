@@ -1,6 +1,6 @@
 // @flow
 import { useRouterHistory } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/lib/createBrowserHistory';
 
 let historyInstance: ?Object = null;
 
