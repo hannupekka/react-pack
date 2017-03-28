@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
 import { apiMiddleware } from 'redux-api-middleware';
