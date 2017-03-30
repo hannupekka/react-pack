@@ -1,23 +1,25 @@
 // @flow
+import styles from 'styles/containers/Application.less';
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
-import Application from 'containers/Application';
+import { Route } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+import Header from 'components/Header';
 import Index from 'containers/Index';
 import ImageSearch from 'containers/ImageSearch';
-
-const routes = (
-  <Route path="/" component={Application}>
-    <IndexRoute component={Index} />
-    <Route path="image" component={ImageSearch} />
-  </Route>
-);
+import CSSModules from 'react-css-modules';
 
 const Routes = (props: { history: Object }): ElementType => {
   return (
-    <Router history={props.history}>
-      {routes}
-    </Router>
+    <ConnectedRouter history={props.history}>
+      <div>
+        <Route path="/" component={Header} />
+        <div styleName="content">
+          <Route exact path="/" component={Index} />
+          <Route exact path="/image" component={ImageSearch} />
+        </div>
+      </div>
+    </ConnectedRouter>
   );
 };
 
-export default Routes;
+export default CSSModules(Routes, styles);

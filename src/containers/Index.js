@@ -2,19 +2,27 @@
 import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
 type Props = {
   showGreeting: bool,
-  toggleGreeting: () => ActionType
+  dispatch: Function
 };
 
 class Index extends Component {
   props: Props;
+
+  onNavigateToImageSearch = () => {
+    const { dispatch } = this.props;
+    dispatch(push('/image'));
+  }
+
   onToggleGreeting = (): void => {
-    this.props.toggleGreeting();
+    const { dispatch } = this.props;
+    dispatch(uiActions.toggleGreeting());
   }
 
   renderGreeting = (): ?ElementType => {
@@ -30,7 +38,12 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.onToggleGreeting}>Toggle greeting</button>
+        <button
+          styleName="button"
+          onClick={this.onNavigateToImageSearch}
+        >Navigate to other page
+        </button>
+        <button styleName="button" onClick={this.onToggleGreeting}>Toggle greeting</button>
         <ReactCSSTransitionGroup
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
@@ -52,11 +65,6 @@ const mapState = store => ({
   showGreeting: store.ui.get('showGreeting')
 });
 
-const mapActions = {
-  toggleGreeting: uiActions.toggleGreeting
-};
-
 export default connect(
-  mapState,
-  mapActions
+  mapState
 )(CSSModules(Index, styles));

@@ -7,7 +7,7 @@ import ui from 'redux/modules/ui';
 const rootReducer = combineReducers({
   image,
   ui,
-  routing: routerReducer
+  router: routerReducer
 });
 
 export default rootReducer;

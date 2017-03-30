@@ -1,5 +1,13 @@
 @import '~styles/main';
 
+.button {
+  composes: base--button;
+
+  & + & {
+    margin-left: @padding;
+  }
+}
+
 // Animations
 .enter {
   animation: fadeInDown @duration--enter;

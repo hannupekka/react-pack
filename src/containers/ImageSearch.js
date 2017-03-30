@@ -10,10 +10,10 @@ import Error from 'components/Error';
 import Image from 'components/Image';
 
 type Props = {
-  fetchImage: (search: string) => ApiMiddlewareRequestType,
   image: Object,
   isError: bool,
-  isLoading: bool
+  isLoading: bool,
+  dispatch: Function,
 }
 
 class ImageSearch extends Component {
@@ -29,8 +29,9 @@ class ImageSearch extends Component {
   }
 
   onFetchImage = (): void => {
+    const { dispatch } = this.props;
     const search = this.search.value;
-    this.props.fetchImage(search);
+    dispatch(imageActions.fetchImage(search));
   }
 
   render(): ElementType {
@@ -61,11 +62,6 @@ const mapState = store => ({
   isLoading: store.image.get('isLoading')
 });
 
-const mapActions = {
-  fetchImage: imageActions.fetchImage
-};
-
 export default connect(
-  mapState,
-  mapActions
+  mapState
 )(onlyUpdateForKeys(['isLoading', 'isError', 'image'])(CSSModules(ImageSearch, styles)));

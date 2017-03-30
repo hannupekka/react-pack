@@ -1,7 +1,7 @@
 // @flow
 import styles from 'styles/components/Header.less';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { pure } from 'recompose';
 import type { Component } from 'recompose';
 import CSSModules from 'react-css-modules';
@@ -15,8 +15,8 @@ const Header: Component<{}> = (): ElementType => {
       <img styleName="logo" src={logo} alt="" />
       <nav styleName="navigation">
         <ul>
-          <li><Link to={'/'}>Index</Link></li>
-          <li><Link to={'/image'}>Image</Link></li>
+          <li><Link to="/">Index</Link></li>
+          <li><Link to="/image">Image</Link></li>
         </ul>
       </nav>
     </header>
