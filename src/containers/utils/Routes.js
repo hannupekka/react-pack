@@ -1,5 +1,5 @@
 // @flow
-import styles from 'styles/containers/Application.less';
+import styles from 'styles/main.less';
 import React from 'react';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';

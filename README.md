@@ -40,26 +40,16 @@ npm run build
 ```
 
 ## Structure
-* `server`
- * Simple NodeJS servers for development and serving production build.
-* `src/assets`
- * All static assets like images.
-* `src/components`
- * React components that simply display data they are given.
-* `src/containers`
- * React containers that have access to Redux state and modify it somehow.
-* `src/html`
- * HTML templates for development and production. In production build CSS and bundled JS are auto-injected.
-* `src/redux/modules`
- * Redux [Ducks](https://github.com/erikras/ducks-modular-redux)
-* `src/store`
- *  Redux store configuration like middlewares.
-* `src/styles`
- * Container and component styles using [react-css-modules](https://github.com/gajus/react-css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
-* `src/utils`
- * Helpers for example wrapping [Redux API middleware](https://github.com/agraboso/redux-api-middleware) requests for Flowtype compatibility.
-* `tools`
- * Flowtype type definitions and annotation check, Jest pre-processors.
+* `server` - simple NodeJS servers for development and serving production build.
+* `src/assets` - all static assets like images.
+* `src/components` - React components that simply display data they are given.
+* `src/containers` - React containers that have access to Redux state and modify it somehow.
+* `src/html` - HTML templates for development and production. In production build CSS and bundled JS are auto-injected.
+* `src/redux/modules` - Redux [Ducks](https://github.com/erikras/ducks-modular-redux)
+* `src/store` - Redux store configuration like middlewares.
+* `src/styles` - container and component styles using [react-css-modules](https://github.com/gajus/react-css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
+* `src/utils` - helpers for example wrapping [Redux API middleware](https://github.com/agraboso/redux-api-middleware) requests for Flowtype compatibility.
+* `tools` - Flowtype type definitions and annotation check, Jest pre-processors.
 
 ## Acknowledgements
 
