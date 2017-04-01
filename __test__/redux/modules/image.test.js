@@ -1,11 +1,12 @@
 import configureMockStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
-import { apiMiddleware } from 'redux-api-middleware';
+import { createEpicMiddleware } from 'redux-observable';
 import nock from 'nock';
 import { API_HOST } from 'constants/config';
 import reducer, * as Image from 'redux/modules/image';
 
-const middlewares = [thunkMiddleware, apiMiddleware];
+const epicMiddleware = createEpicMiddleware(Image.fetchImageEpic);
+const middlewares = [thunkMiddleware, epicMiddleware];
 const mockStore = configureMockStore(middlewares);
 
 describe('async actions', () => {
@@ -24,24 +25,16 @@ describe('async actions', () => {
 
     const expected = [
       {
-        type: Image.IMAGE_REQUEST,
-        payload: 'coffee',
-        meta: undefined
-      },
-      {
-        type: Image.IMAGE_SUCCESS,
+        type: Image.FETCH_IMAGE,
         payload: {
-          image
-        },
-        meta: undefined
-      },
+          tag: 'coffee'
+        }
+      }
     ];
 
     const store = mockStore();
-    return store.dispatch(Image.fetchImage('coffee'))
-    .then(() => {
-      expect(store.getActions()).toEqual(expected);
-    });
+    store.dispatch(Image.fetchImage('coffee'));
+    expect(store.getActions()).toEqual(expected);
   });
 });
 
@@ -52,9 +45,9 @@ describe('reducer', () => {
     ).toEqual(Image.initialState);
   });
 
-  it('should handle IMAGE_REQUEST', () => {
+  it('should handle FETCH_IMAGE', () => {
     const action = {
-      type: Image.IMAGE_REQUEST,
+      type: Image.FETCH_IMAGE,
       payload: {
         tag: 'foobar'
       }
@@ -70,11 +63,13 @@ describe('reducer', () => {
     ).toEqual(expected);
   });
 
-  it('should handle IMAGE_SUCCESS', () => {
+  it('should handle FETCH_IMAGE_SUCCESS', () => {
     const action = {
-      type: Image.IMAGE_SUCCESS,
+      type: Image.FETCH_IMAGE_SUCCESS,
       payload: {
-        data: 'foobar.png'
+        image: {
+          data: 'foobar.png'
+        }
       }
     };
 
@@ -89,9 +84,9 @@ describe('reducer', () => {
     ).toEqual(expected);
   });
 
-  it('should handle IMAGE_FAILURE', () => {
+  it('should handle FETCH_IMAGE_FAILURE', () => {
     const action = {
-      type: Image.IMAGE_FAILURE,
+      type: Image.FETCH_IMAGE_FAILURE,
       payload: {}
     };
 

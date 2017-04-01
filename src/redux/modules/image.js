@@ -1,26 +1,33 @@
 // @flow
 import { fromJS, Map } from 'immutable';
-import prepareApiMiddlewareRequest from 'utils/request';
 import { API_HOST } from 'constants/config';
+import { Observable, Action } from 'rxjs';
+import { ajax } from 'rxjs/observable/dom/ajax';
+import { get } from 'lodash';
 
-export const IMAGE_REQUEST = 'react-pack/image/IMAGE_REQUEST';
-export const IMAGE_SUCCESS = 'react-pack/image/IMAGE_SUCCESS';
-export const IMAGE_FAILURE = 'react-pack/image/IMAGE_FAILURE';
+export const FETCH_IMAGE = 'react-pack/image/FETCH_IMAGE';
+export const FETCH_IMAGE_SUCCESS = 'react-pack/image/FETCH_IMAGE_SUCCESS';
+export const FETCH_IMAGE_FAILURE = 'react-pack/image/FETCH_IMAGE_FAILURE';
 
-export const fetchImage = (tag: string): ApiMiddlewareRequest => {
-  return prepareApiMiddlewareRequest({
-    endpoint: `${API_HOST}/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${tag}`,
-    method: 'GET',
-    types: [
-      {
-        type: IMAGE_REQUEST,
-        payload: tag
-      },
-      IMAGE_SUCCESS,
-      IMAGE_FAILURE
-    ]
-  });
-};
+export const fetchImage = (tag: string): ThunkAction => ({
+  type: FETCH_IMAGE,
+  payload: { tag }
+});
+
+export const fetchImageSuccess = (image: Object): ThunkAction => ({
+  type: FETCH_IMAGE_SUCCESS,
+  payload: { image }
+});
+
+export const fetchImageEpic = (action$: Observable<Action>): Observable<Action> =>
+  action$.ofType(FETCH_IMAGE)
+    .mergeMap(action =>
+      ajax.getJSON(`${API_HOST}/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${action.payload.tag}`)
+        .map(response => fetchImageSuccess(response))
+        .catch(() => Observable.of({
+          type: FETCH_IMAGE_FAILURE
+        }))
+    );
 
 type State = Map<string, any>;
 export const initialState: State = fromJS({
@@ -29,17 +36,17 @@ export const initialState: State = fromJS({
   image: {},
 });
 
-export default function reducer(state: State = initialState, action: Action): State {
+export default function reducer(state: State = initialState, action: ThunkAction): State {
   switch (action.type) {
-    case IMAGE_REQUEST:
+    case FETCH_IMAGE:
       return state.merge({ isLoading: true, isError: false });
-    case IMAGE_SUCCESS:
+    case FETCH_IMAGE_SUCCESS:
       return state.merge({
         isLoading: false,
         isError: false,
-        image: action.payload.data
+        image: get(action, 'payload.image.data')
       });
-    case IMAGE_FAILURE:
+    case FETCH_IMAGE_FAILURE:
       return state.merge({ isLoading: false, isError: true });
     default:
       return state;

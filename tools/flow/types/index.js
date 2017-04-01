@@ -13,37 +13,7 @@ declare module 'react-css-modules' {
 }
 
 // Redux
-declare type Action = {
+declare type ThunkAction = {
   +type: string,
   +payload: Object
-}
-
-// API middleware
-declare type HTTPMethod =
-  | 'GET'
-  | 'HEAD'
-  | 'POST'
-  | 'PUT'
-  | 'PATCH'
-  | 'DELETE'
-  | 'OPTIONS';
-
-declare type RequestType = {
-  type: string | Symbol,
-  payload?: any,
-  meta?: any
-}
-
-declare type ApiMiddlewareRequest = {
-  [CALL_API: Symbol]: Object
-}
-
-declare type ApiMiddlewareRequestParams = {
-  endpoint: string | Function,
-  method: HTTPMethod,
-  types: Array<string | RequestType | Symbol>,
-  body?: string | Object,
-  headers?: Object | Function,
-  credentials?: string,
-  bailout?: boolean | Function
 }

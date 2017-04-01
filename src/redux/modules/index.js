@@ -1,13 +1,16 @@
 // @flow
 import { combineReducers } from 'redux';
+import { combineEpics } from 'redux-observable';
 import { routerReducer } from 'react-router-redux';
-import image from 'redux/modules/image';
+import image, { fetchImageEpic } from 'redux/modules/image';
 import ui from 'redux/modules/ui';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   image,
   ui,
   router: routerReducer
 });
 
-export default rootReducer;
+export const rootEpic = combineEpics(
+  fetchImageEpic
+);
