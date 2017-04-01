@@ -2,13 +2,14 @@
 import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 import { push } from 'react-router-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
 type Props = {
-  showGreeting: bool,
+  showGreeting: boolean,
   dispatch: Function
 };
 
@@ -25,7 +26,7 @@ class Index extends Component {
     dispatch(uiActions.toggleGreeting());
   }
 
-  renderGreeting = (): ?ElementType => {
+  renderGreeting = (): ?React$Element<any> => {
     const { showGreeting } = this.props;
 
     if (!showGreeting) {
@@ -61,7 +62,11 @@ class Index extends Component {
   }
 }
 
-const mapState = store => ({
+type Store = {
+  +ui: Map<string, any>
+};
+
+const mapState: Object = (store: Store) => ({
   showGreeting: store.ui.get('showGreeting')
 });
 

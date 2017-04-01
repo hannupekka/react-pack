@@ -9,7 +9,7 @@ type Props = {
   message: string
 }
 
-const Error: Component<Props> = (props: Props): ElementType => {
+const Error: Component<Props> = (props: Props): React$Element<any> => {
   return (
     <div styleName="error">
       {props.message}

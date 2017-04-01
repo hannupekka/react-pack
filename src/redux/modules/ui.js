@@ -1,20 +1,21 @@
 // @flow
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 export const TOGGLE_GREETING = 'react-pack/ui/TOGGLE_GREETING';
 
-export const toggleGreeting = (): ActionType => {
+export const toggleGreeting = (): Action => {
   return {
     type: TOGGLE_GREETING,
     payload: {}
   };
 };
 
-export const initialState = fromJS({
+type State = Map<string, any>;
+export const initialState: State = fromJS({
   showGreeting: false
 });
 
-export default function reducer(state: StateType = initialState, action: ActionType): StateType {
+export default function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case TOGGLE_GREETING:
       return state.merge({ showGreeting: !state.get('showGreeting') });

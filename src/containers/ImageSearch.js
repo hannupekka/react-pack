@@ -11,10 +11,10 @@ import Image from 'components/Image';
 
 type Props = {
   image: Object,
-  isError: bool,
-  isLoading: bool,
-  dispatch: Function,
-}
+  isError: boolean,
+  isLoading: boolean,
+  dispatch: Function
+};
 
 class ImageSearch extends Component {
   props: Props;
@@ -30,11 +30,11 @@ class ImageSearch extends Component {
 
   onFetchImage = (): void => {
     const { dispatch } = this.props;
-    const search = this.search.value;
+    const search: string = this.search.value;
     dispatch(imageActions.fetchImage(search));
   }
 
-  render(): ElementType {
+  render(): React$Element<any> {
     const { isLoading, isError, image } = this.props;
     const src: string = image.get('fixed_height_downsampled_url');
 
@@ -56,7 +56,11 @@ class ImageSearch extends Component {
   }
 }
 
-const mapState = store => ({
+type Store = {
+  +image: Map<string, any>
+};
+
+const mapState: Object = (store: Store) => ({
   image: store.image.get('image'),
   isError: store.image.get('isError'),
   isLoading: store.image.get('isLoading')

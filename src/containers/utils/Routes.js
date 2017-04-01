@@ -8,7 +8,7 @@ import Index from 'containers/Index';
 import ImageSearch from 'containers/ImageSearch';
 import CSSModules from 'react-css-modules';
 
-const Routes = (props: { history: Object }): ElementType => {
+const Routes = (props: { history: Object }): React$Element<any> => {
   return (
     <ConnectedRouter history={props.history}>
       <div>

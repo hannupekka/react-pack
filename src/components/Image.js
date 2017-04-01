@@ -7,7 +7,7 @@ type Props = {
   src: ?string
 }
 
-const Image: Component<Props> = (props: Props): ?ElementType => {
+const Image: Component<Props> = (props: Props): ?React$Element<any> => {
   if (!props.src) {
     return null;
   }

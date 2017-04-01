@@ -5,7 +5,7 @@ import { pure } from 'recompose';
 import type { Component } from 'recompose';
 import CSSModules from 'react-css-modules';
 
-const Loader: Component<{}> = (): ElementType => {
+const Loader: Component<{}> = (): React$Element<any> => {
   return (
     <div>
       <div styleName="spinner"></div>
