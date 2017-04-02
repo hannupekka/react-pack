@@ -8,22 +8,31 @@ import { get } from 'lodash';
 export const FETCH_IMAGE = 'react-pack/image/FETCH_IMAGE';
 export const FETCH_IMAGE_SUCCESS = 'react-pack/image/FETCH_IMAGE_SUCCESS';
 export const FETCH_IMAGE_FAILURE = 'react-pack/image/FETCH_IMAGE_FAILURE';
+export const SET_IMAGE_URL = 'react-pack/image/SET_IMAGE_URL';
 
 export const fetchImage = (tag: string): ThunkAction => ({
   type: FETCH_IMAGE,
   payload: { tag }
 });
 
-export const fetchImageSuccess = (image: Object): ThunkAction => ({
+export const fetchImageSuccess = (payload: Object): ThunkAction => ({
   type: FETCH_IMAGE_SUCCESS,
-  payload: { image }
+  payload
+});
+
+export const setImageUrl = (payload: Object): ThunkAction => ({
+  type: SET_IMAGE_URL,
+  payload
 });
 
 export const fetchImageEpic = (action$: Observable<Action>): Observable<Action> =>
   action$.ofType(FETCH_IMAGE)
     .mergeMap(action =>
       ajax.getJSON(`${API_HOST}/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${action.payload.tag}`)
-        .map(response => fetchImageSuccess(response))
+        .flatMap(response => Observable.concat(
+          Observable.of(fetchImageSuccess(response)),
+          Observable.of(setImageUrl(response))
+        ))
         .catch(() => Observable.of({
           type: FETCH_IMAGE_FAILURE
         }))
@@ -33,7 +42,8 @@ type State = Map<string, any>;
 export const initialState: State = fromJS({
   isLoading: false,
   isError: false,
-  image: {},
+  src: '',
+  url: ''
 });
 
 export default function reducer(state: State = initialState, action: ThunkAction): State {
@@ -44,10 +54,12 @@ export default function reducer(state: State = initialState, action: ThunkAction
       return state.merge({
         isLoading: false,
         isError: false,
-        image: get(action, 'payload.image.data')
+        src: get(action, 'payload.data.fixed_height_downsampled_url')
       });
     case FETCH_IMAGE_FAILURE:
       return state.merge({ isLoading: false, isError: true });
+    case SET_IMAGE_URL:
+      return state.set('url', get(action, 'payload.data.url'));
     default:
       return state;
   }

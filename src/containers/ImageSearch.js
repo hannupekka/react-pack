@@ -3,14 +3,15 @@ import styles from 'styles/containers/ImageSearch.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
-import { onlyUpdateForKeys } from 'recompose';
+import { pure } from 'recompose';
 import * as imageActions from 'redux/modules/image';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Image from 'components/Image';
 
 type Props = {
-  image: Object,
+  url: string,
+  src: string,
   isError: boolean,
   isLoading: boolean,
   dispatch: Function
@@ -35,8 +36,7 @@ class ImageSearch extends Component {
   }
 
   render(): React$Element<any> {
-    const { isLoading, isError, image } = this.props;
-    const src: string = image.get('fixed_height_downsampled_url');
+    const { isLoading, isError, src, url } = this.props;
 
     if (isError) {
       return <Error message="Error requesting image!" />;
@@ -51,6 +51,7 @@ class ImageSearch extends Component {
         </button>
         {isLoading && <Loader />}
         <Image src={src} />
+        {url && <p><a href={url}>{url}</a></p>}
       </div>
     );
   }
@@ -61,11 +62,12 @@ type Store = {
 };
 
 const mapState: Object = (store: Store) => ({
-  image: store.image.get('image'),
+  src: store.image.get('src'),
+  url: store.image.get('url'),
   isError: store.image.get('isError'),
   isLoading: store.image.get('isLoading')
 });
 
 export default connect(
   mapState
-)(onlyUpdateForKeys(['isLoading', 'isError', 'image'])(CSSModules(ImageSearch, styles)));
+)(pure(CSSModules(ImageSearch, styles)));

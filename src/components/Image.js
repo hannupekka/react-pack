@@ -4,7 +4,7 @@ import { pure } from 'recompose';
 import type { Component } from 'recompose';
 
 type Props = {
-  src: ?string
+  src: string
 }
 
 const Image: Component<Props> = (props: Props): ?React$Element<any> => {

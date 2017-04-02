@@ -67,8 +67,8 @@ describe('reducer', () => {
     const action = {
       type: Image.FETCH_IMAGE_SUCCESS,
       payload: {
-        image: {
-          data: 'foobar.png'
+        data: {
+          fixed_height_downsampled_url: 'foobar.png'
         }
       }
     };
@@ -76,7 +76,7 @@ describe('reducer', () => {
     const expected = Image.initialState.merge({
       isLoading: false,
       isError: false,
-      image: 'foobar.png'
+      src: 'foobar.png'
     });
 
     expect(
@@ -93,6 +93,25 @@ describe('reducer', () => {
     const expected = Image.initialState.merge({
       isLoading: false,
       isError: true
+    });
+
+    expect(
+      reducer(Image.initialState, action)
+    ).toEqual(expected);
+  });
+
+  it('should handle SET_IMAGE_URL', () => {
+    const action = {
+      type: Image.SET_IMAGE_URL,
+      payload: {
+        data: {
+          url: 'http://example.com/1.jpg'
+        }
+      }
+    };
+
+    const expected = Image.initialState.merge({
+      url: 'http://example.com/1.jpg'
     });
 
     expect(
