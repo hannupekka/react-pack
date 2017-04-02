@@ -8,10 +8,6 @@ import { render } from 'react-dom';
 import getHistoryInstance from 'utils/history';
 import configureStore from 'store/configureStore';
 
-// RxJS operators.
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-
 // Containers.
 import Root from 'containers/utils/Root';
 

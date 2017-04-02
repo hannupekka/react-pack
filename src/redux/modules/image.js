@@ -1,9 +1,9 @@
 // @flow
 import { fromJS, Map } from 'immutable';
-import { API_HOST } from 'constants/config';
 import { Observable, Action } from 'rxjs';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { get } from 'lodash';
+import { API_HOST } from 'constants/config';
 
 export const FETCH_IMAGE = 'react-pack/image/FETCH_IMAGE';
 export const FETCH_IMAGE_SUCCESS = 'react-pack/image/FETCH_IMAGE_SUCCESS';
@@ -27,7 +27,7 @@ export const setImageUrl = (payload: Object): ThunkAction => ({
 
 export const fetchImageEpic = (action$: Observable<Action>): Observable<Action> =>
   action$.ofType(FETCH_IMAGE)
-    .mergeMap(action =>
+    .flatMap(action =>
       ajax.getJSON(`${API_HOST}/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${action.payload.tag}`)
         .flatMap(response => Observable.concat(
           Observable.of(fetchImageSuccess(response)),
