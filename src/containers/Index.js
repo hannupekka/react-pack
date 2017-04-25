@@ -16,9 +16,9 @@ type Props = {
 class Index extends Component {
   props: Props;
 
-  onNavigateToImageSearch = () => {
+  onNavigateToRepoSearch = () => {
     const { dispatch } = this.props;
-    dispatch(push('/image'));
+    dispatch(push('/repos'));
   }
 
   onToggleGreeting = (): void => {
@@ -41,7 +41,7 @@ class Index extends Component {
       <div>
         <button
           styleName="button"
-          onClick={this.onNavigateToImageSearch}
+          onClick={this.onNavigateToRepoSearch}
         >Navigate to other page
         </button>
         <button styleName="button" onClick={this.onToggleGreeting}>Toggle greeting</button>

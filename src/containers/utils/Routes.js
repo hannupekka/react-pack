@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import Header from 'components/Header';
 import Index from 'containers/Index';
-import ImageSearch from 'containers/ImageSearch';
+import RepoSearch from 'containers/RepoSearch';
 import CSSModules from 'react-css-modules';
 
 const Routes = (props: { history: Object }): React$Element<any> => {
@@ -15,7 +15,7 @@ const Routes = (props: { history: Object }): React$Element<any> => {
         <Route path="/" component={Header} />
         <div styleName="content">
           <Route exact path="/" component={Index} />
-          <Route exact path="/image" component={ImageSearch} />
+          <Route exact path="/repos" component={RepoSearch} />
         </div>
       </div>
     </ConnectedRouter>

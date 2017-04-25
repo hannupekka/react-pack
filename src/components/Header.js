@@ -16,7 +16,7 @@ const Header: Component<{}> = (): React$Element<any> => {
       <nav styleName="navigation">
         <ul>
           <li><Link to="/">Index</Link></li>
-          <li><Link to="/image">Image</Link></li>
+          <li><Link to="/repos">Repo search</Link></li>
         </ul>
       </nav>
     </header>
