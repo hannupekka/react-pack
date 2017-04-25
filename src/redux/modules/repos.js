@@ -2,6 +2,8 @@
 import { fromJS, Map } from 'immutable';
 import { Observable, Action } from 'rxjs';
 import { ajax } from 'rxjs/observable/dom/ajax';
+import { normalize } from 'normalizr';
+import { repos } from 'redux/schemas/repos';
 import { API_HOST } from 'constants/config';
 
 export const FETCH_REPOS = 'react-pack/repos/FETCH_REPOS';
@@ -22,7 +24,9 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
   action$.ofType(FETCH_REPOS)
     .flatMap(action =>
       ajax.getJSON(`${API_HOST}/users/${action.payload.username}/repos`)
-        .flatMap(response => Observable.of(fetchReposSuccess(response)))
+        .flatMap(response =>
+          Observable.of(fetchReposSuccess(normalize(response, repos)))
+        )
         .catch(() => Observable.of({
           type: FETCH_REPOS_FAILURE
         }))
@@ -32,21 +36,24 @@ type State = Map<string, any>;
 export const initialState: State = fromJS({
   isLoading: false,
   isError: false,
-  repos: []
+  entities: {
+    repos: {},
+    users: {}
+  },
+  result: []
 });
 
 export default function reducer(state: State = initialState, action: ThunkAction): State {
   switch (action.type) {
     case FETCH_REPOS:
-      return state.merge({ isLoading: true, isError: false, repos: [] });
+      return initialState.set('isLoading', true);
     case FETCH_REPOS_SUCCESS:
-      return state.merge({
-        isLoading: false,
-        isError: false,
-        repos: action.payload
+      return initialState.merge({
+        entities: action.payload.entities,
+        result: action.payload.result
       });
     case FETCH_REPOS_FAILURE:
-      return state.merge({ isLoading: false, isError: true });
+      return initialState.set('isError', true);
     default:
       return state;
   }

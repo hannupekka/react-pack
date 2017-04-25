@@ -2,6 +2,7 @@
 import styles from 'styles/containers/RepoSearch.less';
 import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
@@ -11,7 +12,8 @@ import Error from 'components/Error';
 import Repo from 'components/Repo';
 
 type Props = {
-  repos: ImmutablePropTypes.list.isRequired,
+  repos: ImmutablePropTypes.map.isRequired,
+  users: ImmutablePropTypes.map.isRequired,
   isError: boolean,
   isLoading: boolean,
   dispatch: Function
@@ -36,7 +38,7 @@ class RepoSearch extends Component {
   }
 
   renderRepoList = (): ?React$Element<any> => {
-    const { repos } = this.props;
+    const { repos, users } = this.props;
 
     if (repos.size === 0) {
       return null;
@@ -47,11 +49,12 @@ class RepoSearch extends Component {
 
       const params = {
         name: repo.get('name'),
-        url: repo.get('html_url')
+        url: repo.get('html_url'),
+        user: users.get(repo.get('owner').toString())
       };
 
       return <Repo key={id} {...params} />;
-    });
+    }).toArray();
   }
 
   render(): React$Element<any> {
@@ -61,7 +64,7 @@ class RepoSearch extends Component {
       <div styleName="repo-search">
         { isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
-        <input type="text" styleName="input" ref={this.bindUsername} />
+        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search"></i>
         </button>
@@ -79,7 +82,8 @@ type Store = {
 };
 
 const mapState: Object = (store: Store) => ({
-  repos: store.repos.get('repos'),
+  repos: store.repos.getIn(['entities', 'repos']),
+  users: store.repos.getIn(['entities', 'users']),
   isError: store.repos.get('isError'),
   isLoading: store.repos.get('isLoading')
 });
