@@ -19,13 +19,13 @@ type Props = {
   dispatch: Function
 };
 
-class RepoSearch extends Component {
+export class RepoSearch extends Component {
   props: Props;
 
   bindUsername: Function;
   username: HTMLInputElement;
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.bindUsername = c => (this.username = c);
@@ -50,7 +50,7 @@ class RepoSearch extends Component {
       const params = {
         name: repo.get('name'),
         url: repo.get('html_url'),
-        user: users.get(repo.get('owner').toString())
+        user: users.getIn([repo.get('owner').toString(), 'login'])
       };
 
       return <Repo key={id} {...params} />;
@@ -64,7 +64,12 @@ class RepoSearch extends Component {
       <div styleName="repo-search">
         { isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
-        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
+        <input
+          type="text"
+          styleName="input"
+          defaultValue="hannupekka"
+          ref={this.bindUsername}
+        />
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search"></i>
         </button>

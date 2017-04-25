@@ -4,8 +4,8 @@ import React from 'react';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import Header from 'components/Header';
-import Index from 'containers/Index';
-import RepoSearch from 'containers/RepoSearch';
+import ConnectedIndex from 'containers/Index';
+import ConnectedRepoSearch from 'containers/RepoSearch';
 import CSSModules from 'react-css-modules';
 
 const Routes = (props: { history: Object }): React$Element<any> => {
@@ -14,8 +14,8 @@ const Routes = (props: { history: Object }): React$Element<any> => {
       <div>
         <Route path="/" component={Header} />
         <div styleName="content">
-          <Route exact path="/" component={Index} />
-          <Route exact path="/repos" component={RepoSearch} />
+          <Route exact path="/" component={ConnectedIndex} />
+          <Route exact path="/repos" component={ConnectedRepoSearch} />
         </div>
       </div>
     </ConnectedRouter>

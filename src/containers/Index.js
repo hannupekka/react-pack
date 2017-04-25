@@ -13,7 +13,7 @@ type Props = {
   dispatch: Function
 };
 
-class Index extends Component {
+export class Index extends Component {
   props: Props;
 
   onNavigateToRepoSearch = () => {
@@ -44,7 +44,11 @@ class Index extends Component {
           onClick={this.onNavigateToRepoSearch}
         >Navigate to other page
         </button>
-        <button styleName="button" onClick={this.onToggleGreeting}>Toggle greeting</button>
+        <button
+          styleName="button"
+          onClick={this.onToggleGreeting}
+        >Toggle greeting
+        </button>
         <ReactCSSTransitionGroup
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}

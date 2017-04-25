@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepoSearch renders correctly with data 1`] = `
+<div
+  styleName="repo-search"
+>
+  <label
+    htmlFor="search"
+  >
+    Username
+  </label>
+  <input
+    defaultValue="hannupekka"
+    styleName="input"
+    type="text"
+  />
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Get users repositories 
+    <i
+      className="fa fa-search"
+    />
+  </button>
+  <div
+    styleName="repo-list"
+  >
+    <a
+      href="https://github.com/hannupekka/fressi-gym-activity"
+      rel="noopener noreferrer"
+      target="_blank"
+      title="author: hannupekka"
+    >
+      fressi-gym-activity
+    </a>
+    <a
+      href="https://github.com/hannupekka/pyfibot-modules"
+      rel="noopener noreferrer"
+      target="_blank"
+      title="author: hannupekka"
+    >
+      pyfibot-modules
+    </a>
+  </div>
+</div>
+`;
+
+exports[`RepoSearch renders correctly with empty data 1`] = `
+<div
+  styleName="repo-search"
+>
+  <label
+    htmlFor="search"
+  >
+    Username
+  </label>
+  <input
+    defaultValue="hannupekka"
+    styleName="input"
+    type="text"
+  />
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Get users repositories 
+    <i
+      className="fa fa-search"
+    />
+  </button>
+  <div
+    styleName="repo-list"
+  />
+</div>
+`;
+
+exports[`RepoSearch renders correctly with error 1`] = `
+<div
+  styleName="repo-search"
+>
+  <div
+    className="error"
+  >
+    Repositories not found!
+  </div>
+  <label
+    htmlFor="search"
+  >
+    Username
+  </label>
+  <input
+    defaultValue="hannupekka"
+    styleName="input"
+    type="text"
+  />
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Get users repositories 
+    <i
+      className="fa fa-search"
+    />
+  </button>
+  <div
+    styleName="repo-list"
+  />
+</div>
+`;
+
+exports[`RepoSearch renders correctly with loader 1`] = `
+<div
+  styleName="repo-search"
+>
+  <label
+    htmlFor="search"
+  >
+    Username
+  </label>
+  <input
+    defaultValue="hannupekka"
+    styleName="input"
+    type="text"
+  />
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Get users repositories 
+    <i
+      className="fa fa-search"
+    />
+  </button>
+  <div>
+    <div
+      className="spinner"
+    />
+    <div
+      className="text"
+    >
+      Loading
+    </div>
+  </div>
+  <div
+    styleName="repo-list"
+  />
+</div>
+`;
