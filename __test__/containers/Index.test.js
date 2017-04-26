@@ -1,6 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux';
 import { Index } from 'containers/Index';
 
 describe('Index', () => {

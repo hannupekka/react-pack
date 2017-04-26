@@ -9,6 +9,7 @@ import { API_HOST } from 'constants/config';
 export const FETCH_REPOS = 'react-pack/repos/FETCH_REPOS';
 export const FETCH_REPOS_SUCCESS = 'react-pack/repos/FETCH_REPOS_SUCCESS';
 export const FETCH_REPOS_FAILURE = 'react-pack/repos/FETCH_REPOS_FAILURE';
+export const TOGGLE_SHOW_FORKS = 'react-pack/repos/TOGGLE_SHOW_FORKS';
 
 export const fetchRepos = (username: string): ThunkAction => ({
   type: FETCH_REPOS,
@@ -18,6 +19,11 @@ export const fetchRepos = (username: string): ThunkAction => ({
 export const fetchReposSuccess = (payload: Object): ThunkAction => ({
   type: FETCH_REPOS_SUCCESS,
   payload
+});
+
+export const toggleShowForks = (): ThunkAction => ({
+  type: TOGGLE_SHOW_FORKS,
+  payload: {}
 });
 
 export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> =>
@@ -36,6 +42,7 @@ type State = Map<string, any>;
 export const initialState: State = fromJS({
   isLoading: false,
   isError: false,
+  showForks: true,
   entities: {
     repos: {},
     users: {}
@@ -54,6 +61,8 @@ export default function reducer(state: State = initialState, action: ThunkAction
       });
     case FETCH_REPOS_FAILURE:
       return initialState.set('isError', true);
+    case TOGGLE_SHOW_FORKS:
+      return state.set('showForks', !state.get('showForks'));
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RepoSearch renders correctly with data 1`] = `
+exports[`RepoSearch renders correctly with all repos 1`] = `
 <div
   styleName="repo-search"
 >
@@ -23,6 +23,16 @@ exports[`RepoSearch renders correctly with data 1`] = `
       className="fa fa-search"
     />
   </button>
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Hide forks
+     
+    <i
+      className="fa fa-filter"
+    />
+  </button>
   <div
     styleName="repo-list"
   >
@@ -35,12 +45,12 @@ exports[`RepoSearch renders correctly with data 1`] = `
       fressi-gym-activity
     </a>
     <a
-      href="https://github.com/hannupekka/pyfibot-modules"
+      href="https://github.com/hannupekka/heroku-buildpack-python-libffi"
       rel="noopener noreferrer"
       target="_blank"
       title="author: hannupekka"
     >
-      pyfibot-modules
+      heroku-buildpack-python-libffi
     </a>
   </div>
 </div>
@@ -106,6 +116,54 @@ exports[`RepoSearch renders correctly with error 1`] = `
   <div
     styleName="repo-list"
   />
+</div>
+`;
+
+exports[`RepoSearch renders correctly with forks hidden 1`] = `
+<div
+  className="repo-search"
+>
+  <label
+    htmlFor="search"
+  >
+    Username
+  </label>
+  <input
+    className="input"
+    defaultValue="hannupekka"
+    type="text"
+  />
+  <button
+    className="button"
+    onClick={[Function]}
+  >
+    Get users repositories 
+    <i
+      className="fa fa-search"
+    />
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+  >
+    Include forks
+     
+    <i
+      className="fa fa-filter"
+    />
+  </button>
+  <div
+    className="repo-list"
+  >
+    <a
+      href="https://github.com/hannupekka/fressi-gym-activity"
+      rel="noopener noreferrer"
+      target="_blank"
+      title="author: hannupekka"
+    >
+      fressi-gym-activity
+    </a>
+  </div>
 </div>
 `;
 

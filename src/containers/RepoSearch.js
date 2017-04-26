@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
 import * as reposActions from 'redux/modules/repos';
+import getVisibleRepos from 'redux/selectors/repos';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
@@ -16,6 +17,7 @@ type Props = {
   users: ImmutablePropTypes.map.isRequired,
   isError: boolean,
   isLoading: boolean,
+  showForks: boolean,
   dispatch: Function
 };
 
@@ -37,7 +39,28 @@ export class RepoSearch extends Component {
     dispatch(reposActions.fetchRepos(username));
   }
 
-  renderRepoList = (): ?React$Element<any> => {
+  onToggleShowForks = (): void => {
+    const { dispatch } = this.props;
+    dispatch(reposActions.toggleShowForks());
+  }
+
+  maybeRenderFilter = (): ?React$Element<any> => {
+    const { repos, showForks } = this.props;
+
+    if (repos.size === 0) {
+      return null;
+    }
+
+    const text = showForks ? 'Hide forks' : 'Include forks';
+
+    return (
+      <button styleName="button" onClick={this.onToggleShowForks}>
+        {text} <i className="fa fa-filter"></i>
+      </button>
+    );
+  }
+
+  maybeRenderRepoList = (): ?React$Element<any> => {
     const { repos, users } = this.props;
 
     if (repos.size === 0) {
@@ -73,9 +96,10 @@ export class RepoSearch extends Component {
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search"></i>
         </button>
+        {this.maybeRenderFilter()}
         {isLoading && <Loader />}
         <div styleName="repo-list">
-          {this.renderRepoList()}
+          {this.maybeRenderRepoList()}
         </div>
       </div>
     );
@@ -87,10 +111,11 @@ type Store = {
 };
 
 const mapState: Object = (store: Store) => ({
-  repos: store.repos.getIn(['entities', 'repos']),
+  repos: getVisibleRepos(store),
   users: store.repos.getIn(['entities', 'users']),
   isError: store.repos.get('isError'),
-  isLoading: store.repos.get('isLoading')
+  isLoading: store.repos.get('isLoading'),
+  showForks: store.repos.get('showForks')
 });
 
 export default connect(

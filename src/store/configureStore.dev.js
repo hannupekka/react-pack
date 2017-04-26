@@ -21,14 +21,22 @@ function getDebugSessionKey() {
   return (matches && matches.length > 0) ? matches[1] : null;
 }
 
+// Middlewares.
+const middlewares = [
+  thunkMiddleware,
+  epicMiddleware,
+  loggerMiddleware,
+  routerMiddleware(getHistoryInstance())
+];
+
+// Remove redux-logger during tests.
+if (process.env.TEST_RUNNER) {
+  middlewares.splice(2, 1);
+}
+
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(
-    thunkMiddleware,
-    epicMiddleware,
-    loggerMiddleware,
-    routerMiddleware(getHistoryInstance())
-  ),
+  applyMiddleware(...middlewares),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
