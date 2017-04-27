@@ -7,7 +7,7 @@ describe('Index', () => {
     const tree = renderer.create(
       <Index
         showGreeting={false}
-        toggleGreeting={() => {}}
+        dispatch={() => {}}
       />
     );
 
@@ -18,7 +18,7 @@ describe('Index', () => {
     const tree = renderer.create(
       <Index
         showGreeting
-        toggleGreeting={() => {}}
+        dispatch={() => {}}
       />
     );
 

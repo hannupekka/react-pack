@@ -1,7 +1,6 @@
 // @flow
 import styles from 'styles/containers/RepoSearch.less';
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
@@ -13,8 +12,8 @@ import Error from 'components/Error';
 import Repo from 'components/Repo';
 
 type Props = {
-  repos: ImmutablePropTypes.map.isRequired,
-  users: ImmutablePropTypes.map.isRequired,
+  repos: Map<string, any>,
+  users: Map<string, any>,
   isError: boolean,
   isLoading: boolean,
   showForks: boolean,
@@ -60,7 +59,7 @@ export class RepoSearch extends Component {
     );
   }
 
-  maybeRenderRepoList = (): ?React$Element<any> => {
+  maybeRenderRepoList = (): ?Array<React$Element<any>> => {
     const { repos, users } = this.props;
 
     if (repos.size === 0) {

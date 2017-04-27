@@ -15,6 +15,7 @@ describe('RepoSearch', () => {
         users={Map()}
         isError={false}
         isLoading={false}
+        showForks={false}
         dispatch={() => {}}
       />
     ).toJSON();
@@ -29,6 +30,7 @@ describe('RepoSearch', () => {
         users={Map()}
         isError
         isLoading={false}
+        showForks={false}
         dispatch={() => {}}
       />
     ).toJSON();
@@ -43,6 +45,7 @@ describe('RepoSearch', () => {
         users={Map()}
         isError={false}
         isLoading
+        showForks={false}
         dispatch={() => {}}
       />
     ).toJSON();
