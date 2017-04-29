@@ -1,3 +1,5 @@
+import { Map } from 'immutable';
+
 // CSS Modules
 declare module 'react-css-modules' {
 
@@ -161,4 +163,10 @@ declare module 'recompose' {
 declare type ThunkAction = {
   +type: string,
   +payload: Object
+}
+
+declare type State = {
+  +repos: Map<string, any>,
+  +ui: Map<string, any>,
+  +router: Object
 }

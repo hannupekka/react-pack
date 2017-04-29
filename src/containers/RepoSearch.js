@@ -105,16 +105,20 @@ export class RepoSearch extends Component {
   }
 }
 
-type Store = {
-  +repos: Map<string, any>
-};
+type MappedState = {
+  repos: Map<string, any>,
+  users: Map<string, any>,
+  isError: boolean,
+  isLoading: boolean,
+  showForks: boolean
+}
 
-const mapState: Object = (store: Store) => ({
-  repos: getVisibleRepos(store),
-  users: store.repos.getIn(['entities', 'users']),
-  isError: store.repos.get('isError'),
-  isLoading: store.repos.get('isLoading'),
-  showForks: store.repos.get('showForks')
+const mapState: Function = (state: State): MappedState => ({
+  repos: getVisibleRepos(state),
+  users: state.repos.getIn(['entities', 'users']),
+  isError: state.repos.get('isError'),
+  isLoading: state.repos.get('isLoading'),
+  showForks: state.repos.get('showForks')
 });
 
 export default connect(

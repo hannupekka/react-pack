@@ -1,12 +1,13 @@
 // @flow
 import { createSelector } from 'reselect';
+import { Map } from 'immutable';
 
-const getRepos = store => store.repos.getIn(['entities', 'repos']);
-const getShowForks = store => store.repos.get('showForks');
+const getRepos = (state: State): Map<string, any> => state.repos.getIn(['entities', 'repos']);
+const getShowForks = (state: State): boolean => state.repos.get('showForks');
 
 export default createSelector(
   [getRepos, getShowForks],
-  (repos, showForks) => {
+  (repos, showForks): Map<string, any> => {
     return showForks ? repos : repos.filterNot(repo => repo.get('fork'));
   }
 );

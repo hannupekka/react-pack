@@ -2,7 +2,6 @@
 import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
 import { push } from 'react-router-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CSSModules from 'react-css-modules';
@@ -66,12 +65,12 @@ export class Index extends Component {
   }
 }
 
-type Store = {
-  +ui: Map<string, any>
-};
+type MappedState = {
+  showGreeting: boolean
+}
 
-const mapState: Object = (store: Store) => ({
-  showGreeting: store.ui.get('showGreeting')
+const mapState: Function = (state: State): MappedState => ({
+  showGreeting: state.ui.get('showGreeting')
 });
 
 export default connect(
