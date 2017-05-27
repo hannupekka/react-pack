@@ -3,7 +3,7 @@ import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/modules/ui';
 
@@ -48,7 +48,7 @@ export class Index extends Component {
           onClick={this.onToggleGreeting}
         >Toggle greeting
         </button>
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
           transitionName={{
@@ -59,7 +59,7 @@ export class Index extends Component {
           }}
         >
           {this.renderGreeting()}
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
       </div>
     );
   }

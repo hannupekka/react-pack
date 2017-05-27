@@ -1,5 +1,5 @@
 // @flow
-import { fromJS, Map } from 'immutable';
+import { List, Map } from 'immutable';
 import { Observable, Action } from 'rxjs';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { normalize } from 'normalizr';
@@ -39,15 +39,15 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
     );
 
 type State = Map<string, any>;
-export const initialState: State = fromJS({
+export const initialState: State = Map({
   isLoading: false,
   isError: false,
   showForks: true,
   entities: {
-    repos: {},
-    users: {}
+    repos: Map(),
+    users: Map()
   },
-  result: []
+  result: List()
 });
 
 export default function reducer(state: State = initialState, action: ThunkAction): State {

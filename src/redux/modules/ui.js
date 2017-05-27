@@ -1,5 +1,5 @@
 // @flow
-import { fromJS, Map } from 'immutable';
+import { Map } from 'immutable';
 
 export const TOGGLE_GREETING = 'react-pack/ui/TOGGLE_GREETING';
 
@@ -11,7 +11,7 @@ export const toggleGreeting = (): ThunkAction => {
 };
 
 type State = Map<string, any>;
-export const initialState: State = fromJS({
+export const initialState: State = Map({
   showGreeting: false
 });
 
