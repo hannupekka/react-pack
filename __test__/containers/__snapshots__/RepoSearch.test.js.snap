@@ -79,6 +79,16 @@ exports[`RepoSearch renders correctly with empty data 1`] = `
       className="fa fa-search"
     />
   </button>
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Include forks
+     
+    <i
+      className="fa fa-filter"
+    />
+  </button>
   <div
     styleName="repo-list"
   />
@@ -111,6 +121,16 @@ exports[`RepoSearch renders correctly with error 1`] = `
     Get users repositories 
     <i
       className="fa fa-search"
+    />
+  </button>
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Include forks
+     
+    <i
+      className="fa fa-filter"
     />
   </button>
   <div
@@ -188,6 +208,16 @@ exports[`RepoSearch renders correctly with loader 1`] = `
     Get users repositories 
     <i
       className="fa fa-search"
+    />
+  </button>
+  <button
+    onClick={[Function]}
+    styleName="button"
+  >
+    Include forks
+     
+    <i
+      className="fa fa-filter"
     />
   </button>
   <div>

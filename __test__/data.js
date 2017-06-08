@@ -1,7 +1,5 @@
-import { fromJS } from 'immutable';
-
 // Sample repos.
-export const repos = fromJS({
+export const repos = {
   12482715: {
     hooks_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/hooks',
     default_branch: 'master',
@@ -144,9 +142,9 @@ export const repos = fromJS({
     git_commits_url: 'https://api.github.com/repos/hannupekka/heroku-buildpack-python-libffi/git/commits{/sha}',
     has_issues: false
   },
-});
+};
 
-export const users = fromJS({
+export const users = {
   4472477: {
     gists_url: 'https://api.github.com/users/hannupekka/gists{/gist_id}',
     following_url: 'https://api.github.com/users/hannupekka/following{/other_user}',
@@ -166,4 +164,4 @@ export const users = fromJS({
     id: 4472477,
     html_url: 'https://github.com/hannupekka'
   }
-});
+};

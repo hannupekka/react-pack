@@ -1,3 +1,4 @@
+import { map } from 'lodash';
 import configureStore from 'store/configureStore';
 import getVisibleRepos from 'redux/selectors/repos';
 import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
@@ -14,7 +15,7 @@ describe('Selector', () => {
         repos,
         users
       },
-      result: repos.map(repo => repo.get('id')).toArray()
+      result: map(repos, repo => repo.id)
     };
 
     // Dispatch fetch success.
@@ -35,7 +36,7 @@ describe('Selector', () => {
         repos,
         users
       },
-      result: repos.map(repo => repo.get('id')).toArray()
+      result: map(repos, repo => repo.id)
     };
 
     // Dispatch fetch success and then hide forks.

@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable';
 import reducer, * as Ui from 'redux/modules/ui';
 
 describe('actions', () => {
@@ -25,9 +24,9 @@ describe('reducer', () => {
       payload: {}
     };
 
-    const expected = fromJS({
+    const expected = {
       showGreeting: true
-    });
+    };
 
     expect(
       reducer(Ui.initialState, action)

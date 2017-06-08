@@ -1,10 +1,10 @@
 // @flow
 import styles from 'styles/containers/RepoSearch.less';
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
+import { map } from 'lodash';
 import * as reposActions from 'redux/modules/repos';
 import getVisibleRepos from 'redux/selectors/repos';
 import Loader from 'components/Loader';
@@ -12,8 +12,8 @@ import Error from 'components/Error';
 import Repo from 'components/Repo';
 
 type Props = {
-  repos: Map<string, any>,
-  users: Map<string, any>,
+  repos: Object,
+  users: Object,
   isError: boolean,
   isLoading: boolean,
   showForks: boolean,
@@ -66,17 +66,17 @@ export class RepoSearch extends Component {
       return null;
     }
 
-    return repos.map((repo) => {
-      const id = repo.get('id');
+    return map(repos, (repo) => {
+      const { id, name, html_url, owner } = repo;
 
       const params = {
-        name: repo.get('name'),
-        url: repo.get('html_url'),
-        user: users.getIn([repo.get('owner').toString(), 'login'])
+        name,
+        url: html_url,
+        user: users[owner].login
       };
 
       return <Repo key={id} {...params} />;
-    }).toArray();
+    });
   }
 
   render(): React$Element<any> {
@@ -106,8 +106,8 @@ export class RepoSearch extends Component {
 }
 
 type MappedState = {
-  repos: Map<string, any>,
-  users: Map<string, any>,
+  repos: Object,
+  users: Object,
   isError: boolean,
   isLoading: boolean,
   showForks: boolean
@@ -115,10 +115,10 @@ type MappedState = {
 
 const mapState: Function = (state: State): MappedState => ({
   repos: getVisibleRepos(state),
-  users: state.repos.getIn(['entities', 'users']),
-  isError: state.repos.get('isError'),
-  isLoading: state.repos.get('isLoading'),
-  showForks: state.repos.get('showForks')
+  users: state.repos.entities.users,
+  isError: state.repos.isError,
+  isLoading: state.repos.isLoading,
+  showForks: state.repos.showForks
 });
 
 export default connect(

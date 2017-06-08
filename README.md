@@ -6,7 +6,6 @@ HMR-enabled boilerplate for:
 * React Router
 * Redux API middleware
 * React CSS Modules + LESS
-* ImmutableJS
 * Flowtype
 * Jest
 * Webpack + HMR

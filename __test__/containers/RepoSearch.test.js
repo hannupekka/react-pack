@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import { Map } from 'immutable';
+import { map } from 'lodash';
 import configureStore from 'store/configureStore';
 import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
 import ConnectedReposSearch, { RepoSearch } from 'containers/RepoSearch';
@@ -11,8 +11,8 @@ describe('RepoSearch', () => {
   it('renders correctly with empty data', () => {
     const tree = renderer.create(
       <RepoSearch
-        repos={Map()}
-        users={Map()}
+        repos={{}}
+        users={{}}
         isError={false}
         isLoading={false}
         showForks={false}
@@ -26,8 +26,8 @@ describe('RepoSearch', () => {
   it('renders correctly with error', () => {
     const tree = renderer.create(
       <RepoSearch
-        repos={Map()}
-        users={Map()}
+        repos={{}}
+        users={{}}
         isError
         isLoading={false}
         showForks={false}
@@ -41,8 +41,8 @@ describe('RepoSearch', () => {
   it('renders correctly with loader', () => {
     const tree = renderer.create(
       <RepoSearch
-        repos={Map()}
-        users={Map()}
+        repos={{}}
+        users={{}}
         isError={false}
         isLoading
         showForks={false}
@@ -78,7 +78,7 @@ describe('RepoSearch', () => {
         repos,
         users
       },
-      result: repos.map(repo => repo.get('id')).toArray()
+      result: map(repos, repo => repo.id)
     };
 
     // Dispatch fetch success.

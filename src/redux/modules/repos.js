@@ -1,5 +1,4 @@
 // @flow
-import { List, Map } from 'immutable';
 import { Observable, Action } from 'rxjs';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { normalize } from 'normalizr';
@@ -38,31 +37,42 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
         }))
     );
 
-type State = Map<string, any>;
-export const initialState: State = Map({
+type State = Object;
+export const initialState: State = {
   isLoading: false,
   isError: false,
   showForks: true,
-  entities: Map({
-    repos: Map(),
-    users: Map()
-  }),
-  result: List()
-});
+  entities: {
+    repos: {},
+    users: {}
+  },
+  result: []
+};
 
 export default function reducer(state: State = initialState, action: ThunkAction): State {
   switch (action.type) {
     case FETCH_REPOS:
-      return initialState.set('isLoading', true);
+      return {
+        ...state,
+        isLoading: true
+      };
     case FETCH_REPOS_SUCCESS:
-      return initialState.merge({
+      return {
+        ...state,
         entities: action.payload.entities,
-        result: action.payload.result
-      });
+        result: action.payload.result,
+        isLoading: false
+      };
     case FETCH_REPOS_FAILURE:
-      return initialState.set('isError', true);
+      return {
+        ...state,
+        isError: true
+      };
     case TOGGLE_SHOW_FORKS:
-      return state.set('showForks', !state.get('showForks'));
+      return {
+        ...state,
+        showForks: !state.showForks
+      };
     default:
       return state;
   }

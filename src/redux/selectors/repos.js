@@ -1,13 +1,13 @@
+import { pickBy } from 'lodash';
 // @flow
 import { createSelector } from 'reselect';
-import { Map } from 'immutable';
 
-const getRepos = (state: State): Map<string, any> => state.repos.getIn(['entities', 'repos']);
-const getShowForks = (state: State): boolean => state.repos.get('showForks');
+const getRepos = (state: State): Object => state.repos.entities.repos;
+const getShowForks = (state: State): boolean => state.repos.showForks;
 
 export default createSelector(
   [getRepos, getShowForks],
-  (repos, showForks): Map<string, any> => {
-    return showForks ? repos : repos.filterNot(repo => repo.get('fork'));
+  (repos, showForks): Object => {
+    return showForks ? repos : pickBy(repos, repo => !repo.fork);
   }
 );

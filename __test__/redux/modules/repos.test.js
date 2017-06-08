@@ -145,10 +145,11 @@ describe('reducer', () => {
       }
     };
 
-    const expected = Repos.initialState.merge({
+    const expected = {
+      ...Repos.initialState,
       isLoading: true,
       isError: false
-    });
+    };
 
     expect(
       reducer(Repos.initialState, action)
@@ -161,10 +162,11 @@ describe('reducer', () => {
       payload: NORMALIZED_REPOS
     };
 
-    const expected = Repos.initialState.merge({
+    const expected = {
+      ...Repos.initialState,
       entities: NORMALIZED_REPOS.entities,
       result: NORMALIZED_REPOS.result
-    });
+    };
 
     expect(
       reducer(Repos.initialState, action)
@@ -177,10 +179,11 @@ describe('reducer', () => {
       payload: {}
     };
 
-    const expected = Repos.initialState.merge({
+    const expected = {
+      ...Repos.initialState,
       isLoading: false,
       isError: true
-    });
+    };
 
     expect(
       reducer(Repos.initialState, action)

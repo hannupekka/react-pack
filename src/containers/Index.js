@@ -70,7 +70,7 @@ type MappedState = {
 }
 
 const mapState: Function = (state: State): MappedState => ({
-  showGreeting: state.ui.get('showGreeting')
+  showGreeting: state.ui.showGreeting
 });
 
 export default connect(

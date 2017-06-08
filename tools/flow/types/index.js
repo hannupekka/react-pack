@@ -1,5 +1,3 @@
-import { Map } from 'immutable';
-
 // Redux
 declare type ThunkAction = {
   +type: string,
@@ -7,7 +5,7 @@ declare type ThunkAction = {
 }
 
 declare type State = {
-  +repos: Map<string, any>,
-  +ui: Map<string, any>,
+  +repos: Object,
+  +ui: Object,
   +router: Object
 }
