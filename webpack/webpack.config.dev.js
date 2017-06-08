@@ -5,6 +5,7 @@ const postcssFixes = require('postcss-fixes');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const postcssOptions = {
+  sourceMap: true,
   plugins: [
     postcssFixes(),
     autoprefixer({
@@ -56,7 +57,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: true,
-              localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+              sourceMap: true
             }
           },
           {
@@ -79,7 +81,8 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: true,
-              localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+              sourceMap: true
             }
           },
           {

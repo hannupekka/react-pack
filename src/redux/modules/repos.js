@@ -43,10 +43,10 @@ export const initialState: State = Map({
   isLoading: false,
   isError: false,
   showForks: true,
-  entities: {
+  entities: Map({
     repos: Map(),
     users: Map()
-  },
+  }),
   result: List()
 });
 

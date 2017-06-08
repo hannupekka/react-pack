@@ -3,6 +3,7 @@
 .*/node_modules/reqwest/.*
 .*/node_modules/nock/.*
 .*/node_modules/babel-plugin-flow-react-proptypes/.*
+.*/node_modules/eslint-plugin-jsx-a11y/.*
 
 [include]
 .*/src/**/*.js

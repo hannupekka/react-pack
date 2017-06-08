@@ -33,7 +33,7 @@
         "static-methods",
         "lifecycle",
         "everything-else",
-        "rendee"
+        "render"
       ]
     }],
     "react/require-extension": 0,
