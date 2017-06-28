@@ -37,8 +37,7 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
         }))
     );
 
-type State = Object;
-export const initialState: State = {
+export const initialState: ReposState = {
   isLoading: false,
   isError: false,
   showForks: true,
@@ -49,7 +48,7 @@ export const initialState: State = {
   result: []
 };
 
-export default function reducer(state: State = initialState, action: ThunkAction): State {
+export default function reducer(state: ReposState = initialState, action: ThunkAction): ReposState {
   switch (action.type) {
     case FETCH_REPOS:
       return {
@@ -66,7 +65,10 @@ export default function reducer(state: State = initialState, action: ThunkAction
     case FETCH_REPOS_FAILURE:
       return {
         ...state,
-        isError: true
+        isLoading: false,
+        isError: true,
+        entities: initialState.entities,
+        result: initialState.result,
       };
     case TOGGLE_SHOW_FORKS:
       return {

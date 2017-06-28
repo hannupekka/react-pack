@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
-import { map } from 'lodash';
+import R from 'ramda';
 import * as reposActions from 'redux/modules/repos';
 import getVisibleRepos from 'redux/selectors/repos';
 import Loader from 'components/Loader';
@@ -46,7 +46,7 @@ export class RepoSearch extends Component {
   maybeRenderFilter = (): ?React$Element<any> => {
     const { repos, showForks } = this.props;
 
-    if (repos.size === 0) {
+    if (Object.keys(repos).length === 0) {
       return null;
     }
 
@@ -62,11 +62,11 @@ export class RepoSearch extends Component {
   maybeRenderRepoList = (): ?Array<React$Element<any>> => {
     const { repos, users } = this.props;
 
-    if (repos.size === 0) {
+    if (Object.keys(repos).length === 0) {
       return null;
     }
 
-    return map(repos, (repo) => {
+    return R.compose(R.values, R.mapObjIndexed((repo) => {
       const { id, name, html_url, owner } = repo;
 
       const params = {
@@ -76,7 +76,7 @@ export class RepoSearch extends Component {
       };
 
       return <Repo key={id} {...params} />;
-    });
+    }))(repos);
   }
 
   render(): React$Element<any> {
@@ -113,7 +113,7 @@ type MappedState = {
   showForks: boolean
 }
 
-const mapState: Function = (state: State): MappedState => ({
+const mapState: Function = (state: RootState): MappedState => ({
   repos: getVisibleRepos(state),
   users: state.repos.entities.users,
   isError: state.repos.isError,

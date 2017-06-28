@@ -1,4 +1,4 @@
-import { map } from 'lodash';
+import R from 'ramda';
 import configureStore from 'store/configureStore';
 import getVisibleRepos from 'redux/selectors/repos';
 import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
@@ -15,7 +15,7 @@ describe('Selector', () => {
         repos,
         users
       },
-      result: map(repos, repo => repo.id)
+      result: R.mapObjIndexed(repo => repo.id, repos)
     };
 
     // Dispatch fetch success.
@@ -36,7 +36,7 @@ describe('Selector', () => {
         repos,
         users
       },
-      result: map(repos, repo => repo.id)
+      result: R.mapObjIndexed(repo => repo.id, repos)
     };
 
     // Dispatch fetch success and then hide forks.

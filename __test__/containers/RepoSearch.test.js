@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import { map } from 'lodash';
+import R from 'ramda';
 import configureStore from 'store/configureStore';
 import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
 import ConnectedReposSearch, { RepoSearch } from 'containers/RepoSearch';
@@ -78,7 +78,7 @@ describe('RepoSearch', () => {
         repos,
         users
       },
-      result: map(repos, repo => repo.id)
+      result: R.mapObjIndexed(repo => repo.id, repos)
     };
 
     // Dispatch fetch success.

@@ -69,7 +69,7 @@ type MappedState = {
   showGreeting: boolean
 }
 
-const mapState: Function = (state: State): MappedState => ({
+const mapState: Function = (state: RootState): MappedState => ({
   showGreeting: state.ui.showGreeting
 });
 

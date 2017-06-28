@@ -8,12 +8,11 @@ export const toggleGreeting = (): ThunkAction => {
   };
 };
 
-type State = Object;
-export const initialState: State = {
+export const initialState: UiState = {
   showGreeting: false
 };
 
-export default function reducer(state: State = initialState, action: ThunkAction): State {
+export default function reducer(state: UiState = initialState, action: ThunkAction): UiState {
   switch (action.type) {
     case TOGGLE_GREETING:
       return {
