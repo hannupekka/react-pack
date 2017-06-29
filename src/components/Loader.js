@@ -8,7 +8,7 @@ import CSSModules from 'react-css-modules';
 const Loader: Component<{}> = (): React$Element<any> => {
   return (
     <div>
-      <div styleName="spinner"></div>
+      <div styleName="spinner" />
       <div styleName="text">Loading</div>
     </div>
   );

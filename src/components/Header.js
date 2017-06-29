@@ -15,8 +15,12 @@ const Header: Component<{}> = (): React$Element<any> => {
       <img styleName="logo" src={logo} alt="" />
       <nav styleName="navigation">
         <ul>
-          <li><Link to="/">Index</Link></li>
-          <li><Link to="/repos">Repo search</Link></li>
+          <li>
+            <Link to="/">Index</Link>
+          </li>
+          <li>
+            <Link to="/repos">Repo search</Link>
+          </li>
         </ul>
       </nav>
     </header>

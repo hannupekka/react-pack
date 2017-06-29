@@ -18,12 +18,12 @@ export class Index extends Component {
   onNavigateToRepoSearch = () => {
     const { dispatch } = this.props;
     dispatch(push('/repos'));
-  }
+  };
 
   onToggleGreeting = (): void => {
     const { dispatch } = this.props;
     dispatch(uiActions.toggleGreeting());
-  }
+  };
 
   renderGreeting = (): ?React$Element<any> => {
     const { showGreeting } = this.props;
@@ -33,20 +33,16 @@ export class Index extends Component {
     }
 
     return <h1>Hello world!</h1>;
-  }
+  };
 
   render() {
     return (
       <div>
-        <button
-          styleName="button"
-          onClick={this.onNavigateToRepoSearch}
-        >Navigate to other page
+        <button styleName="button" onClick={this.onNavigateToRepoSearch}>
+          Navigate to other page
         </button>
-        <button
-          styleName="button"
-          onClick={this.onToggleGreeting}
-        >Toggle greeting
+        <button styleName="button" onClick={this.onToggleGreeting}>
+          Toggle greeting
         </button>
         <CSSTransitionGroup
           transitionEnterTimeout={150}
@@ -55,7 +51,7 @@ export class Index extends Component {
             enter: styles.enter,
             enterActive: styles['enter--active'],
             leave: styles.leave,
-            leaveActive: styles['leave--active'],
+            leaveActive: styles['leave--active']
           }}
         >
           {this.renderGreeting()}
@@ -67,12 +63,10 @@ export class Index extends Component {
 
 type MappedState = {
   showGreeting: boolean
-}
+};
 
 const mapState: Function = (state: RootState): MappedState => ({
   showGreeting: state.ui.showGreeting
 });
 
-export default connect(
-  mapState
-)(CSSModules(Index, styles));
+export default connect(mapState)(CSSModules(Index, styles));

@@ -7,7 +7,7 @@ type Props = {
   name: string,
   url: string,
   user: string
-}
+};
 
 const Repo: Component<Props> = (props: Props): React$Element<any> => {
   return (

@@ -36,12 +36,12 @@ export class RepoSearch extends Component {
     const { dispatch } = this.props;
     const username: string = this.username.value;
     dispatch(reposActions.fetchRepos(username));
-  }
+  };
 
   onToggleShowForks = (): void => {
     const { dispatch } = this.props;
     dispatch(reposActions.toggleShowForks());
-  }
+  };
 
   maybeRenderFilter = (): ?React$Element<any> => {
     const { repos, showForks } = this.props;
@@ -54,10 +54,10 @@ export class RepoSearch extends Component {
 
     return (
       <button styleName="button" onClick={this.onToggleShowForks}>
-        {text} <i className="fa fa-filter"></i>
+        {text} <i className="fa fa-filter" />
       </button>
     );
-  }
+  };
 
   maybeRenderRepoList = (): ?Array<React$Element<any>> => {
     const { repos, users } = this.props;
@@ -66,25 +66,28 @@ export class RepoSearch extends Component {
       return null;
     }
 
-    return R.compose(R.values, R.mapObjIndexed((repo) => {
-      const { id, name, html_url, owner } = repo;
+    return R.compose(
+      R.values,
+      R.mapObjIndexed(repo => {
+        const { id, name, html_url, owner } = repo;
 
-      const params = {
-        name,
-        url: html_url,
-        user: users[owner].login
-      };
+        const params = {
+          name,
+          url: html_url,
+          user: users[owner].login
+        };
 
-      return <Repo key={id} {...params} />;
-    }))(repos);
-  }
+        return <Repo key={id} {...params} />;
+      })
+    )(repos);
+  };
 
   render(): React$Element<any> {
     const { isLoading, isError } = this.props;
 
     return (
       <div styleName="repo-search">
-        { isError && <Error message="Repositories not found!" />}
+        {isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
         <input
           type="text"
@@ -93,7 +96,7 @@ export class RepoSearch extends Component {
           ref={this.bindUsername}
         />
         <button styleName="button" onClick={this.onFetchRepos}>
-          Get users repositories <i className="fa fa-search"></i>
+          Get users repositories <i className="fa fa-search" />
         </button>
         {this.maybeRenderFilter()}
         {isLoading && <Loader />}
@@ -111,7 +114,7 @@ type MappedState = {
   isError: boolean,
   isLoading: boolean,
   showForks: boolean
-}
+};
 
 const mapState: Function = (state: RootState): MappedState => ({
   repos: getVisibleRepos(state),
@@ -121,6 +124,4 @@ const mapState: Function = (state: RootState): MappedState => ({
   showForks: state.repos.showForks
 });
 
-export default connect(
-  mapState
-)(pure(CSSModules(RepoSearch, styles)));
+export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));

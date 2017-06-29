@@ -7,7 +7,7 @@ import CSSModules from 'react-css-modules';
 
 type Props = {
   message: string
-}
+};
 
 const Error: Component<Props> = (props: Props): React$Element<any> => {
   return (
