@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import CSSModules from 'react-css-modules';
-import * as uiActions from 'redux/modules/ui';
+import * as uiActions from 'redux/ui';
 
 type Props = {
   showGreeting: boolean,

@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import R from 'ramda';
 import configureStore from 'store/configureStore';
-import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
+import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
 import ConnectedReposSearch, { RepoSearch } from 'containers/RepoSearch';
 import { repos, users } from '../data';
 

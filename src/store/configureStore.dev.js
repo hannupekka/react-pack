@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, rootEpic } from 'redux/modules/index';
+import { rootReducer, rootEpic } from 'redux/index';
 import DevTools from 'containers/utils/DevTools';
 
 // Logger.
@@ -50,10 +50,10 @@ module.exports = function configureStore(initialState?: Object) {
   if (module.hot) {
     // eslint-disable-next-line max-len
     // $FixMe Line below produces "call of method `accept`. Method cannot be called on 'hot' of unknown type".
-    module.hot.accept('redux/modules/index', () => {
+    module.hot.accept('redux/index', () => {
       /* eslint-disable global-require */
-      store.replaceReducer(require('redux/modules/index').rootReducer);
-      epicMiddleware.replaceEpic(require('redux/modules/index').rootEpic);
+      store.replaceReducer(require('redux/index').rootReducer);
+      epicMiddleware.replaceEpic(require('redux/index').rootEpic);
       /* eslint-enable global-require */
     });
   }

@@ -1,4 +1,4 @@
-import reducer, * as Ui from 'redux/modules/ui';
+import reducer, * as Ui from 'redux/ui';
 
 describe('actions', () => {
   it('should create an action for toggling greeting', () => {

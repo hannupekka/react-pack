@@ -1,7 +1,7 @@
 import R from 'ramda';
 import configureStore from 'store/configureStore';
-import getVisibleRepos from 'redux/selectors/repos';
-import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repos';
+import getVisibleRepos from 'redux/repos/selectors';
+import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
 import { repos, users } from '../../data';
 
 describe('Selector', () => {

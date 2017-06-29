@@ -4,8 +4,8 @@ import { createEpicMiddleware } from 'redux-observable';
 import nock from 'nock';
 import { normalize } from 'normalizr';
 import { API_HOST } from 'constants/config';
-import reducer, * as Repos from 'redux/modules/repos';
-import { repos } from 'redux/schemas/repos';
+import reducer, * as Repos from 'redux/repos';
+import { repos } from 'redux/repos/schemas';
 
 const epicMiddleware = createEpicMiddleware(Repos.fetchReposEpic);
 const middlewares = [thunkMiddleware, epicMiddleware];

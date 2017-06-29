@@ -4,7 +4,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import thunkMiddleware from 'redux-thunk';
 import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, rootEpic } from 'redux/modules/index';
+import { rootReducer, rootEpic } from 'redux/index';
 
 // Epics.
 const epicMiddleware = createEpicMiddleware(rootEpic);
