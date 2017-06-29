@@ -22,3 +22,6 @@ module.name_mapper='^redux\/\(.*\)$' -> '<PROJECT_ROOT>/src/redux/\1'
 module.name_mapper='^store\/\(.*\)$' -> '<PROJECT_ROOT>/src/store/\1'
 module.name_mapper='^styles\/\(.*\)$' -> '<PROJECT_ROOT>/tools/flow/mappings/CSSModule.js'
 module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+

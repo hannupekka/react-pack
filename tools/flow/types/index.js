@@ -19,8 +19,15 @@ declare type ReposState = {
   +result: Array<Number>
 };
 
+declare type UsersState = {
+  +isLoading: boolean,
+  +isError: boolean,
+  +users: Array<Object>
+}
+
 declare type RootState = {
   +repos: ReposState,
   +ui: UiState,
+  +users: UsersState,
   +router: Object
 }

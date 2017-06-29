@@ -6,16 +6,18 @@ import { push } from 'react-router-redux';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/ui';
+import * as userActions from 'redux/users';
 
 type Props = {
   showGreeting: boolean,
+  users: Array<Object>,
   dispatch: Function
 };
 
 export class Index extends Component {
   props: Props;
 
-  onNavigateToRepoSearch = () => {
+  onNavigateToRepoSearch = (): void => {
     const { dispatch } = this.props;
     dispatch(push('/repos'));
   };
@@ -35,6 +37,29 @@ export class Index extends Component {
     return <h1>Hello world!</h1>;
   };
 
+  renderUsers = (): ?React$Element<any> => {
+    const { users } = this.props;
+
+    if (users.length === 0) {
+      return null;
+    }
+
+    return (
+      <div>
+        {users.map((user, i) =>
+          <p key={user.email}>
+            User {i + 1}: {user.email}
+          </p>
+        )}
+      </div>
+    );
+  };
+
+  onFetchRandomUsers = (): void => {
+    const { dispatch } = this.props;
+    dispatch(userActions.fetchRandomUser());
+  };
+
   render() {
     return (
       <div>
@@ -43,6 +68,9 @@ export class Index extends Component {
         </button>
         <button styleName="button" onClick={this.onToggleGreeting}>
           Toggle greeting
+        </button>
+        <button styleName="button" onClick={this.onFetchRandomUsers}>
+          Fetch 2 random users
         </button>
         <CSSTransitionGroup
           transitionEnterTimeout={150}
@@ -55,6 +83,7 @@ export class Index extends Component {
           }}
         >
           {this.renderGreeting()}
+          {this.renderUsers()}
         </CSSTransitionGroup>
       </div>
     );
@@ -62,11 +91,13 @@ export class Index extends Component {
 }
 
 type MappedState = {
-  showGreeting: boolean
+  showGreeting: boolean,
+  users: Array<Object>
 };
 
 const mapState: Function = (state: RootState): MappedState => ({
-  showGreeting: state.ui.showGreeting
+  showGreeting: state.ui.showGreeting,
+  users: state.users.users
 });
 
 export default connect(mapState)(CSSModules(Index, styles));

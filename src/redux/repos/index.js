@@ -32,8 +32,9 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
         .flatMap(response =>
           Observable.of(fetchReposSuccess(normalize(response, repos)))
         )
-        .catch(() => Observable.of({
-          type: FETCH_REPOS_FAILURE
+        .catch(e => Observable.of({
+          type: FETCH_REPOS_FAILURE,
+          payload: e
         }))
     );
 
