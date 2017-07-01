@@ -43,20 +43,18 @@ export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction 
 
 export const fetchRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
   action$.ofType(FETCH_RANDOM_USER)
-    .flatMap(() =>
-      ajax.getJSON(URL)
-        .flatMap((response) => {
-          const user = response.results[0];
-          return Observable.concat(
-            Observable.of(fetchRandomUserSuccess(user)),
-            Observable.of(fetchSecondRandomUser(user)),
-          );
-        })
-        .catch(e => Observable.of({
-          type: FETCH_RANDOM_USER_FAILURE,
-          payload: e
-        }))
-    );
+    .flatMap(() => ajax.getJSON(URL))
+    .flatMap((response) => {
+      const user = response.results[0];
+      return Observable.concat(
+        Observable.of(fetchRandomUserSuccess(user)),
+        Observable.of(fetchSecondRandomUser(user)),
+      );
+    })
+    .catch(e => Observable.of({
+      type: FETCH_RANDOM_USER_FAILURE,
+      payload: e
+    }));
 
 export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
   action$.ofType(FETCH_SECOND_RANDOM_USER)
