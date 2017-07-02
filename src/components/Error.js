@@ -9,12 +9,9 @@ type Props = {
   message: string
 };
 
-const Error: Component<Props> = (props: Props): React$Element<any> => {
-  return (
-    <div styleName="error">
-      {props.message}
-    </div>
-  );
-};
+const Error: Component<Props> = (props: Props): React$Element<any> =>
+  <div styleName="error">
+    {props.message}
+  </div>;
 
 export default pure(CSSModules(Error, styles));

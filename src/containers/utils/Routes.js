@@ -8,18 +8,16 @@ import ConnectedIndex from 'containers/Index';
 import ConnectedRepoSearch from 'containers/RepoSearch';
 import CSSModules from 'react-css-modules';
 
-const Routes = (props: { history: Object }): React$Element<any> => {
-  return (
-    <ConnectedRouter history={props.history}>
-      <div>
-        <Route path="/" component={Header} />
-        <div styleName="content">
-          <Route exact path="/" component={ConnectedIndex} />
-          <Route exact path="/repos" component={ConnectedRepoSearch} />
-        </div>
+const Routes = (props: { history: Object }): React$Element<any> => (
+  <ConnectedRouter history={props.history}>
+    <div>
+      <Route path="/" component={Header} />
+      <div styleName="content">
+        <Route exact path="/" component={ConnectedIndex} />
+        <Route exact path="/repos" component={ConnectedRepoSearch} />
       </div>
-    </ConnectedRouter>
-  );
-};
+    </div>
+  </ConnectedRouter>
+);
 
 export default CSSModules(Routes, styles);

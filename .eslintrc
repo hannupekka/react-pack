@@ -7,17 +7,11 @@
   ],
   "parser": "babel-eslint",
   "plugins": [
-    "flowtype"
+    "flowtype",
+    "react",
+    "import"
   ],
   "rules": {
-    "no-global-assign": 0,
-    "no-underscore-dangle": 0,
-    "new-cap": 0,
-    "no-unsafe-negation": 0,
-    "comma-dangle": 0,
-    "arrow-body-style": 0,
-    "no-duplicate-imports": 0,
-    "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": [
       "error", {
         "devDependencies": true
@@ -41,11 +35,7 @@
         "render"
       ]
     }],
-    "react/require-extension": 0,
-    "react/self-closing-comp": 0,
-    "react/jsx-key": 2,
-    "flowtype/define-flow-type": 2,
-    "generator-star-spacing": 0
+    "flowtype/define-flow-type": 2
   },
   "globals": {
     "describe": false,

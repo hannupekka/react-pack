@@ -17,7 +17,7 @@
     "test:update": "TEST_RUNNER=true jest -u",
     "test:watch": "TEST_RUNNER=true npm test -- --watch",
     "heroku-postbuild": "npm run build",
-    "prettier": "find ./src/**/*.js | xargs prettier --write --print-width 80 --single-quote"
+    "prettier": "find ./src/**/*.js | xargs prettier --write --print-width 80 --single-quote && git add ."
   },
   "author": "Hannu-Pekka Heinäjärvi <hannupekka@gmail.com>",
   "license": "MIT",

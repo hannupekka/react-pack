@@ -11,35 +11,27 @@ export const FETCH_SECOND_RANDOM_USER = 'react-pack/ui/FETCH_SECOND_RANDOM_USER'
 export const FETCH_SECOND_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_SUCCESS';
 export const FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_FAILURE';
 
-export const fetchRandomUser = (): ThunkAction => {
-  return {
-    type: FETCH_RANDOM_USER,
-    payload: {}
-  };
-};
+export const fetchRandomUser = (): ThunkAction => ({
+  type: FETCH_RANDOM_USER,
+  payload: {}
+});
 
-export const fetchRandomUserSuccess = (user: Object): ThunkAction => {
-  return {
-    type: FETCH_RANDOM_USER_SUCCESS,
-    payload: user
-  };
-};
+export const fetchRandomUserSuccess = (user: Object): ThunkAction => ({
+  type: FETCH_RANDOM_USER_SUCCESS,
+  payload: user
+});
 
-export const fetchSecondRandomUser = (user: Object): ThunkAction => {
-  return {
-    type: FETCH_SECOND_RANDOM_USER,
-    payload: user
-  };
-};
+export const fetchSecondRandomUser = (user: Object): ThunkAction => ({
+  type: FETCH_SECOND_RANDOM_USER,
+  payload: user
+});
 
-export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction => {
-  return {
-    type: FETCH_SECOND_RANDOM_USER_SUCCESS,
-    payload: {
-      users
-    }
-  };
-};
+export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction => ({
+  type: FETCH_SECOND_RANDOM_USER_SUCCESS,
+  payload: {
+    users
+  }
+});
 
 export const fetchRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
   action$.ofType(FETCH_RANDOM_USER)
