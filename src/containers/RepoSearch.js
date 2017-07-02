@@ -89,12 +89,7 @@ export class RepoSearch extends Component {
       <div styleName="repo-search">
         {isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
-        <input
-          type="text"
-          styleName="input"
-          defaultValue="hannupekka"
-          ref={this.bindUsername}
-        />
+        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search" />
         </button>

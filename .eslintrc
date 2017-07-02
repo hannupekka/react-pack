@@ -35,7 +35,8 @@
         "render"
       ]
     }],
-    "flowtype/define-flow-type": 2
+    "flowtype/define-flow-type": 2,
+    "max-len": ["error", 100]
   },
   "globals": {
     "describe": false,

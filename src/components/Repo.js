@@ -10,12 +10,7 @@ type Props = {
 };
 
 const Repo: Component<Props> = (props: Props): React$Element<any> =>
-  <a
-    href={props.url}
-    title={`author: ${props.user}`}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a href={props.url} title={`author: ${props.user}`} target="_blank" rel="noopener noreferrer">
     {props.name}
   </a>;
 
