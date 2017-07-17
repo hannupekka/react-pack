@@ -1,4 +1,4 @@
-# react-pack
+# react-pack ![Dependency status](https://david-dm.org/hannupekka/react-pack.svg)
 
 HMR-enabled boilerplate for:
 * React
