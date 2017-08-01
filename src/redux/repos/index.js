@@ -12,17 +12,17 @@ export const TOGGLE_SHOW_FORKS = 'react-pack/repos/TOGGLE_SHOW_FORKS';
 
 export const fetchRepos = (username: string): ThunkAction => ({
   type: FETCH_REPOS,
-  payload: { username }
+  payload: { username },
 });
 
 export const fetchReposSuccess = (payload: Object): ThunkAction => ({
   type: FETCH_REPOS_SUCCESS,
-  payload
+  payload,
 });
 
 export const toggleShowForks = (): ThunkAction => ({
   type: TOGGLE_SHOW_FORKS,
-  payload: {}
+  payload: {},
 });
 
 export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> =>
@@ -34,7 +34,7 @@ export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> 
         )
         .catch(e => Observable.of({
           type: FETCH_REPOS_FAILURE,
-          payload: e
+          payload: e,
         }))
     );
 
@@ -44,9 +44,9 @@ export const initialState: ReposState = {
   showForks: true,
   entities: {
     repos: {},
-    users: {}
+    users: {},
   },
-  result: []
+  result: [],
 };
 
 export default function reducer(state: ReposState = initialState, action: ThunkAction): ReposState {
@@ -54,14 +54,14 @@ export default function reducer(state: ReposState = initialState, action: ThunkA
     case FETCH_REPOS:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case FETCH_REPOS_SUCCESS:
       return {
         ...state,
         entities: action.payload.entities,
         result: action.payload.result,
-        isLoading: false
+        isLoading: false,
       };
     case FETCH_REPOS_FAILURE:
       return {
@@ -74,7 +74,7 @@ export default function reducer(state: ReposState = initialState, action: ThunkA
     case TOGGLE_SHOW_FORKS:
       return {
         ...state,
-        showForks: !state.showForks
+        showForks: !state.showForks,
       };
     default:
       return state;

@@ -7,10 +7,10 @@ new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   stats: {
-    colors: true
+    colors: true,
   },
   historyApiFallback: {
-    index: 'src/html/index.dev.html'
+    index: 'src/html/index.dev.html',
   }
 }).listen(8080, '0.0.0.0', function(err) {
   if (err) {

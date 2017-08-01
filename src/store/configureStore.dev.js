@@ -26,7 +26,7 @@ const middlewares = [
   thunkMiddleware,
   epicMiddleware,
   loggerMiddleware,
-  routerMiddleware(getHistoryInstance())
+  routerMiddleware(getHistoryInstance()),
 ];
 
 // Remove redux-logger during tests.

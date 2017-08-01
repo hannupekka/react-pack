@@ -13,24 +13,24 @@ export const FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RAND
 
 export const fetchRandomUser = (): ThunkAction => ({
   type: FETCH_RANDOM_USER,
-  payload: {}
+  payload: {},
 });
 
 export const fetchRandomUserSuccess = (user: Object): ThunkAction => ({
   type: FETCH_RANDOM_USER_SUCCESS,
-  payload: user
+  payload: user,
 });
 
 export const fetchSecondRandomUser = (user: Object): ThunkAction => ({
   type: FETCH_SECOND_RANDOM_USER,
-  payload: user
+  payload: user,
 });
 
 export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction => ({
   type: FETCH_SECOND_RANDOM_USER_SUCCESS,
   payload: {
-    users
-  }
+    users,
+  },
 });
 
 export const fetchRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
@@ -45,7 +45,7 @@ export const fetchRandomUserEpic = (action$: Observable<Action>): Observable<Act
     })
     .catch(e => Observable.of({
       type: FETCH_RANDOM_USER_FAILURE,
-      payload: e
+      payload: e,
     }));
 
 export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
@@ -55,7 +55,7 @@ export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observab
         .flatMap(response => {
           const users = [
             action.payload,
-            response.results[0]
+            response.results[0],
           ];
           return Observable.concat(
             Observable.of(fetchSecondRandomUserSuccess(users))
@@ -63,14 +63,14 @@ export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observab
         })
         .catch(e => Observable.of({
           type: FETCH_SECOND_RANDOM_USER_FAILURE,
-          payload: e
+          payload: e,
         }))
     );
 
 export const initialState: UsersState = {
   isLoading: false,
   isError: false,
-  users: []
+  users: [],
 };
 
 export default function reducer(state: UsersState = initialState, action: ThunkAction): UsersState {
@@ -78,13 +78,13 @@ export default function reducer(state: UsersState = initialState, action: ThunkA
     case FETCH_RANDOM_USER:
       return {
         ...initialState,
-        isLoading: true
+        isLoading: true,
       };
     case FETCH_SECOND_RANDOM_USER_SUCCESS:
       return {
         ...state,
         users: action.payload.users,
-        isLoading: false
+        isLoading: false,
       };
     case FETCH_RANDOM_USER_FAILURE:
     case FETCH_SECOND_RANDOM_USER_FAILURE:

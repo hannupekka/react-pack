@@ -10,7 +10,7 @@ export const rootReducer = combineReducers({
   repos,
   ui,
   users,
-  router: routerReducer
+  router: routerReducer,
 });
 
 export const rootEpic = combineEpics(

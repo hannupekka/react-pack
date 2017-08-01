@@ -6,7 +6,7 @@ import type { Component } from 'recompose';
 import CSSModules from 'react-css-modules';
 
 type Props = {
-  message: string
+  message: string,
 };
 
 const Error: Component<Props> = (props: Props): React$Element<any> =>

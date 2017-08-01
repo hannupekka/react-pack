@@ -11,7 +11,7 @@ import * as userActions from 'redux/users';
 type Props = {
   showGreeting: boolean,
   users: Array<Object>,
-  dispatch: Function
+  dispatch: Function,
 };
 
 export class Index extends Component {
@@ -79,7 +79,7 @@ export class Index extends Component {
             enter: styles.enter,
             enterActive: styles['enter--active'],
             leave: styles.leave,
-            leaveActive: styles['leave--active']
+            leaveActive: styles['leave--active'],
           }}
         >
           {this.renderGreeting()}
@@ -92,12 +92,12 @@ export class Index extends Component {
 
 type MappedState = {
   showGreeting: boolean,
-  users: Array<Object>
+  users: Array<Object>,
 };
 
 const mapState: Function = (state: RootState): MappedState => ({
   showGreeting: state.ui.showGreeting,
-  users: state.users.users
+  users: state.users.users,
 });
 
 export default connect(mapState)(CSSModules(Index, styles));

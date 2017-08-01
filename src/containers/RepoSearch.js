@@ -17,7 +17,7 @@ type Props = {
   isError: boolean,
   isLoading: boolean,
   showForks: boolean,
-  dispatch: Function
+  dispatch: Function,
 };
 
 export class RepoSearch extends Component {
@@ -74,7 +74,7 @@ export class RepoSearch extends Component {
         const params = {
           name,
           url: html_url,
-          user: users[owner].login
+          user: users[owner].login,
         };
 
         return <Repo key={id} {...params} />;
@@ -108,7 +108,7 @@ type MappedState = {
   users: Object,
   isError: boolean,
   isLoading: boolean,
-  showForks: boolean
+  showForks: boolean,
 };
 
 const mapState: Function = (state: RootState): MappedState => ({
@@ -116,7 +116,7 @@ const mapState: Function = (state: RootState): MappedState => ({
   users: state.repos.entities.users,
   isError: state.repos.isError,
   isLoading: state.repos.isLoading,
-  showForks: state.repos.showForks
+  showForks: state.repos.showForks,
 });
 
 export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));
