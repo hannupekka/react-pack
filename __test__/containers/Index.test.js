@@ -33,7 +33,7 @@ describe('Index', () => {
         showGreeting={false}
         users={[
           { email: 'foo.bar@example.com' },
-          { email: 'bar.foo@example.com' }
+          { email: 'bar.foo@example.com' },
         ]}
         dispatch={() => {}}
       />

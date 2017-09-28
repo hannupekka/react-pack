@@ -8,7 +8,7 @@ import CSSModules from 'react-css-modules';
 
 const logo = require('../assets/logo.png');
 
-const Header: Component<{}> = (): React$Element<any> =>
+const Header: Component<{}> = (): React$Element<any> => (
   <header styleName="header">
     <h1 styleName="title">Example application</h1>
     <img styleName="logo" src={logo} alt="" />
@@ -22,6 +22,7 @@ const Header: Component<{}> = (): React$Element<any> =>
         </li>
       </ul>
     </nav>
-  </header>;
+  </header>
+);
 
 export default pure(CSSModules(Header, styles));

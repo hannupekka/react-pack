@@ -33,7 +33,7 @@ const TEST_REPOS = [
       events_url: 'https://api.github.com/users/hannupekka/events{/privacy}',
       received_events_url: 'https://api.github.com/users/hannupekka/received_events',
       type: 'User',
-      site_admin: false
+      site_admin: false,
     },
     private: false,
     html_url: 'https://github.com/hannupekka/badgenator',
@@ -42,7 +42,8 @@ const TEST_REPOS = [
     url: 'https://api.github.com/repos/hannupekka/badgenator',
     forks_url: 'https://api.github.com/repos/hannupekka/badgenator/forks',
     keys_url: 'https://api.github.com/repos/hannupekka/badgenator/keys{/key_id}',
-    collaborators_url: 'https://api.github.com/repos/hannupekka/badgenator/collaborators{/collaborator}',
+    collaborators_url:
+      'https://api.github.com/repos/hannupekka/badgenator/collaborators{/collaborator}',
     teams_url: 'https://api.github.com/repos/hannupekka/badgenator/teams',
     hooks_url: 'https://api.github.com/repos/hannupekka/badgenator/hooks',
     issue_events_url: 'https://api.github.com/repos/hannupekka/badgenator/issues/events{/number}',
@@ -63,7 +64,8 @@ const TEST_REPOS = [
     commits_url: 'https://api.github.com/repos/hannupekka/badgenator/commits{/sha}',
     git_commits_url: 'https://api.github.com/repos/hannupekka/badgenator/git/commits{/sha}',
     comments_url: 'https://api.github.com/repos/hannupekka/badgenator/comments{/number}',
-    issue_comment_url: 'https://api.github.com/repos/hannupekka/badgenator/issues/comments{/number}',
+    issue_comment_url:
+      'https://api.github.com/repos/hannupekka/badgenator/issues/comments{/number}',
     contents_url: 'https://api.github.com/repos/hannupekka/badgenator/contents/{+path}',
     compare_url: 'https://api.github.com/repos/hannupekka/badgenator/compare/{base}...{head}',
     merges_url: 'https://api.github.com/repos/hannupekka/badgenator/merges',
@@ -72,7 +74,8 @@ const TEST_REPOS = [
     issues_url: 'https://api.github.com/repos/hannupekka/badgenator/issues{/number}',
     pulls_url: 'https://api.github.com/repos/hannupekka/badgenator/pulls{/number}',
     milestones_url: 'https://api.github.com/repos/hannupekka/badgenator/milestones{/number}',
-    notifications_url: 'https://api.github.com/repos/hannupekka/badgenator/notifications{?since,all,participating}',
+    notifications_url:
+      'https://api.github.com/repos/hannupekka/badgenator/notifications{?since,all,participating}',
     labels_url: 'https://api.github.com/repos/hannupekka/badgenator/labels{/name}',
     releases_url: 'https://api.github.com/repos/hannupekka/badgenator/releases{/id}',
     deployments_url: 'https://api.github.com/repos/hannupekka/badgenator/deployments',
@@ -99,8 +102,8 @@ const TEST_REPOS = [
     forks: 0,
     open_issues: 0,
     watchers: 2,
-    default_branch: 'master'
-  }
+    default_branch: 'master',
+  },
 ];
 
 const NORMALIZED_REPOS = normalize(TEST_REPOS, repos);
@@ -119,9 +122,9 @@ describe('async actions', () => {
       {
         type: Repos.FETCH_REPOS,
         payload: {
-          username: 'hannupekka'
-        }
-      }
+          username: 'hannupekka',
+        },
+      },
     ];
 
     const store = mockStore();
@@ -141,14 +144,14 @@ describe('reducer', () => {
     const action = {
       type: Repos.FETCH_REPOS,
       payload: {
-        username: 'hannupekka'
-      }
+        username: 'hannupekka',
+      },
     };
 
     const expected = {
       ...Repos.initialState,
       isLoading: true,
-      isError: false
+      isError: false,
     };
 
     expect(
@@ -159,13 +162,13 @@ describe('reducer', () => {
   it('should handle FETCH_REPOS_SUCCESS', () => {
     const action = {
       type: Repos.FETCH_REPOS_SUCCESS,
-      payload: NORMALIZED_REPOS
+      payload: NORMALIZED_REPOS,
     };
 
     const expected = {
       ...Repos.initialState,
       entities: NORMALIZED_REPOS.entities,
-      result: NORMALIZED_REPOS.result
+      result: NORMALIZED_REPOS.result,
     };
 
     expect(
@@ -176,13 +179,13 @@ describe('reducer', () => {
   it('should handle FETCH_REPOS_FAILURE', () => {
     const action = {
       type: Repos.FETCH_REPOS_FAILURE,
-      payload: {}
+      payload: {},
     };
 
     const expected = {
       ...Repos.initialState,
       isLoading: false,
-      isError: true
+      isError: true,
     };
 
     expect(

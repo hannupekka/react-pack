@@ -76,9 +76,9 @@ describe('RepoSearch', () => {
     const payload = {
       entities: {
         repos,
-        users
+        users,
       },
-      result: R.mapObjIndexed(repo => repo.id, repos)
+      result: R.mapObjIndexed(repo => repo.id, repos),
     };
 
     // Dispatch fetch success.

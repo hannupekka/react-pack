@@ -21,7 +21,8 @@ export const repos = {
     stargazers_count: 0,
     contributors_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/contributors',
     tags_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/tags',
-    issue_comment_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/issues/comments{/number}',
+    issue_comment_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/issues/comments{/number}',
     events_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/events',
     created_at: '2013-08-30T09:17:39Z',
     issues_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/issues{/number}',
@@ -33,23 +34,28 @@ export const repos = {
     subscription_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/subscription',
     clone_url: 'https://github.com/hannupekka/fressi-gym-activity.git',
     homepage: null,
-    issue_events_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/issues/events{/number}',
+    issue_events_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/issues/events{/number}',
     mirror_url: null,
     labels_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/labels{/name}',
     url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity',
     open_issues: 0,
     statuses_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/statuses/{sha}',
     forks: 0,
-    archive_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/{archive_format}{/ref}',
-    milestones_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/milestones{/number}',
+    archive_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/{archive_format}{/ref}',
+    milestones_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/milestones{/number}',
     owner: 4472477,
     assignees_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/assignees{/user}',
     has_wiki: true,
-    compare_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/compare/{base}...{head}',
+    compare_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/compare/{base}...{head}',
     git_tags_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/git/tags{/sha}',
     updated_at: '2013-10-31T15:13:19Z',
     watchers: 0,
-    notifications_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/notifications{?since,all,participating}',
+    notifications_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/notifications{?since,all,participating}',
     ssh_url: 'git@github.com:hannupekka/fressi-gym-activity.git',
     language: 'Python',
     pushed_at: '2013-10-31T15:13:15Z',
@@ -62,14 +68,16 @@ export const repos = {
     description: 'Fetches, parses and formats gym activity for Fressi gyms',
     releases_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/releases{/id}',
     git_refs_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/git/refs{/sha}',
-    collaborators_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/collaborators{/collaborator}',
+    collaborators_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/collaborators{/collaborator}',
     pulls_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/pulls{/number}',
     deployments_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/deployments',
     has_projects: true,
     has_pages: false,
     open_issues_count: 0,
-    git_commits_url: 'https://api.github.com/repos/hannupekka/fressi-gym-activity/git/commits{/sha}',
-    has_issues: true
+    git_commits_url:
+      'https://api.github.com/repos/hannupekka/fressi-gym-activity/git/commits{/sha}',
+    has_issues: true,
   },
   18128997: {
     hooks_url: 'https://api.github.com/repos/hannupekka/heroku-buildpack-python-libffi/hooks',
@@ -140,7 +148,7 @@ export const repos = {
     has_pages: false,
     open_issues_count: 0,
     git_commits_url: 'https://api.github.com/repos/hannupekka/heroku-buildpack-python-libffi/git/commits{/sha}',
-    has_issues: false
+    has_issues: false,
   },
 };
 
@@ -162,6 +170,6 @@ export const users = {
     site_admin: false,
     type: 'User',
     id: 4472477,
-    html_url: 'https://github.com/hannupekka'
-  }
+    html_url: 'https://github.com/hannupekka',
+  },
 };

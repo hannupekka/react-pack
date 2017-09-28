@@ -20,16 +20,16 @@ type Props = {
   dispatch: Function,
 };
 
-export class RepoSearch extends Component {
-  props: Props;
-
+export class RepoSearch extends Component<Props> {
   bindUsername: Function;
   username: HTMLInputElement;
 
   constructor(props: Object) {
     super(props);
 
-    this.bindUsername = c => (this.username = c);
+    this.bindUsername = c => {
+      this.username = c;
+    };
   }
 
   onFetchRepos = (): void => {
@@ -95,9 +95,7 @@ export class RepoSearch extends Component {
         </button>
         {this.maybeRenderFilter()}
         {isLoading && <Loader />}
-        <div styleName="repo-list">
-          {this.maybeRenderRepoList()}
-        </div>
+        <div styleName="repo-list">{this.maybeRenderRepoList()}</div>
       </div>
     );
   }

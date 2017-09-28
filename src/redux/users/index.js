@@ -52,7 +52,7 @@ export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observab
   action$.ofType(FETCH_SECOND_RANDOM_USER)
     .flatMap(action =>
       ajax.getJSON(URL)
-        .flatMap(response => {
+        .flatMap((response) => {
           const users = [
             action.payload,
             response.results[0],

@@ -21,9 +21,11 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
     return;
   }
 
+  // eslint-disable-next-line no-console
   console.log(`Listening at http://localhost:${PORT}`);
 });

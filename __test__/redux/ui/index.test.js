@@ -4,7 +4,7 @@ describe('actions', () => {
   it('should create an action for toggling greeting', () => {
     const expected = {
       type: Ui.TOGGLE_GREETING,
-      payload: {}
+      payload: {},
     };
 
     expect(Ui.toggleGreeting()).toEqual(expected);
@@ -21,11 +21,11 @@ describe('reducer', () => {
   it('should handle TOGGLE_GREETING', () => {
     const action = {
       type: Ui.TOGGLE_GREETING,
-      payload: {}
+      payload: {},
     };
 
     const expected = {
-      showGreeting: true
+      showGreeting: true,
     };
 
     expect(
