@@ -16,8 +16,8 @@ const postcssOptions = {
 module.exports = {
   devtool: 'eval',
   entry: [
-    'react-hot-loader/patch',
     'eventsource-polyfill',
+    'react-hot-loader/patch',
     'webpack-dev-server/client?http://0.0.0.0:8080',
     'webpack/hot/only-dev-server',
     './src/index',
@@ -29,6 +29,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
