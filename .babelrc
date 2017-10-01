@@ -6,5 +6,15 @@
     "transform-class-properties",
     "transform-flow-strip-types",
     "ramda"
-  ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "flow-react-proptypes",
+        "transform-class-properties",
+        "transform-flow-strip-types",
+        "ramda"
+      ]
+    }
+  }
 }
