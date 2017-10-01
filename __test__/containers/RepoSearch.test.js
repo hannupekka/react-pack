@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
@@ -9,61 +10,69 @@ import { repos, users } from '../data';
 
 describe('RepoSearch', () => {
   it('renders correctly with empty data', () => {
-    const tree = renderer.create(
-      <RepoSearch
-        repos={{}}
-        users={{}}
-        isError={false}
-        isLoading={false}
-        showForks={false}
-        dispatch={() => {}}
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <RepoSearch
+          repos={{}}
+          users={{}}
+          isError={false}
+          isLoading={false}
+          showForks={false}
+          dispatch={() => {}}
+        />
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly with error', () => {
-    const tree = renderer.create(
-      <RepoSearch
-        repos={{}}
-        users={{}}
-        isError
-        isLoading={false}
-        showForks={false}
-        dispatch={() => {}}
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <RepoSearch
+          repos={{}}
+          users={{}}
+          isError
+          isLoading={false}
+          showForks={false}
+          dispatch={() => {}}
+        />
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly with loader', () => {
-    const tree = renderer.create(
-      <RepoSearch
-        repos={{}}
-        users={{}}
-        isError={false}
-        isLoading
-        showForks={false}
-        dispatch={() => {}}
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <RepoSearch
+          repos={{}}
+          users={{}}
+          isError={false}
+          isLoading
+          showForks={false}
+          dispatch={() => {}}
+        />
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly with all repos', () => {
-    const tree = renderer.create(
-      <RepoSearch
-        repos={repos}
-        users={users}
-        isError={false}
-        isLoading={false}
-        showForks
-        dispatch={() => {}}
-      />
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <RepoSearch
+          repos={repos}
+          users={users}
+          isError={false}
+          isLoading={false}
+          showForks
+          dispatch={() => {}}
+        />
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -87,11 +96,13 @@ describe('RepoSearch', () => {
     // Hide forks.
     store.dispatch(toggleShowForks());
 
-    const tree = renderer.create(
-      <Provider store={store}>
-        <ConnectedReposSearch />
-      </Provider>
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <Provider store={store}>
+          <ConnectedReposSearch />
+        </Provider>
+      )
+      .toJSON();
 
     expect(tree).toMatchSnapshot();
   });

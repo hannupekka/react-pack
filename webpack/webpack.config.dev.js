@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?/,
+        test: /\.js(x?)$/,
         exclude: [/node_modules/, /styles/],
         use: ['babel-loader'],
       },
@@ -99,10 +99,12 @@ module.exports = {
       {
         test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
         use: 'url-loader',
-      }, {
+      },
+      {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         use: 'url-loader',
-      }, {
+      },
+      {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -113,7 +115,8 @@ module.exports = {
             },
           },
         ],
-      }, {
+      },
+      {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
         use: 'file-loader',
       },
@@ -124,10 +127,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.less'],
-    modules: [
-      'node_modules',
-      path.resolve('./src'),
-    ],
+    extensions: ['.js', '.jsx', '.less'],
+    modules: ['node_modules', path.resolve('./src')],
   },
 };

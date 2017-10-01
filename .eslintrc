@@ -11,12 +11,6 @@
         "devDependencies": true
       }
     ],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js"]
-      }
-    ],
     "react/sort-comp": [
       1,
       {
@@ -44,15 +38,6 @@
       }
     ]
   },
-  "globals": {
-    "describe": false,
-    "it": false,
-    "before": false,
-    "beforeEach": false,
-    "after": false,
-    "afterEach": false,
-    "expect": false
-  },
   "env": {
     "browser": true
   },
@@ -60,6 +45,9 @@
     "import/resolver": {
       "webpack": {
         "config": "webpack/webpack.config.dev.js"
+      },
+      "node": {
+        "moduleDirectory": ["node_modules", "./src"]
       }
     }
   }
