@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import reducer, * as Ui from 'redux/ui';
 
 describe('actions', () => {
@@ -13,9 +14,7 @@ describe('actions', () => {
 
 describe('reducer', () => {
   it('should return the initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual(Ui.initialState);
+    expect(reducer(undefined, {})).toEqual(Ui.initialState);
   });
 
   it('should handle TOGGLE_GREETING', () => {
@@ -28,8 +27,6 @@ describe('reducer', () => {
       showGreeting: true,
     };
 
-    expect(
-      reducer(Ui.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Ui.initialState, action)).toEqual(expected);
   });
 });

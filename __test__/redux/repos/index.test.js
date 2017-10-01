@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import configureMockStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
@@ -135,9 +136,7 @@ describe('async actions', () => {
 
 describe('reducer', () => {
   it('should return the initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual(Repos.initialState);
+    expect(reducer(undefined, {})).toEqual(Repos.initialState);
   });
 
   it('should handle FETCH_REPOS', () => {
@@ -154,9 +153,7 @@ describe('reducer', () => {
       isError: false,
     };
 
-    expect(
-      reducer(Repos.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Repos.initialState, action)).toEqual(expected);
   });
 
   it('should handle FETCH_REPOS_SUCCESS', () => {
@@ -171,9 +168,7 @@ describe('reducer', () => {
       result: NORMALIZED_REPOS.result,
     };
 
-    expect(
-      reducer(Repos.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Repos.initialState, action)).toEqual(expected);
   });
 
   it('should handle FETCH_REPOS_FAILURE', () => {
@@ -188,8 +183,6 @@ describe('reducer', () => {
       isError: true,
     };
 
-    expect(
-      reducer(Repos.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Repos.initialState, action)).toEqual(expected);
   });
 });

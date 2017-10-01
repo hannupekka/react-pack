@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import reducer, * as Users from 'redux/users';
 
 describe('actions', () => {
@@ -37,10 +38,7 @@ describe('actions', () => {
   });
 
   it('should create an action for fetching second random user succesfully', () => {
-    const users = [
-      { mail: 'foo.bar@example.com' },
-      { mail: 'bar.foo@example.com'},
-    ];
+    const users = [{ mail: 'foo.bar@example.com' }, { mail: 'bar.foo@example.com' }];
 
     const expected = {
       type: Users.FETCH_SECOND_RANDOM_USER_SUCCESS,
@@ -55,9 +53,7 @@ describe('actions', () => {
 
 describe('reducer', () => {
   it('should return the initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual(Users.initialState);
+    expect(reducer(undefined, {})).toEqual(Users.initialState);
   });
 
   it('should handle FETCH_RANDOM_USER', () => {
@@ -72,16 +68,11 @@ describe('reducer', () => {
       users: [],
     };
 
-    expect(
-      reducer(Users.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Users.initialState, action)).toEqual(expected);
   });
 
   it('should handle FETCH_SECOND_RANDOM_USER_SUCCESS', () => {
-    const users = [
-      { mail: 'foo.bar@example.com' },
-      { mail: 'bar.foo@example.com' },
-    ];
+    const users = [{ mail: 'foo.bar@example.com' }, { mail: 'bar.foo@example.com' }];
 
     const action = {
       type: Users.FETCH_SECOND_RANDOM_USER_SUCCESS,
@@ -96,9 +87,7 @@ describe('reducer', () => {
       users,
     };
 
-    expect(
-      reducer(Users.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Users.initialState, action)).toEqual(expected);
   });
 
   it('should handle FETCH_RANDOM_USER_FAILURE', () => {
@@ -113,9 +102,7 @@ describe('reducer', () => {
       users: [],
     };
 
-    expect(
-      reducer(Users.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Users.initialState, action)).toEqual(expected);
   });
 
   it('should handle FETCH_SECOND_RANDOM_USER_FAILURE', () => {
@@ -130,8 +117,6 @@ describe('reducer', () => {
       users: [],
     };
 
-    expect(
-      reducer(Users.initialState, action)
-    ).toEqual(expected);
+    expect(reducer(Users.initialState, action)).toEqual(expected);
   });
 });
