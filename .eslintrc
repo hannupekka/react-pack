@@ -11,12 +11,6 @@
         "devDependencies": true
       }
     ],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js"]
-      }
-    ],
     "react/sort-comp": [
       1,
       {

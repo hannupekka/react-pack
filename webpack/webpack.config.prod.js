@@ -33,9 +33,7 @@ module.exports = {
     source: false,
   },
   devtool: 'source-map',
-  entry: [
-    './src/index',
-  ],
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.[hash].js',
@@ -62,7 +60,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js(x?)$/,
         exclude: [/node_modules/, /styles/],
         use: ['babel-loader'],
       },
@@ -118,7 +116,8 @@ module.exports = {
             },
           },
         ],
-      }, {
+      },
+      {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -129,7 +128,8 @@ module.exports = {
             },
           },
         ],
-      }, {
+      },
+      {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -140,7 +140,8 @@ module.exports = {
             },
           },
         ],
-      }, {
+      },
+      {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -159,10 +160,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.less'],
-    modules: [
-      'node_modules',
-      path.resolve('./src'),
-    ],
+    extensions: ['.js', '.jsx', '.less'],
+    modules: ['node_modules', path.resolve('./src')],
   },
 };
