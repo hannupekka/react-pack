@@ -5,8 +5,10 @@
   "scripts": {
     "clean": "rimraf dist",
     "ban": "ban",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
+    "build:webpack":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
     "build": "check-node-version --package && npm run clean && npm run build:webpack",
+    "build:test": "npm run lint && npm run flow && npm run test",
     "dev": "NODE_ENV=development node server/devServer.js",
     "start": "node server/server.js",
     "flow": "flow check",
@@ -97,26 +99,17 @@
     "redux-mock-store": "^1.3.0",
     "webpack-dev-server": "^2.9.1"
   },
-  "pre-commit": [
-    "ban",
-    "lint",
-    "flow",
-    "test"
-  ],
+  "pre-commit": ["ban", "lint", "flow", "test"],
   "engines": {
     "yarn": "^1.1.0",
     "node": "^8.3.0"
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
-      "tools"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
+    "coveragePathIgnorePatterns": ["tools"],
+    "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/file.js",
       "^.+\\.(css|less)$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "./tools/jest/setup.js",
