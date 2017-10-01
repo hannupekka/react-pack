@@ -7,5 +7,5 @@ const getShowForks = (state: RootState): boolean => state.repos.showForks;
 
 export default createSelector(
   [getRepos, getShowForks],
-  (repos, showForks): Object => showForks ? repos : R.pickBy(repo => !repo.fork, repos)
+  (repos, showForks): Object => (showForks ? repos : R.pickBy(repo => !repo.fork, repos))
 );

@@ -1,4 +1,10 @@
 {
-  "presets": ["react", "stage-0", "es2015"],
-  "plugins": ["flow-react-proptypes", "transform-class-properties", "transform-flow-strip-types", "ramda"]
+  "presets": ["react", "stage-0", "env"],
+  "plugins": [
+    "react-hot-loader/babel",
+    "flow-react-proptypes",
+    "transform-class-properties",
+    "transform-flow-strip-types",
+    "ramda"
+  ]
 }

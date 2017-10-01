@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const config = require('../webpack/webpack.config.dev');
 
 new WebpackDevServer(webpack(config), {
-  quiet: true,
   publicPath: config.output.publicPath,
   hot: true,
   stats: {
@@ -11,11 +10,13 @@ new WebpackDevServer(webpack(config), {
   },
   historyApiFallback: {
     index: 'src/html/index.dev.html',
-  }
-}).listen(8080, '0.0.0.0', function(err) {
+  },
+}).listen(8080, '0.0.0.0', (err) => {
   if (err) {
+    // eslint-disable-next-line no-console
     return console.log(err);
   }
 
-  console.log('Listening at http://localhost:8080/');
+  // eslint-disable-next-line no-console
+  return console.log('Listening at http://localhost:8080/');
 });

@@ -3,7 +3,6 @@ import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import CSSModules from 'react-css-modules';
 import * as uiActions from 'redux/ui';
 import * as userActions from 'redux/users';
@@ -14,9 +13,7 @@ type Props = {
   dispatch: Function,
 };
 
-export class Index extends Component {
-  props: Props;
-
+export class Index extends Component<Props> {
   onNavigateToRepoSearch = (): void => {
     const { dispatch } = this.props;
     dispatch(push('/repos'));
@@ -46,11 +43,11 @@ export class Index extends Component {
 
     return (
       <div>
-        {users.map((user, i) =>
+        {users.map((user, i) => (
           <p key={user.email}>
             User {i + 1}: {user.email}
           </p>
-        )}
+        ))}
       </div>
     );
   };
@@ -72,19 +69,8 @@ export class Index extends Component {
         <button styleName="button" onClick={this.onFetchRandomUsers}>
           Fetch 2 random users
         </button>
-        <CSSTransitionGroup
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={150}
-          transitionName={{
-            enter: styles.enter,
-            enterActive: styles['enter--active'],
-            leave: styles.leave,
-            leaveActive: styles['leave--active'],
-          }}
-        >
-          {this.renderGreeting()}
-          {this.renderUsers()}
-        </CSSTransitionGroup>
+        {this.renderGreeting()}
+        {this.renderUsers()}
       </div>
     );
   }

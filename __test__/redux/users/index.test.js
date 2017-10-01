@@ -4,7 +4,7 @@ describe('actions', () => {
   it('should create an action for fetching random user', () => {
     const expected = {
       type: Users.FETCH_RANDOM_USER,
-      payload: {}
+      payload: {},
     };
 
     expect(Users.fetchRandomUser()).toEqual(expected);
@@ -12,12 +12,12 @@ describe('actions', () => {
 
   it('should create an action for fetching random user succesfully', () => {
     const user = {
-      mail: 'foo.bar@example.com'
+      mail: 'foo.bar@example.com',
     };
 
     const expected = {
       type: Users.FETCH_RANDOM_USER_SUCCESS,
-      payload: user
+      payload: user,
     };
 
     expect(Users.fetchRandomUserSuccess(user)).toEqual(expected);
@@ -25,12 +25,12 @@ describe('actions', () => {
 
   it('should create an action for fetching second random user', () => {
     const user = {
-      mail: 'foo.bar@example.com'
+      mail: 'foo.bar@example.com',
     };
 
     const expected = {
       type: Users.FETCH_SECOND_RANDOM_USER,
-      payload: user
+      payload: user,
     };
 
     expect(Users.fetchSecondRandomUser(user)).toEqual(expected);
@@ -39,14 +39,14 @@ describe('actions', () => {
   it('should create an action for fetching second random user succesfully', () => {
     const users = [
       { mail: 'foo.bar@example.com' },
-      { mail: 'bar.foo@example.com'}
+      { mail: 'bar.foo@example.com'},
     ];
 
     const expected = {
       type: Users.FETCH_SECOND_RANDOM_USER_SUCCESS,
       payload: {
-        users
-      }
+        users,
+      },
     };
 
     expect(Users.fetchSecondRandomUserSuccess(users)).toEqual(expected);
@@ -63,13 +63,13 @@ describe('reducer', () => {
   it('should handle FETCH_RANDOM_USER', () => {
     const action = {
       type: Users.FETCH_RANDOM_USER,
-      payload: {}
+      payload: {},
     };
 
     const expected = {
       isLoading: true,
       isError: false,
-      users: []
+      users: [],
     };
 
     expect(
@@ -80,20 +80,20 @@ describe('reducer', () => {
   it('should handle FETCH_SECOND_RANDOM_USER_SUCCESS', () => {
     const users = [
       { mail: 'foo.bar@example.com' },
-      { mail: 'bar.foo@example.com' }
+      { mail: 'bar.foo@example.com' },
     ];
 
     const action = {
       type: Users.FETCH_SECOND_RANDOM_USER_SUCCESS,
       payload: {
-        users
-      }
+        users,
+      },
     };
 
     const expected = {
       isLoading: false,
       isError: false,
-      users
+      users,
     };
 
     expect(
@@ -104,13 +104,13 @@ describe('reducer', () => {
   it('should handle FETCH_RANDOM_USER_FAILURE', () => {
     const action = {
       type: Users.FETCH_RANDOM_USER_FAILURE,
-      payload: {}
+      payload: {},
     };
 
     const expected = {
       isLoading: false,
       isError: true,
-      users: []
+      users: [],
     };
 
     expect(
@@ -121,13 +121,13 @@ describe('reducer', () => {
   it('should handle FETCH_SECOND_RANDOM_USER_FAILURE', () => {
     const action = {
       type: Users.FETCH_SECOND_RANDOM_USER_FAILURE,
-      payload: {}
+      payload: {},
     };
 
     const expected = {
       isLoading: false,
       isError: true,
-      users: []
+      users: [],
     };
 
     expect(

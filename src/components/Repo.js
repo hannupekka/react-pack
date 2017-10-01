@@ -9,9 +9,10 @@ type Props = {
   user: string,
 };
 
-const Repo: Component<Props> = (props: Props): React$Element<any> =>
+const Repo: Component<Props> = (props: Props): React$Element<any> => (
   <a href={props.url} title={`author: ${props.user}`} target="_blank" rel="noopener noreferrer">
     {props.name}
-  </a>;
+  </a>
+);
 
 export default pure(Repo);
