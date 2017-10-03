@@ -15,3 +15,4 @@ const localStorageMock = (() => {
 })();
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+Object.defineProperty(global, 'fetch', { value: () => new Promise(resolve => resolve({})) });

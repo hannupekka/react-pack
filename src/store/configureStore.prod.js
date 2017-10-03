@@ -1,18 +1,18 @@
 // @flow
 import { createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
+import { createLogicMiddleware } from 'redux-logic';
 import thunkMiddleware from 'redux-thunk';
 import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, rootEpic } from 'redux/index';
+import { rootReducer, logics } from 'redux/index';
 
-// Epics.
-const epicMiddleware = createEpicMiddleware(rootEpic);
+// Logics.
+const logicMiddleware = createLogicMiddleware(logics);
 
 // Middleware you want to use in production:
 const enhancer = applyMiddleware(
   thunkMiddleware,
-  epicMiddleware,
+  logicMiddleware,
   routerMiddleware(getHistoryInstance())
 );
 

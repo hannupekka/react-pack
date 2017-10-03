@@ -1,6 +1,5 @@
 // @flow
-import { Observable, Action } from 'rxjs';
-import { ajax } from 'rxjs/observable/dom/ajax';
+import { createLogic } from 'redux-logic';
 
 const URL = 'https://randomuser.me/api/';
 
@@ -33,39 +32,53 @@ export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction 
   },
 });
 
-export const fetchRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
-  action$.ofType(FETCH_RANDOM_USER)
-    .flatMap(() => ajax.getJSON(URL))
-    .flatMap((response) => {
-      const user = response.results[0];
-      return Observable.concat(
-        Observable.of(fetchRandomUserSuccess(user)),
-        Observable.of(fetchSecondRandomUser(user)),
-      );
-    })
-    .catch(e => Observable.of({
-      type: FETCH_RANDOM_USER_FAILURE,
-      payload: e,
-    }));
+//
+export const fetchRandomUserLogic = createLogic({
+  type: FETCH_RANDOM_USER,
+  latest: true,
+  async process(deps, dispatch, done) {
+    try {
+      const response = await fetch(URL);
+      const json = await response.json();
+      const user = json.results[0];
 
-export const fetchSecondRandomUserEpic = (action$: Observable<Action>): Observable<Action> =>
-  action$.ofType(FETCH_SECOND_RANDOM_USER)
-    .flatMap(action =>
-      ajax.getJSON(URL)
-        .flatMap((response) => {
-          const users = [
-            action.payload,
-            response.results[0],
-          ];
-          return Observable.concat(
-            Observable.of(fetchSecondRandomUserSuccess(users))
-          );
-        })
-        .catch(e => Observable.of({
-          type: FETCH_SECOND_RANDOM_USER_FAILURE,
-          payload: e,
-        }))
-    );
+      dispatch(fetchRandomUserSuccess(user));
+      dispatch(fetchSecondRandomUser(user));
+    } catch (error) {
+      dispatch({
+        type: FETCH_RANDOM_USER_FAILURE,
+        payload: error,
+      });
+    }
+
+    return done();
+  },
+});
+
+export const fetchSecondRandomUserLogic = createLogic({
+  type: FETCH_SECOND_RANDOM_USER,
+  latest: true,
+  async process({ action }, dispatch, done) {
+    try {
+      const response = await fetch(URL);
+      const json = await response.json();
+
+      const users = [
+        action.payload,
+        json.results[0],
+      ];
+
+      dispatch(fetchSecondRandomUserSuccess(users));
+    } catch (error) {
+      dispatch({
+        type: FETCH_RANDOM_USER_FAILURE,
+        payload: error,
+      });
+    }
+
+    return done();
+  },
+});
 
 export const initialState: UsersState = {
   isLoading: false,

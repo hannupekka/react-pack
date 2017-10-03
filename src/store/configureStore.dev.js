@@ -1,22 +1,22 @@
 // @flow
 import { createStore, applyMiddleware, compose } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
+import { createLogicMiddleware } from 'redux-logic';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, rootEpic } from 'redux/index';
+import { rootReducer, logics } from 'redux/index';
+import getHistoryInstance from 'utils/history';
 
 // Logger.
 const loggerMiddleware = createLogger();
 
-// Epics.
-const epicMiddleware = createEpicMiddleware(rootEpic);
+// Logics.
+const logicMiddleware = createLogicMiddleware(logics);
 
 // Middlewares.
 const middlewares = [
   thunkMiddleware,
-  epicMiddleware,
+  logicMiddleware,
   loggerMiddleware,
   routerMiddleware(getHistoryInstance()),
 ];
@@ -41,7 +41,6 @@ module.exports = function configureStore(initialState?: Object) {
     module.hot.accept('redux/index', () => {
       /* eslint-disable global-require */
       store.replaceReducer(require('redux/index').rootReducer);
-      epicMiddleware.replaceEpic(require('redux/index').rootEpic);
       /* eslint-enable global-require */
     });
   }
