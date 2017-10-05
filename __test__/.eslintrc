@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "max-len": 0
+  }
+}
