@@ -1,7 +1,6 @@
 // @flow
-import { Observable, Action } from 'rxjs';
-import { ajax } from 'rxjs/observable/dom/ajax';
 import { normalize } from 'normalizr';
+import { createLogic } from 'redux-logic';
 import { repos } from 'redux/repos/schemas';
 import { API_HOST } from 'constants/config';
 
@@ -25,18 +24,26 @@ export const toggleShowForks = (): ThunkAction => ({
   payload: {},
 });
 
-export const fetchReposEpic = (action$: Observable<Action>): Observable<Action> =>
-  action$.ofType(FETCH_REPOS)
-    .flatMap(action =>
-      ajax.getJSON(`${API_HOST}/users/${action.payload.username}/repos`)
-        .flatMap(response =>
-          Observable.of(fetchReposSuccess(normalize(response, repos)))
-        )
-        .catch(e => Observable.of({
-          type: FETCH_REPOS_FAILURE,
-          payload: e,
-        }))
-    );
+export const fetchReposLogic = createLogic({
+  type: FETCH_REPOS,
+  latest: true,
+  async process({ action }, dispatch, done) {
+    try {
+      const response = await fetch(`${API_HOST}/users/${action.payload.username}/repos`);
+      const json = await response.json();
+
+      dispatch(fetchReposSuccess(normalize(json, repos)));
+    } catch (error) {
+      dispatch({
+        type: FETCH_REPOS_FAILURE,
+        payload: error,
+      });
+    }
+
+    return done();
+  },
+});
+
 
 export const initialState: ReposState = {
   isLoading: false,

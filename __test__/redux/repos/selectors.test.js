@@ -6,10 +6,10 @@ import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
 import { repos, users } from '../../data';
 
 describe('Selector', () => {
-  it('should return all repos', () => {
-    // Get store.
-    const store = configureStore();
+  // Get store.
+  const store = configureStore();
 
+  it('should return all repos', () => {
     // Mock our repository fetch success data.
     const payload = {
       entities: {
@@ -28,9 +28,6 @@ describe('Selector', () => {
   });
 
   it('should not return forked repos', () => {
-    // Get store.
-    const store = configureStore();
-
     // Mock our repository fetch success data.
     const payload = {
       entities: {
