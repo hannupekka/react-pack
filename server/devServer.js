@@ -5,9 +5,7 @@ const config = require('../webpack/webpack.config.dev');
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
-  stats: {
-    colors: true,
-  },
+  stats: 'errors-only',
   historyApiFallback: {
     index: 'src/html/index.dev.html',
   },
