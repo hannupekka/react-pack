@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 const postcssFixes = require('postcss-fixes');
+const baseConfig = require('./webpack.base');
 
 const postcssOptions = {
   sourceMap: true,
@@ -13,7 +15,7 @@ const postcssOptions = {
   ],
 };
 
-module.exports = {
+module.exports = merge(baseConfig, {
   devtool: 'cheap-module-source-map',
   entry: [
     'eventsource-polyfill',
@@ -25,25 +27,16 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-    }),
     new webpack.ProvidePlugin({
       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!isomorphic-fetch',
     }),
   ],
   module: {
     rules: [
-      {
-        test: /\.js(x?)$/,
-        exclude: [/node_modules/, /styles/],
-        use: ['babel-loader'],
-      },
       {
         test: /\.css$/,
         use: [
@@ -105,30 +98,6 @@ module.exports = {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         use: 'url-loader',
       },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'image/svg+xml',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        use: 'file-loader',
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: 'file-loader',
-      },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.less'],
-    modules: ['node_modules', path.resolve('./src')],
-  },
-};
+});
