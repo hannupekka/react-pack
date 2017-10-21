@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 const postcssFixes = require('postcss-fixes');
 const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const baseConfig = require('./webpack.base');
 
 const postcssOptions = {
   plugins: [
@@ -19,7 +21,7 @@ const postcssOptions = {
   ],
 };
 
-module.exports = {
+module.exports = merge(baseConfig, {
   stats: {
     assets: true,
     cached: false,
@@ -37,15 +39,11 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'bundle.[hash].js',
-    publicPath: '/',
   },
   plugins: [
     new ExtractTextPlugin({
       filename: 'styles.[hash].css',
       allChunks: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -59,11 +57,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.js(x?)$/,
-        exclude: [/node_modules/, /styles/],
-        use: ['babel-loader'],
-      },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -129,38 +122,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'image/svg+xml',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
-      },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.less'],
-    modules: ['node_modules', path.resolve('./src')],
-  },
-};
+});

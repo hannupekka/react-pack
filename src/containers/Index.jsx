@@ -58,7 +58,6 @@ export class Index extends Component<Props> {
   };
 
   render() {
-    console.log(this.props, this.state);
     return (
       <div>
         <button styleName="button" onClick={this.onNavigateToRepoSearch}>
