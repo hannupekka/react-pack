@@ -1,4 +1,3 @@
-// @flow
 import 'babel-polyfill';
 import 'dom4';
 import 'normalize.css/normalize.css';

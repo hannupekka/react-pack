@@ -1,6 +1,6 @@
-// @flow
 import styles from 'styles/containers/Index.less';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import CSSModules from 'react-css-modules';
@@ -10,24 +10,18 @@ import * as userActions from 'redux/users';
 import getUsers from 'redux/users/selectors';
 import getShowGreeting from 'redux/ui/selectors';
 
-type Props = {
-  showGreeting: boolean,
-  users: Array<Object>,
-  dispatch: Function,
-};
-
-export class Index extends Component<Props> {
-  onNavigateToRepoSearch = (): void => {
+export class Index extends Component {
+  onNavigateToRepoSearch = () => {
     const { dispatch } = this.props;
     dispatch(push('/repos'));
   };
 
-  onToggleGreeting = (): void => {
+  onToggleGreeting = () => {
     const { dispatch } = this.props;
     dispatch(uiActions.toggleGreeting());
   };
 
-  renderGreeting = (): ?React$Element<any> => {
+  renderGreeting = () => {
     const { showGreeting } = this.props;
 
     if (!showGreeting) {
@@ -37,7 +31,7 @@ export class Index extends Component<Props> {
     return <h1>Hello world!</h1>;
   };
 
-  renderUsers = (): ?React$Element<any> => {
+  renderUsers = () => {
     const { users } = this.props;
 
     if (users.length === 0) {
@@ -55,7 +49,7 @@ export class Index extends Component<Props> {
     );
   };
 
-  onFetchRandomUsers = (): void => {
+  onFetchRandomUsers = () => {
     const { dispatch } = this.props;
     dispatch(userActions.fetchRandomUser());
   };
@@ -79,12 +73,13 @@ export class Index extends Component<Props> {
   }
 }
 
-type MappedState = {
-  showGreeting: boolean,
-  users: Array<Object>,
+Index.propTypes = {
+  showGreeting: PropTypes.bool.isRequired,
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-const mapState: MappedState = createStructuredSelector({
+const mapState = createStructuredSelector({
   showGreeting: getShowGreeting,
   users: getUsers,
 });

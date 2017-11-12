@@ -1,16 +1,15 @@
-// @flow
 export const TOGGLE_GREETING = 'react-pack/ui/TOGGLE_GREETING';
 
-export const toggleGreeting = (): ThunkAction => ({
+export const toggleGreeting = () => ({
   type: TOGGLE_GREETING,
   payload: {},
 });
 
-export const initialState: UiState = {
+export const initialState = {
   showGreeting: false,
 };
 
-export default function reducer(state: UiState = initialState, action: ThunkAction): UiState {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_GREETING:
       return {

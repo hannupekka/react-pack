@@ -1,11 +1,6 @@
 {
   "presets": ["react", "stage-0", "env"],
-  "plugins": [
-    "flow-react-proptypes",
-    "transform-class-properties",
-    "transform-flow-strip-types",
-    "ramda"
-  ],
+  "plugins": ["transform-class-properties", "ramda"],
   "env": {
     "development": {
       "plugins": [

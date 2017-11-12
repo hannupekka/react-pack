@@ -1,4 +1,3 @@
-// @flow
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import repos, { fetchReposLogic } from 'redux/repos';
@@ -12,8 +11,4 @@ export const rootReducer = combineReducers({
   router: routerReducer,
 });
 
-export const logics = [
-  fetchReposLogic,
-  fetchRandomUserLogic,
-  fetchSecondRandomUserLogic,
-];
+export const logics = [fetchReposLogic, fetchRandomUserLogic, fetchSecondRandomUserLogic];

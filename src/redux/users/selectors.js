@@ -1,4 +1,3 @@
-// @flow
-const getUsers = (state: RootState): Object => state.users.users;
+const getUsers = state => state.users.users;
 
 export default getUsers;

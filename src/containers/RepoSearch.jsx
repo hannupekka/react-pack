@@ -1,27 +1,24 @@
-// @flow
 import styles from 'styles/containers/RepoSearch.less';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import R from 'ramda';
 import * as reposActions from 'redux/repos';
-import { getVisibleRepos, getUsers, isError, isLoading, getShowForks } from 'redux/repos/selectors';
+import {
+  getVisibleRepos,
+  getUsers,
+  getIsError,
+  getIsLoading,
+  getShowForks,
+} from 'redux/repos/selectors';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
 
-type Props = {
-  repos: Object,
-  users: Object,
-  isError: boolean,
-  isLoading: boolean,
-  showForks: boolean,
-  dispatch: Function,
-};
-
-export class RepoSearch extends Component<Props> {
+export class RepoSearch extends Component {
   bindUsername: Function;
   username: HTMLInputElement;
 
@@ -33,18 +30,18 @@ export class RepoSearch extends Component<Props> {
     };
   }
 
-  onFetchRepos = (): void => {
+  onFetchRepos = () => {
     const { dispatch } = this.props;
     const username: string = this.username.value;
     dispatch(reposActions.fetchRepos(username));
   };
 
-  onToggleShowForks = (): void => {
+  onToggleShowForks = () => {
     const { dispatch } = this.props;
     dispatch(reposActions.toggleShowForks());
   };
 
-  maybeRenderFilter = (): ?React$Element<any> => {
+  maybeRenderFilter = () => {
     const { repos, showForks } = this.props;
 
     if (Object.keys(repos).length === 0) {
@@ -60,7 +57,7 @@ export class RepoSearch extends Component<Props> {
     );
   };
 
-  maybeRenderRepoList = (): ?Array<React$Element<any>> => {
+  maybeRenderRepoList = () => {
     const { repos, users } = this.props;
 
     if (Object.keys(repos).length === 0) {
@@ -83,7 +80,7 @@ export class RepoSearch extends Component<Props> {
     )(repos);
   };
 
-  render(): React$Element<any> {
+  render() {
     const { isLoading, isError } = this.props;
 
     return (
@@ -102,19 +99,20 @@ export class RepoSearch extends Component<Props> {
   }
 }
 
-type MappedState = {
-  repos: Object,
-  users: Object,
-  isError: boolean,
-  isLoading: boolean,
-  showForks: boolean,
+RepoSearch.propTypes = {
+  repos: PropTypes.shape().isRequired,
+  users: PropTypes.shape().isRequired,
+  isError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  showForks: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-const mapState: MappedState = createStructuredSelector({
+const mapState = createStructuredSelector({
   repos: getVisibleRepos,
   users: getUsers,
-  isError,
-  isLoading,
+  isError: getIsError,
+  isLoading: getIsLoading,
   showForks: getShowForks,
 });
 

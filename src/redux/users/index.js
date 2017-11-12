@@ -1,4 +1,3 @@
-// @flow
 import { createLogic } from 'redux-logic';
 
 const URL = 'https://randomuser.me/api/';
@@ -10,22 +9,22 @@ export const FETCH_SECOND_RANDOM_USER = 'react-pack/ui/FETCH_SECOND_RANDOM_USER'
 export const FETCH_SECOND_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_SUCCESS';
 export const FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_FAILURE';
 
-export const fetchRandomUser = (): ThunkAction => ({
+export const fetchRandomUser = () => ({
   type: FETCH_RANDOM_USER,
   payload: {},
 });
 
-export const fetchRandomUserSuccess = (user: Object): ThunkAction => ({
+export const fetchRandomUserSuccess = user => ({
   type: FETCH_RANDOM_USER_SUCCESS,
   payload: user,
 });
 
-export const fetchSecondRandomUser = (user: Object): ThunkAction => ({
+export const fetchSecondRandomUser = user => ({
   type: FETCH_SECOND_RANDOM_USER,
   payload: user,
 });
 
-export const fetchSecondRandomUserSuccess = (users: Array<Object>): ThunkAction => ({
+export const fetchSecondRandomUserSuccess = users => ({
   type: FETCH_SECOND_RANDOM_USER_SUCCESS,
   payload: {
     users,
@@ -63,10 +62,7 @@ export const fetchSecondRandomUserLogic = createLogic({
       const response = await fetch(URL);
       const json = await response.json();
 
-      const users = [
-        action.payload,
-        json.results[0],
-      ];
+      const users = [action.payload, json.results[0]];
 
       dispatch(fetchSecondRandomUserSuccess(users));
     } catch (error) {
@@ -80,13 +76,13 @@ export const fetchSecondRandomUserLogic = createLogic({
   },
 });
 
-export const initialState: UsersState = {
+export const initialState = {
   isLoading: false,
   isError: false,
   users: [],
 };
 
-export default function reducer(state: UsersState = initialState, action: ThunkAction): UsersState {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_RANDOM_USER:
       return {

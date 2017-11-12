@@ -1,4 +1,3 @@
-// @flow
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogicMiddleware } from 'redux-logic';
 import thunkMiddleware from 'redux-thunk';
@@ -31,7 +30,7 @@ const enhancer = compose(
   applyMiddleware(...middlewares)
 );
 
-module.exports = function configureStore(initialState?: Object) {
+module.exports = function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, enhancer);
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)

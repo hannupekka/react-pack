@@ -1,4 +1,3 @@
-// @flow
 import { normalize } from 'normalizr';
 import { createLogic } from 'redux-logic';
 import { repos } from 'redux/repos/schemas';
@@ -9,17 +8,17 @@ export const FETCH_REPOS_SUCCESS = 'react-pack/repos/FETCH_REPOS_SUCCESS';
 export const FETCH_REPOS_FAILURE = 'react-pack/repos/FETCH_REPOS_FAILURE';
 export const TOGGLE_SHOW_FORKS = 'react-pack/repos/TOGGLE_SHOW_FORKS';
 
-export const fetchRepos = (username: string): ThunkAction => ({
+export const fetchRepos = username => ({
   type: FETCH_REPOS,
   payload: { username },
 });
 
-export const fetchReposSuccess = (payload: Object): ThunkAction => ({
+export const fetchReposSuccess = payload => ({
   type: FETCH_REPOS_SUCCESS,
   payload,
 });
 
-export const toggleShowForks = (): ThunkAction => ({
+export const toggleShowForks = () => ({
   type: TOGGLE_SHOW_FORKS,
   payload: {},
 });
@@ -44,8 +43,7 @@ export const fetchReposLogic = createLogic({
   },
 });
 
-
-export const initialState: ReposState = {
+export const initialState = {
   isLoading: false,
   isError: false,
   showForks: true,
@@ -56,7 +54,7 @@ export const initialState: ReposState = {
   result: [],
 };
 
-export default function reducer(state: ReposState = initialState, action: ThunkAction): ReposState {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_REPOS:
       return {

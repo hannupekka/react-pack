@@ -1,9 +1,8 @@
-// @flow;
 import createHistory from 'history/createBrowserHistory';
 
-let historyInstance: ?Object = null;
+let historyInstance = null;
 
-export default function getHistoryInstance(): Object {
+export default function getHistoryInstance() {
   if (!historyInstance) {
     historyInstance = createHistory();
   }

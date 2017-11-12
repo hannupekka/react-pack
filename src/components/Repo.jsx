@@ -1,18 +1,17 @@
-// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { pure } from 'recompose';
-import type { Component } from 'recompose';
 
-type Props = {
-  name: string,
-  url: string,
-  user: string,
-};
-
-const Repo: Component<Props> = (props: Props): React$Element<any> => (
+const Repo = props => (
   <a href={props.url} title={`author: ${props.user}`} target="_blank" rel="noopener noreferrer">
     {props.name}
   </a>
 );
+
+Repo.propTypes = {
+  url: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default pure(Repo);

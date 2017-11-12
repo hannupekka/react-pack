@@ -4,9 +4,8 @@ HMR-enabled boilerplate for:
 * React
 * Redux
 * React Router
-* Redux API middleware
+* redux-logic
 * React CSS Modules + LESS
-* Flowtype
 * Jest
 * Webpack + HMR
 * Heroku
@@ -39,8 +38,8 @@ npm run build
 * `src/redux/modules` - Redux [Ducks](https://github.com/erikras/ducks-modular-redux)
 * `src/store` - Redux store configuration like middlewares.
 * `src/styles` - container and component styles using [react-css-modules](https://github.com/gajus/react-css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
-* `src/utils` - helpers for example wrapping [Redux API middleware](https://github.com/agraboso/redux-api-middleware) requests for Flowtype compatibility.
-* `tools` - Flowtype type definitions and annotation check, Jest pre-processors.
+* `src/utils` - helpers.
+* `tools` - Jest pre-processors.
 
 ## Acknowledgements
 
