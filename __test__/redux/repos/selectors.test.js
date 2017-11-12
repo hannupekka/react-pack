@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import R from 'ramda';
 import configureStore from 'store/configureStore';
-import getVisibleRepos from 'redux/repos/selectors';
+import { getVisibleRepos } from 'redux/repos/selectors';
 import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
 import { repos, users } from '../../data';
 

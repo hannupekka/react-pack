@@ -4,8 +4,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import CSSModules from 'react-css-modules';
+import { createStructuredSelector } from 'reselect';
 import * as uiActions from 'redux/ui';
 import * as userActions from 'redux/users';
+import getUsers from 'redux/users/selectors';
+import getShowGreeting from 'redux/ui/selectors';
 
 type Props = {
   showGreeting: boolean,
@@ -81,9 +84,9 @@ type MappedState = {
   users: Array<Object>,
 };
 
-const mapState: Function = (state: RootState): MappedState => ({
-  showGreeting: state.ui.showGreeting,
-  users: state.users.users,
+const mapState: MappedState = createStructuredSelector({
+  showGreeting: getShowGreeting,
+  users: getUsers,
 });
 
 export default connect(mapState)(CSSModules(Index, styles));

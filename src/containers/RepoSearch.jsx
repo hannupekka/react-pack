@@ -4,9 +4,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import { pure } from 'recompose';
+import { createStructuredSelector } from 'reselect';
 import R from 'ramda';
 import * as reposActions from 'redux/repos';
-import getVisibleRepos from 'redux/repos/selectors';
+import { getVisibleRepos, getUsers, isError, isLoading, getShowForks } from 'redux/repos/selectors';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
@@ -109,12 +110,12 @@ type MappedState = {
   showForks: boolean,
 };
 
-const mapState: Function = (state: RootState): MappedState => ({
-  repos: getVisibleRepos(state),
-  users: state.repos.entities.users,
-  isError: state.repos.isError,
-  isLoading: state.repos.isLoading,
-  showForks: state.repos.showForks,
+const mapState: MappedState = createStructuredSelector({
+  repos: getVisibleRepos,
+  users: getUsers,
+  isError,
+  isLoading,
+  showForks: getShowForks,
 });
 
 export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));
