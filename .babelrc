@@ -4,6 +4,7 @@
   "env": {
     "development": {
       "plugins": [
+        "extract-hoc/babel",
         "react-hot-loader/babel",
         "transform-console-log-variable-names",
         "console-groupify"

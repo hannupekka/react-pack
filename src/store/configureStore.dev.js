@@ -7,27 +7,20 @@ import { rootReducer, logics } from 'redux/index';
 import getHistoryInstance from 'utils/history';
 
 // Logger.
-const loggerMiddleware = createLogger();
+const noopLogger = () => next => action => next(action);
+const loggerMiddleware = process.env.TEST_RUNNER ? noopLogger : createLogger();
 
 // Logics.
 const logicMiddleware = createLogicMiddleware(logics);
 
-// Middlewares.
-const middlewares = [
-  thunkMiddleware,
-  logicMiddleware,
-  loggerMiddleware,
-  routerMiddleware(getHistoryInstance()),
-];
-
-// Remove redux-logger during tests.
-if (process.env.TEST_RUNNER) {
-  middlewares.splice(2, 1);
-}
-
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(...middlewares)
+  applyMiddleware(
+    thunkMiddleware,
+    logicMiddleware,
+    loggerMiddleware,
+    routerMiddleware(getHistoryInstance())
+  )
 );
 
 module.exports = function configureStore(initialState) {
