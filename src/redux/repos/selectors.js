@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import R from 'ramda';
+import pickBy from 'lodash/pickBy';
 
 export const getRepos = state => state.repos.entities.repos;
 export const getUsers = state => state.repos.entities.users;
@@ -9,5 +9,5 @@ export const getIsLoading = state => state.repos.isLoading;
 
 export const getVisibleRepos = createSelector(
   [getRepos, getShowForks],
-  (repos, showForks) => (showForks ? repos : R.pickBy(repo => !repo.fork, repos))
+  (repos, showForks) => (showForks ? repos : pickBy(repos, repo => !repo.fork))
 );

@@ -1,6 +1,6 @@
 /* eslint-env jest */
-import R from 'ramda';
 import configureStore from 'store/configureStore';
+import map from 'lodash/map';
 import { getVisibleRepos } from 'redux/repos/selectors';
 import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
 import { repos, users } from '../../data';
@@ -16,7 +16,7 @@ describe('Selector', () => {
         repos,
         users,
       },
-      result: R.mapObjIndexed(repo => repo.id, repos),
+      result: map(repos, repo => repo.id),
     };
 
     // Dispatch fetch success.
@@ -34,7 +34,7 @@ describe('Selector', () => {
         repos,
         users,
       },
-      result: R.mapObjIndexed(repo => repo.id, repos),
+      result: map(repos, repo => repo.id),
     };
 
     // Dispatch fetch success and then hide forks.

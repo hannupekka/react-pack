@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
+import map from 'lodash/map';
 import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
-import R from 'ramda';
 import * as reposActions from 'redux/repos';
 import {
   getVisibleRepos,
@@ -64,20 +64,17 @@ export class RepoSearch extends Component {
       return null;
     }
 
-    return R.compose(
-      R.values,
-      R.mapObjIndexed(repo => {
-        const { id, name, html_url, owner } = repo;
+    return map(repos, repo => {
+      const { id, name, html_url, owner } = repo;
 
-        const params = {
-          name,
-          url: html_url,
-          user: users[owner].login,
-        };
+      const params = {
+        name,
+        url: html_url,
+        user: users[owner].login,
+      };
 
-        return <Repo key={id} {...params} />;
-      })
-    )(repos);
+      return <Repo key={id} {...params} />;
+    });
   };
 
   render() {
