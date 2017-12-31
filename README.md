@@ -1,6 +1,7 @@
 # react-pack [![Dependency status](https://david-dm.org/hannupekka/react-pack.svg)](https://david-dm.org/hannupekka/react-pack)
 
 HMR-enabled boilerplate for:
+
 * React
 * Redux
 * React Router
@@ -30,6 +31,7 @@ npm run build
 ```
 
 ## Structure
+
 * `server` - simple NodeJS servers for development and serving production build.
 * `src/assets` - all static assets like images.
 * `src/components` - React components that simply display data they are given.

@@ -3,7 +3,6 @@
   "parser": "babel-eslint",
   "plugins": ["react", "import"],
   "rules": {
-    // Prettier always removes these if only 1 parameter.
     "arrow-parens": 0,
     "import/no-extraneous-dependencies": [
       "error",

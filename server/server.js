@@ -19,7 +19,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-app.listen(PORT, (err) => {
+app.listen(PORT, err => {
   if (err) {
     // eslint-disable-next-line no-console
     console.log(err);

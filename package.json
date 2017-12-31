@@ -5,7 +5,8 @@
   "scripts": {
     "ban": "ban",
     "build:test": "npm run lint && npm run test",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
+    "build:webpack":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
     "build": "check-node-version --package && npm run clean && npm run build:webpack",
     "clean": "rimraf dist",
     "dev": "NODE_ENV=development node server/devServer.js",
@@ -87,7 +88,6 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0",
     "eventsource-polyfill": "^0.9.6",
-    "extract-hoc": "^0.0.4",
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
@@ -99,18 +99,14 @@
   },
   "engines": {
     "yarn": "^1.1.0",
-    "node": "^8.3.0"
+    "node": "^9.0.0"
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
-      "tools"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
+    "coveragePathIgnorePatterns": ["tools"],
+    "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/file.js",
       "^.+\\.(css|less)$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "./tools/jest/setup.js",
