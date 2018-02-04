@@ -3,20 +3,20 @@
 exports[`Index renders correctly with greeting 1`] = `
 <div>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Navigate to other page
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Toggle greeting
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Fetch 2 random users
   </button>
@@ -29,20 +29,20 @@ exports[`Index renders correctly with greeting 1`] = `
 exports[`Index renders correctly with users 1`] = `
 <div>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Navigate to other page
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Toggle greeting
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Fetch 2 random users
   </button>
@@ -66,20 +66,20 @@ exports[`Index renders correctly with users 1`] = `
 exports[`Index renders correctly without greeting 1`] = `
 <div>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Navigate to other page
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Toggle greeting
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Fetch 2 random users
   </button>

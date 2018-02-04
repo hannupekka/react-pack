@@ -2,7 +2,6 @@ import styles from 'styles/containers/RepoSearch.less';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
 import map from 'lodash/map';
 import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
@@ -19,10 +18,7 @@ import Error from 'components/Error';
 import Repo from 'components/Repo';
 
 export class RepoSearch extends Component {
-  bindUsername: Function;
-  username: HTMLInputElement;
-
-  constructor(props: Object) {
+  constructor(props) {
     super(props);
 
     this.bindUsername = c => {
@@ -32,7 +28,7 @@ export class RepoSearch extends Component {
 
   onFetchRepos = () => {
     const { dispatch } = this.props;
-    const username: string = this.username.value;
+    const username = this.username.value;
     dispatch(reposActions.fetchRepos(username));
   };
 
@@ -51,7 +47,7 @@ export class RepoSearch extends Component {
     const text = showForks ? 'Hide forks' : 'Include forks';
 
     return (
-      <button styleName="button" onClick={this.onToggleShowForks}>
+      <button className={styles.button} onClick={this.onToggleShowForks}>
         {text} <i className="fa fa-filter" />
       </button>
     );
@@ -65,11 +61,11 @@ export class RepoSearch extends Component {
     }
 
     return map(repos, repo => {
-      const { id, name, html_url, owner } = repo;
+      const { id, name, html_url: url, owner } = repo;
 
       const params = {
         name,
-        url: html_url,
+        url,
         user: users[owner].login,
       };
 
@@ -81,16 +77,21 @@ export class RepoSearch extends Component {
     const { isLoading, isError } = this.props;
 
     return (
-      <div styleName="repo-search">
+      <div className={styles['repo-search']}>
         {isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
-        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
-        <button styleName="button" onClick={this.onFetchRepos}>
+        <input
+          type="text"
+          className={styles.input}
+          defaultValue="hannupekka"
+          ref={this.bindUsername}
+        />
+        <button className={styles.button} onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search" />
         </button>
         {this.maybeRenderFilter()}
         {isLoading && <Loader />}
-        <div styleName="repo-list">{this.maybeRenderRepoList()}</div>
+        <div className={styles['repo-list']}>{this.maybeRenderRepoList()}</div>
       </div>
     );
   }
@@ -113,4 +114,4 @@ const mapState = createStructuredSelector({
   showForks: getShowForks,
 });
 
-export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));
+export default connect(mapState)(pure(RepoSearch));

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import CSSModules from 'react-css-modules';
 import { createStructuredSelector } from 'reselect';
 import * as uiActions from 'redux/ui';
 import * as userActions from 'redux/users';
@@ -57,13 +56,13 @@ export class Index extends Component {
   render() {
     return (
       <div>
-        <button styleName="button" onClick={this.onNavigateToRepoSearch}>
+        <button className={styles.button} onClick={this.onNavigateToRepoSearch}>
           Navigate to other page
         </button>
-        <button styleName="button" onClick={this.onToggleGreeting}>
+        <button className={styles.button} onClick={this.onToggleGreeting}>
           Toggle greeting
         </button>
-        <button styleName="button" onClick={this.onFetchRandomUsers}>
+        <button className={styles.button} onClick={this.onFetchRandomUsers}>
           Fetch 2 random users
         </button>
         {this.renderGreeting()}
@@ -84,4 +83,4 @@ const mapState = createStructuredSelector({
   users: getUsers,
 });
 
-export default connect(mapState)(CSSModules(Index, styles));
+export default connect(mapState)(Index);

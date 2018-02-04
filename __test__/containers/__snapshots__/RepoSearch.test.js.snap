@@ -2,7 +2,7 @@
 
 exports[`RepoSearch renders correctly with all repos 1`] = `
 <div
-  styleName="repo-search"
+  className="repo-search"
 >
   <label
     htmlFor="search"
@@ -10,13 +10,13 @@ exports[`RepoSearch renders correctly with all repos 1`] = `
     Username
   </label>
   <input
+    className="input"
     defaultValue="hannupekka"
-    styleName="input"
     type="text"
   />
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Get users repositories 
     <i
@@ -24,8 +24,8 @@ exports[`RepoSearch renders correctly with all repos 1`] = `
     />
   </button>
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Hide forks
      
@@ -34,7 +34,7 @@ exports[`RepoSearch renders correctly with all repos 1`] = `
     />
   </button>
   <div
-    styleName="repo-list"
+    className="repo-list"
   >
     <a
       href="https://github.com/hannupekka/fressi-gym-activity"
@@ -58,7 +58,7 @@ exports[`RepoSearch renders correctly with all repos 1`] = `
 
 exports[`RepoSearch renders correctly with empty data 1`] = `
 <div
-  styleName="repo-search"
+  className="repo-search"
 >
   <label
     htmlFor="search"
@@ -66,13 +66,13 @@ exports[`RepoSearch renders correctly with empty data 1`] = `
     Username
   </label>
   <input
+    className="input"
     defaultValue="hannupekka"
-    styleName="input"
     type="text"
   />
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Get users repositories 
     <i
@@ -80,14 +80,14 @@ exports[`RepoSearch renders correctly with empty data 1`] = `
     />
   </button>
   <div
-    styleName="repo-list"
+    className="repo-list"
   />
 </div>
 `;
 
 exports[`RepoSearch renders correctly with error 1`] = `
 <div
-  styleName="repo-search"
+  className="repo-search"
 >
   <div
     className="error"
@@ -100,13 +100,13 @@ exports[`RepoSearch renders correctly with error 1`] = `
     Username
   </label>
   <input
+    className="input"
     defaultValue="hannupekka"
-    styleName="input"
     type="text"
   />
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Get users repositories 
     <i
@@ -114,7 +114,7 @@ exports[`RepoSearch renders correctly with error 1`] = `
     />
   </button>
   <div
-    styleName="repo-list"
+    className="repo-list"
   />
 </div>
 `;
@@ -169,7 +169,7 @@ exports[`RepoSearch renders correctly with forks hidden 1`] = `
 
 exports[`RepoSearch renders correctly with loader 1`] = `
 <div
-  styleName="repo-search"
+  className="repo-search"
 >
   <label
     htmlFor="search"
@@ -177,13 +177,13 @@ exports[`RepoSearch renders correctly with loader 1`] = `
     Username
   </label>
   <input
+    className="input"
     defaultValue="hannupekka"
-    styleName="input"
     type="text"
   />
   <button
+    className="button"
     onClick={[Function]}
-    styleName="button"
   >
     Get users repositories 
     <i
@@ -201,7 +201,7 @@ exports[`RepoSearch renders correctly with loader 1`] = `
     </div>
   </div>
   <div
-    styleName="repo-list"
+    className="repo-list"
   />
 </div>
 `;

@@ -6,7 +6,7 @@ HMR-enabled boilerplate for:
 * Redux
 * React Router
 * redux-logic
-* React CSS Modules + LESS
+* CSS Modules + LESS
 * Jest
 * Webpack + HMR
 * Heroku
@@ -39,7 +39,7 @@ npm run build
 * `src/html` - HTML templates for development and production. In production build CSS and bundled JS are auto-injected.
 * `src/redux/modules` - Redux [Ducks](https://github.com/erikras/ducks-modular-redux)
 * `src/store` - Redux store configuration like middlewares.
-* `src/styles` - container and component styles using [react-css-modules](https://github.com/gajus/react-css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
+* `src/styles` - container and component styles using [css-modules](https://github.com/css-modules/css-modules). Each file should `@import '~styles/main';` at the beginning to get access to all the needed utilities.
 * `src/utils` - helpers.
 * `tools` - Jest pre-processors.
 
