@@ -1,5 +1,5 @@
-import styles from 'styles/components/Loader.less';
-import React from 'react';
+import styles from '@app/styles/components/Loader.less';
+import * as React from 'react';
 import { pure } from 'recompose';
 
 const Loader = () => (

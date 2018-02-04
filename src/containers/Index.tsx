@@ -1,15 +1,22 @@
-import styles from 'styles/containers/Index.less';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import styles from '@app/styles/containers/Index.less';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import map from 'lodash-es/map';
 import { createStructuredSelector } from 'reselect';
-import * as uiActions from 'redux/ui';
-import * as userActions from 'redux/users';
-import getUsers from 'redux/users/selectors';
-import getShowGreeting from 'redux/ui/selectors';
+import * as uiActions from '@app/redux/ui';
+import * as userActions from '@app/redux/users';
+import { TDispatch, IUser } from '@app/types';
+import getUsers from '@app/redux/users/selectors';
+import getShowGreeting from '@app/redux/ui/selectors';
 
-export class Index extends Component {
+interface Props {
+  dispatch: TDispatch;
+  showGreeting: boolean;
+  users: Array<IUser>;
+}
+
+export class Index extends React.Component<Props> {
   onNavigateToRepoSearch = () => {
     const { dispatch } = this.props;
     dispatch(push('/repos'));
@@ -33,13 +40,13 @@ export class Index extends Component {
   renderUsers = () => {
     const { users } = this.props;
 
-    if (users.length === 0) {
+    if (Object.keys(users).length === 0) {
       return null;
     }
 
     return (
       <div>
-        {users.map((user, i) => (
+        {map(users, (user: IUser, i: number) => (
           <p key={user.email}>
             User {i + 1}: {user.email}
           </p>
@@ -53,7 +60,7 @@ export class Index extends Component {
     dispatch(userActions.fetchRandomUser());
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <button className={styles.button} onClick={this.onNavigateToRepoSearch}>
@@ -71,12 +78,6 @@ export class Index extends Component {
     );
   }
 }
-
-Index.propTypes = {
-  showGreeting: PropTypes.bool.isRequired,
-  users: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
 
 const mapState = createStructuredSelector({
   showGreeting: getShowGreeting,

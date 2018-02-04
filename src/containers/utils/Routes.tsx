@@ -1,13 +1,17 @@
-import styles from 'styles/main.less';
-import React from 'react';
-import PropTypes from 'prop-types';
+import styles from '@app/styles/main.less';
+import * as React from 'react';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
-import Header from 'components/Header';
-import ConnectedIndex from 'containers/Index';
-import ConnectedRepoSearch from 'containers/RepoSearch';
+import Header from '@app/components/Header';
+import ConnectedIndex from '@app/containers/Index';
+import ConnectedRepoSearch from '@app/containers/RepoSearch';
+import { History } from 'history';
 
-const Routes = props => (
+interface Props {
+  history: History;
+}
+
+const Routes = (props: Props) => (
   <ConnectedRouter history={props.history}>
     <div>
       <Route path="/" component={Header} />
@@ -18,9 +22,5 @@ const Routes = props => (
     </div>
   </ConnectedRouter>
 );
-
-Routes.propTypes = {
-  history: PropTypes.shape().isRequired,
-};
 
 export default Routes;

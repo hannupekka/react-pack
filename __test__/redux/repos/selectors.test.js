@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import configureStore from 'store/configureStore';
-import map from 'lodash/map';
-import { getVisibleRepos } from 'redux/repos/selectors';
-import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
+import configureStore from '@app/store/configureStore';
+import map from 'lodash-es/map';
+import { getVisibleRepos } from '@app/redux/repos/selectors';
+import { fetchReposSuccess, toggleShowForks } from '@app/redux/repos';
 import { repos, users } from '../../data';
 
 describe('Selector', () => {

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import repos, { fetchReposLogic } from 'redux/repos';
-import ui from 'redux/ui';
-import users, { fetchRandomUserLogic, fetchSecondRandomUserLogic } from 'redux/users';
+import repos, { fetchReposLogic } from '@app/redux/repos';
+import ui from '@app/redux/ui';
+import users, { fetchRandomUserLogic, fetchSecondRandomUserLogic } from '@app/redux/users';
 
 export const rootReducer = combineReducers({
   repos,

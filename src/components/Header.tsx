@@ -1,5 +1,5 @@
-import styles from 'styles/components/Header.less';
-import React from 'react';
+import styles from '@app/styles/components/Header.less';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { pure } from 'recompose';
 

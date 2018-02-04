@@ -1,6 +1,14 @@
 import { createLogic } from 'redux-logic';
+import { IUser, IUserState } from '@app/types';
 
 const URL = 'https://randomuser.me/api/';
+
+type FETCH_RANDOM_USER = 'react-pack/ui/FETCH_RANDOM_USER';
+type FETCH_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_RANDOM_USER_SUCCESS';
+type FETCH_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_RANDOM_USER_FAILURE';
+type FETCH_SECOND_RANDOM_USER = 'react-pack/ui/FETCH_SECOND_RANDOM_USER';
+type FETCH_SECOND_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_SUCCESS';
+type FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_FAILURE';
 
 export const FETCH_RANDOM_USER = 'react-pack/ui/FETCH_RANDOM_USER';
 export const FETCH_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_RANDOM_USER_SUCCESS';
@@ -9,22 +17,54 @@ export const FETCH_SECOND_RANDOM_USER = 'react-pack/ui/FETCH_SECOND_RANDOM_USER'
 export const FETCH_SECOND_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_SUCCESS';
 export const FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_FAILURE';
 
+interface fetchRandomUser {
+  type: FETCH_RANDOM_USER;
+  payload: {};
+}
+
+interface fetchRandomUserSuccess {
+  type: FETCH_RANDOM_USER_SUCCESS;
+  payload: IUser;
+}
+
+interface fetchSecondRandomUser {
+  type: FETCH_SECOND_RANDOM_USER;
+  payload: IUser;
+}
+
+interface fetchSecondRandomUserSucces {
+  type: FETCH_SECOND_RANDOM_USER_SUCCESS;
+  payload: {
+    users: Array<IUser>;
+  };
+}
+
+interface fetchRandomUserFailure {
+  type: FETCH_RANDOM_USER_FAILURE;
+  payload: {};
+}
+
+interface fetchSecondRandomUserFailure {
+  type: FETCH_SECOND_RANDOM_USER_FAILURE;
+  payload: {};
+}
+
 export const fetchRandomUser = () => ({
   type: FETCH_RANDOM_USER,
   payload: {},
 });
 
-export const fetchRandomUserSuccess = user => ({
+export const fetchRandomUserSuccess = (user: IUser) => ({
   type: FETCH_RANDOM_USER_SUCCESS,
   payload: user,
 });
 
-export const fetchSecondRandomUser = user => ({
+export const fetchSecondRandomUser = (user: IUser) => ({
   type: FETCH_SECOND_RANDOM_USER,
   payload: user,
 });
 
-export const fetchSecondRandomUserSuccess = users => ({
+export const fetchSecondRandomUserSuccess = (users: Array<IUser>) => ({
   type: FETCH_SECOND_RANDOM_USER_SUCCESS,
   payload: {
     users,
@@ -76,13 +116,21 @@ export const fetchSecondRandomUserLogic = createLogic({
   },
 });
 
-export const initialState = {
+export const initialState: IUserState = {
   isLoading: false,
   isError: false,
   users: [],
 };
 
-export default function reducer(state = initialState, action) {
+type TAction =
+  | fetchRandomUser
+  | fetchRandomUserSuccess
+  | fetchSecondRandomUser
+  | fetchSecondRandomUserSucces
+  | fetchRandomUserFailure
+  | fetchSecondRandomUserFailure;
+
+export default function reducer(state: IUserState = initialState, action: TAction) {
   switch (action.type) {
     case FETCH_RANDOM_USER:
       return {

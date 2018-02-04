@@ -2,10 +2,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import map from 'lodash/map';
-import configureStore from 'store/configureStore';
-import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
-import ConnectedReposSearch, { RepoSearch } from 'containers/RepoSearch';
+import map from 'lodash-es/map';
+import configureStore from '@app/store/configureStore';
+import { fetchReposSuccess, toggleShowForks } from '@app/redux/repos';
+import ConnectedReposSearch, { RepoSearch } from '@app/containers/RepoSearch';
 import { repos, users } from '../data';
 
 describe('RepoSearch', () => {

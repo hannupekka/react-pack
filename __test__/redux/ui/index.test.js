@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import reducer, * as Ui from 'redux/ui';
+import reducer, * as Ui from '@app/redux/ui';
 
 describe('actions', () => {
   it('should create an action for toggling greeting', () => {

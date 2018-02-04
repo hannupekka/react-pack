@@ -1,24 +1,40 @@
-import styles from 'styles/containers/RepoSearch.less';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import styles from '@app/styles/containers/RepoSearch.less';
+import * as React from 'react';
 import { connect } from 'react-redux';
-import map from 'lodash/map';
+import map from 'lodash-es/map';
 import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
-import * as reposActions from 'redux/repos';
+import { TDispatch, IRepo, IUser } from '@app/types';
+import * as reposActions from '@app/redux/repos';
 import {
   getVisibleRepos,
   getUsers,
   getIsError,
   getIsLoading,
   getShowForks,
-} from 'redux/repos/selectors';
-import Loader from 'components/Loader';
-import Error from 'components/Error';
-import Repo from 'components/Repo';
+} from '@app/redux/repos/selectors';
+import Loader from '@app/components/Loader';
+import Error from '@app/components/Error';
+import Repo from '@app/components/Repo';
 
-export class RepoSearch extends Component {
-  constructor(props) {
+interface Props {
+  dispatch: TDispatch;
+  repos: {
+    [id: string]: IRepo;
+  };
+  users: {
+    [id: string]: IUser;
+  };
+  showForks: boolean;
+  isLoading: boolean;
+  isError: boolean;
+}
+
+export class RepoSearch extends React.Component<Props> {
+  bindUsername: (c: HTMLInputElement) => void;
+  username: HTMLInputElement;
+
+  constructor(props: Props) {
     super(props);
 
     this.bindUsername = c => {
@@ -60,7 +76,7 @@ export class RepoSearch extends Component {
       return null;
     }
 
-    return map(repos, repo => {
+    return map(repos, (repo: IRepo) => {
       const { id, name, html_url: url, owner } = repo;
 
       const params = {
@@ -73,11 +89,11 @@ export class RepoSearch extends Component {
     });
   };
 
-  render() {
+  render(): JSX.Element {
     const { isLoading, isError } = this.props;
 
     return (
-      <div className={styles['repo-search']}>
+      <div className={styles.search}>
         {isError && <Error message="Repositories not found!" />}
         <label htmlFor="search">Username</label>
         <input
@@ -91,20 +107,11 @@ export class RepoSearch extends Component {
         </button>
         {this.maybeRenderFilter()}
         {isLoading && <Loader />}
-        <div className={styles['repo-list']}>{this.maybeRenderRepoList()}</div>
+        <div className={styles.list}>{this.maybeRenderRepoList()}</div>
       </div>
     );
   }
 }
-
-RepoSearch.propTypes = {
-  repos: PropTypes.shape().isRequired,
-  users: PropTypes.shape().isRequired,
-  isError: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  showForks: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
 
 const mapState = createStructuredSelector({
   repos: getVisibleRepos,

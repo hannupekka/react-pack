@@ -4,9 +4,9 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogicMiddleware } from 'redux-logic';
 import nock from 'nock';
 import { normalize } from 'normalizr';
-import { API_HOST } from 'constants/config';
-import reducer, * as Repos from 'redux/repos';
-import { repos } from 'redux/repos/schemas';
+import { API_HOST } from '@app/constants/config';
+import reducer, * as Repos from '@app/redux/repos';
+import { repos } from '@app/redux/repos/schemas';
 
 const logicMiddleware = createLogicMiddleware([Repos.fetchReposLogic]);
 const middlewares = [thunkMiddleware, logicMiddleware];

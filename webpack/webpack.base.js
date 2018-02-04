@@ -7,15 +7,17 @@ module.exports = {
   },
   plugins: [new webpack.EnvironmentPlugin(['NODE_ENV'])],
   resolve: {
-    extensions: ['.js', '.jsx', '.less'],
-    modules: ['node_modules', path.resolve('./src')],
+    extensions: ['.ts', '.tsx', '.js', '.less'],
+    alias: {
+      '@app': path.resolve(__dirname, '../src/'),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.js(x?)$/,
-        exclude: [/node_modules/, /styles/],
-        use: ['babel-loader'],
+        test: /\.(t|j)sx?$/,
+        use: ['react-hot-loader/webpack', 'awesome-typescript-loader'],
+        include: path.resolve(__dirname, '../src/'),
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,

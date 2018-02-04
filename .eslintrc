@@ -45,7 +45,7 @@
         "config": "webpack/webpack.config.dev.js"
       },
       "node": {
-        "moduleDirectory": ["node_modules", "./src"]
+        "moduleDirectory": ["node_modules", "."]
       }
     }
   }
