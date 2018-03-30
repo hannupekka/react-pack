@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import CSSModules from 'react-css-modules';
 import { createStructuredSelector } from 'reselect';
+import { hot } from 'react-hot-loader';
 import * as uiActions from 'redux/modules/ui';
 import * as userActions from 'redux/modules/user';
 import getUsers from 'redux/modules/user/selectors';
@@ -84,4 +85,4 @@ const mapState = createStructuredSelector({
   users: getUsers,
 });
 
-export default connect(mapState)(CSSModules(Index, styles));
+export default hot(module)(connect(mapState)(CSSModules(Index, styles)));

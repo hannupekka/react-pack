@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import map from 'lodash/map';
 import { createStructuredSelector } from 'reselect';
+import { hot } from 'react-hot-loader';
 import * as reposActions from 'redux/modules/repo';
 import {
   getVisibleRepos,
@@ -79,8 +80,10 @@ export class RepoSearch extends PureComponent {
     return (
       <div styleName="repo-search">
         {isError && <Error message="Repositories not found!" />}
-        <label htmlFor="search">Username</label>
-        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
+        <label htmlFor="search">
+          Username
+          <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
+        </label>
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search" />
         </button>
@@ -109,4 +112,4 @@ const mapState = createStructuredSelector({
   showForks: getShowForks,
 });
 
-export default connect(mapState)(CSSModules(RepoSearch, styles));
+export default hot(module)(connect(mapState)(CSSModules(RepoSearch, styles)));
