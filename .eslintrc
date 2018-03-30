@@ -4,6 +4,16 @@
   "plugins": ["react", "import"],
   "rules": {
     "arrow-parens": 0,
+    "function-paren-newline": ["error", "consistent"],
+    "object-curly-newline": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {

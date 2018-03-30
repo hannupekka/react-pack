@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 import { createLogic } from 'redux-logic';
-import { repos } from 'redux/repos/schemas';
+import { repos } from 'redux/modules/repo/schemas';
 import { API_HOST } from 'constants/config';
 
 export const FETCH_REPOS = 'react-pack/repos/FETCH_REPOS';

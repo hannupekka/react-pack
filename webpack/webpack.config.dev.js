@@ -16,6 +16,7 @@ const postcssOptions = {
 };
 
 module.exports = merge(baseConfig, {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: [
     'eventsource-polyfill',
@@ -30,11 +31,13 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.ProvidePlugin({
       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!isomorphic-fetch',
     }),
   ],
+  optimization: {
+    namedModules: true,
+  },
   module: {
     rules: [
       {

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pure } from 'recompose';
 
 const Repo = props => (
   <a href={props.url} title={`author: ${props.user}`} target="_blank" rel="noopener noreferrer">
@@ -14,4 +13,4 @@ Repo.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default pure(Repo);
+export default Repo;

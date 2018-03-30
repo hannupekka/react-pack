@@ -1,28 +1,25 @@
 import styles from 'styles/containers/RepoSearch.less';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import map from 'lodash/map';
-import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
-import * as reposActions from 'redux/repos';
+import { hot } from 'react-hot-loader';
+import * as reposActions from 'redux/modules/repo';
 import {
   getVisibleRepos,
   getUsers,
   getIsError,
   getIsLoading,
   getShowForks,
-} from 'redux/repos/selectors';
+} from 'redux/modules/repo/selectors';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
 
-export class RepoSearch extends Component {
-  bindUsername: Function;
-  username: HTMLInputElement;
-
-  constructor(props: Object) {
+export class RepoSearch extends PureComponent {
+  constructor(props) {
     super(props);
 
     this.bindUsername = c => {
@@ -32,7 +29,7 @@ export class RepoSearch extends Component {
 
   onFetchRepos = () => {
     const { dispatch } = this.props;
-    const username: string = this.username.value;
+    const username = this.username.value;
     dispatch(reposActions.fetchRepos(username));
   };
 
@@ -65,11 +62,11 @@ export class RepoSearch extends Component {
     }
 
     return map(repos, repo => {
-      const { id, name, html_url, owner } = repo;
+      const { id, name, html_url: url, owner } = repo;
 
       const params = {
         name,
-        url: html_url,
+        url,
         user: users[owner].login,
       };
 
@@ -83,8 +80,10 @@ export class RepoSearch extends Component {
     return (
       <div styleName="repo-search">
         {isError && <Error message="Repositories not found!" />}
-        <label htmlFor="search">Username</label>
-        <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
+        <label htmlFor="search">
+          Username
+          <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
+        </label>
         <button styleName="button" onClick={this.onFetchRepos}>
           Get users repositories <i className="fa fa-search" />
         </button>
@@ -113,4 +112,4 @@ const mapState = createStructuredSelector({
   showForks: getShowForks,
 });
 
-export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));
+export default hot(module)(connect(mapState)(CSSModules(RepoSearch, styles)));

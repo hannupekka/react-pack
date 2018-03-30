@@ -1,11 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 const postcssFixes = require('postcss-fixes');
 const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./webpack.base');
 
 const postcssOptions = {
@@ -22,6 +21,7 @@ const postcssOptions = {
 };
 
 module.exports = merge(baseConfig, {
+  mode: 'production',
   stats: {
     assets: true,
     cached: false,
@@ -41,15 +41,9 @@ module.exports = merge(baseConfig, {
     filename: 'bundle.[hash].js',
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'styles.[hash].css',
       allChunks: true,
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        drop_console: true,
-      },
     }),
     new HtmlWebpackPlugin({
       template: './src/html/index.prod.html',
@@ -59,44 +53,27 @@ module.exports = merge(baseConfig, {
     rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: true,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: postcssOptions,
-            },
-          ],
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: true } },
+          { loader: 'postcss-loader', options: postcssOptions },
+        ],
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]',
-              },
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
             },
-            {
-              loader: 'postcss-loader',
-              options: postcssOptions,
-            },
-            {
-              loader: 'less-loader',
-            },
-          ],
-        }),
+          },
+          { loader: 'postcss-loader', options: postcssOptions },
+          { loader: 'less-loader' },
+        ],
       },
       {
         test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,

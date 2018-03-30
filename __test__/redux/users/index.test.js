@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import reducer, * as Users from 'redux/users';
+import reducer, * as Users from 'redux/modules/user';
 
 describe('actions', () => {
   it('should create an action for fetching random user', () => {
