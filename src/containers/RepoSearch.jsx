@@ -1,10 +1,9 @@
 import styles from 'styles/containers/RepoSearch.less';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import map from 'lodash/map';
-import { pure } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import * as reposActions from 'redux/repos';
 import {
@@ -18,11 +17,8 @@ import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
 
-export class RepoSearch extends Component {
-  bindUsername: Function;
-  username: HTMLInputElement;
-
-  constructor(props: Object) {
+export class RepoSearch extends PureComponent {
+  constructor(props) {
     super(props);
 
     this.bindUsername = c => {
@@ -32,7 +28,7 @@ export class RepoSearch extends Component {
 
   onFetchRepos = () => {
     const { dispatch } = this.props;
-    const username: string = this.username.value;
+    const username = this.username.value;
     dispatch(reposActions.fetchRepos(username));
   };
 
@@ -65,11 +61,11 @@ export class RepoSearch extends Component {
     }
 
     return map(repos, repo => {
-      const { id, name, html_url, owner } = repo;
+      const { id, name, html_url: url, owner } = repo;
 
       const params = {
         name,
-        url: html_url,
+        url,
         user: users[owner].login,
       };
 
@@ -113,4 +109,4 @@ const mapState = createStructuredSelector({
   showForks: getShowForks,
 });
 
-export default connect(mapState)(pure(CSSModules(RepoSearch, styles)));
+export default connect(mapState)(CSSModules(RepoSearch, styles));

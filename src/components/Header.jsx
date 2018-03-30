@@ -1,7 +1,6 @@
 import styles from 'styles/components/Header.less';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { pure } from 'recompose';
 import CSSModules from 'react-css-modules';
 
 const logo = require('../assets/logo.png');
@@ -23,4 +22,4 @@ const Header = () => (
   </header>
 );
 
-export default pure(CSSModules(Header, styles));
+export default CSSModules(Header, styles);

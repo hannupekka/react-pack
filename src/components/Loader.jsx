@@ -1,6 +1,5 @@
 import styles from 'styles/components/Loader.less';
 import React from 'react';
-import { pure } from 'recompose';
 import CSSModules from 'react-css-modules';
 
 const Loader = () => (
@@ -10,4 +9,4 @@ const Loader = () => (
   </div>
 );
 
-export default pure(CSSModules(Loader, styles));
+export default CSSModules(Loader, styles);
