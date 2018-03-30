@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import map from 'lodash/map';
 import configureStore from 'store/configureStore';
-import { fetchReposSuccess, toggleShowForks } from 'redux/repos';
+import { fetchReposSuccess, toggleShowForks } from 'redux/modules/repo';
 import ConnectedReposSearch, { RepoSearch } from 'containers/RepoSearch';
 import { repos, users } from '../data';
 

@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import CSSModules from 'react-css-modules';
 import { createStructuredSelector } from 'reselect';
-import * as uiActions from 'redux/ui';
-import * as userActions from 'redux/users';
-import getUsers from 'redux/users/selectors';
-import getShowGreeting from 'redux/ui/selectors';
+import * as uiActions from 'redux/modules/ui';
+import * as userActions from 'redux/modules/user';
+import getUsers from 'redux/modules/user/selectors';
+import getShowGreeting from 'redux/modules/ui/selectors';
 
 export class Index extends Component {
   onNavigateToRepoSearch = () => {

@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
 import map from 'lodash/map';
 import { createStructuredSelector } from 'reselect';
-import * as reposActions from 'redux/repos';
+import * as reposActions from 'redux/modules/repo';
 import {
   getVisibleRepos,
   getUsers,
   getIsError,
   getIsLoading,
   getShowForks,
-} from 'redux/repos/selectors';
+} from 'redux/modules/repo/selectors';
 import Loader from 'components/Loader';
 import Error from 'components/Error';
 import Repo from 'components/Repo';
