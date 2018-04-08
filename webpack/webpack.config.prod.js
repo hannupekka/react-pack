@@ -101,4 +101,9 @@ module.exports = merge(baseConfig, {
       },
     ],
   },
+  resolve: {
+    alias: {
+      'lodash-es': 'lodash',
+    },
+  },
 });

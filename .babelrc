@@ -1,5 +1,17 @@
 {
-  "presets": ["react", "stage-0", "env"],
+  "presets": [
+    "react",
+    "stage-0",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
   "plugins": ["transform-class-properties"],
   "env": {
     "development": {
@@ -8,6 +20,9 @@
         "transform-console-log-variable-names",
         "console-groupify"
       ]
+    },
+    "production": {
+      "plugins": ["lodash", "transform-react-remove-prop-types"]
     }
   }
 }
