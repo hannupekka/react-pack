@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import 'dom4';
 import 'normalize.css/normalize.css';
-import 'font-awesome/css/font-awesome.min.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
