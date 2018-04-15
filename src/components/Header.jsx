@@ -1,9 +1,10 @@
 import styles from 'styles/components/Header.less';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import CSSModules from 'react-css-modules';
 
-const logo = require('../assets/logo.png');
+import logo from '../assets/logo.png';
 
 const Header = () => (
   <header styleName="header">
@@ -22,4 +23,4 @@ const Header = () => (
   </header>
 );
 
-export default CSSModules(Header, styles);
+export default hot(module)(CSSModules(Header, styles));
