@@ -1,5 +1,4 @@
 import { normalize } from 'normalizr';
-import { createLogic } from 'redux-logic';
 import { repos } from 'redux/modules/repo/schemas';
 import { API_HOST } from 'constants/config';
 
@@ -8,40 +7,32 @@ export const FETCH_REPOS_SUCCESS = 'react-pack/repos/FETCH_REPOS_SUCCESS';
 export const FETCH_REPOS_FAILURE = 'react-pack/repos/FETCH_REPOS_FAILURE';
 export const TOGGLE_SHOW_FORKS = 'react-pack/repos/TOGGLE_SHOW_FORKS';
 
-export const fetchRepos = username => ({
-  type: FETCH_REPOS,
-  payload: { username },
-});
-
-export const fetchReposSuccess = payload => ({
-  type: FETCH_REPOS_SUCCESS,
-  payload,
-});
-
 export const toggleShowForks = () => ({
   type: TOGGLE_SHOW_FORKS,
   payload: {},
 });
 
-export const fetchReposLogic = createLogic({
-  type: FETCH_REPOS,
-  latest: true,
-  async process({ action }, dispatch, done) {
-    try {
-      const response = await fetch(`${API_HOST}/users/${action.payload.username}/repos`);
-      const json = await response.json();
+export const fetchRepos = username => async dispatch => {
+  await dispatch({
+    type: FETCH_REPOS,
+    payload: { username },
+  });
 
-      dispatch(fetchReposSuccess(normalize(json, repos)));
-    } catch (error) {
-      dispatch({
-        type: FETCH_REPOS_FAILURE,
-        payload: error,
-      });
-    }
+  try {
+    const response = await fetch(`${API_HOST}/users/${username}/repos`);
+    const json = await response.json();
 
-    return done();
-  },
-});
+    return dispatch({
+      type: FETCH_REPOS_SUCCESS,
+      payload: normalize(json, repos),
+    });
+  } catch (error) {
+    return dispatch({
+      type: FETCH_REPOS_FAILURE,
+      payload: error,
+    });
+  }
+};
 
 export const initialState = {
   isLoading: false,

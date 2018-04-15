@@ -1,80 +1,31 @@
-import { createLogic } from 'redux-logic';
-
 const URL = 'https://randomuser.me/api/';
 
-export const FETCH_RANDOM_USER = 'react-pack/ui/FETCH_RANDOM_USER';
-export const FETCH_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_RANDOM_USER_SUCCESS';
-export const FETCH_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_RANDOM_USER_FAILURE';
-export const FETCH_SECOND_RANDOM_USER = 'react-pack/ui/FETCH_SECOND_RANDOM_USER';
-export const FETCH_SECOND_RANDOM_USER_SUCCESS = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_SUCCESS';
-export const FETCH_SECOND_RANDOM_USER_FAILURE = 'react-pack/ui/FETCH_SECOND_RANDOM_USER_FAILURE';
+export const FETCH_RANDOM_USERS = 'react-pack/ui/FETCH_RANDOM_USER';
+export const FETCH_RANDOM_USERS_SUCCESS = 'react-pack/ui/FETCH_RANDOM_USER_SUCCESS';
+export const FETCH_RANDOM_USERS_FAILURE = 'react-pack/ui/FETCH_RANDOM_USER_FAILURE';
 
-export const fetchRandomUser = () => ({
-  type: FETCH_RANDOM_USER,
-  payload: {},
-});
+export const fetchRandomUsers = () => async dispatch => {
+  await dispatch({
+    type: FETCH_RANDOM_USERS,
+    payload: {},
+  });
 
-export const fetchRandomUserSuccess = user => ({
-  type: FETCH_RANDOM_USER_SUCCESS,
-  payload: user,
-});
+  try {
+    const response = await Promise.all([fetch(URL), fetch(URL)]);
+    const json = await Promise.all(response.map(r => r.json()));
+    const users = json.map(user => user.results[0]);
 
-export const fetchSecondRandomUser = user => ({
-  type: FETCH_SECOND_RANDOM_USER,
-  payload: user,
-});
-
-export const fetchSecondRandomUserSuccess = users => ({
-  type: FETCH_SECOND_RANDOM_USER_SUCCESS,
-  payload: {
-    users,
-  },
-});
-
-//
-export const fetchRandomUserLogic = createLogic({
-  type: FETCH_RANDOM_USER,
-  latest: true,
-  async process(deps, dispatch, done) {
-    try {
-      const response = await fetch(URL);
-      const json = await response.json();
-      const user = json.results[0];
-
-      dispatch(fetchRandomUserSuccess(user));
-      dispatch(fetchSecondRandomUser(user));
-    } catch (error) {
-      dispatch({
-        type: FETCH_RANDOM_USER_FAILURE,
-        payload: error,
-      });
-    }
-
-    return done();
-  },
-});
-
-export const fetchSecondRandomUserLogic = createLogic({
-  type: FETCH_SECOND_RANDOM_USER,
-  latest: true,
-  async process({ action }, dispatch, done) {
-    try {
-      const response = await fetch(URL);
-      const json = await response.json();
-
-      const users = [action.payload, json.results[0]];
-
-      dispatch(fetchSecondRandomUserSuccess(users));
-    } catch (error) {
-      dispatch({
-        type: FETCH_RANDOM_USER_FAILURE,
-        payload: error,
-      });
-    }
-
-    return done();
-  },
-});
+    return dispatch({
+      type: FETCH_RANDOM_USERS_SUCCESS,
+      payload: { users },
+    });
+  } catch (error) {
+    return dispatch({
+      type: FETCH_RANDOM_USERS_FAILURE,
+      payload: error,
+    });
+  }
+};
 
 export const initialState = {
   isLoading: false,
@@ -84,19 +35,18 @@ export const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_RANDOM_USER:
+    case FETCH_RANDOM_USERS:
       return {
         ...initialState,
         isLoading: true,
       };
-    case FETCH_SECOND_RANDOM_USER_SUCCESS:
+    case FETCH_RANDOM_USERS_SUCCESS:
       return {
         ...state,
         users: action.payload.users,
         isLoading: false,
       };
-    case FETCH_RANDOM_USER_FAILURE:
-    case FETCH_SECOND_RANDOM_USER_FAILURE:
+    case FETCH_RANDOM_USERS_FAILURE:
       return {
         ...initialState,
         isError: true,

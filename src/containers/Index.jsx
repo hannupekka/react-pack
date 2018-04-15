@@ -52,7 +52,7 @@ export class Index extends Component {
 
   onFetchRandomUsers = () => {
     const { dispatch } = this.props;
-    dispatch(userActions.fetchRandomUser());
+    dispatch(userActions.fetchRandomUsers());
   };
 
   render() {

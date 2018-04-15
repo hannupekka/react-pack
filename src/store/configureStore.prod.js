@@ -1,19 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import { createLogicMiddleware } from 'redux-logic';
 import thunkMiddleware from 'redux-thunk';
 import getHistoryInstance from 'utils/history';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, logics } from 'redux/index';
-
-// Logics.
-const logicMiddleware = createLogicMiddleware(logics);
+import { rootReducer } from 'redux/index';
 
 // Middleware you want to use in production:
-const enhancer = applyMiddleware(
-  thunkMiddleware,
-  logicMiddleware,
-  routerMiddleware(getHistoryInstance())
-);
+const enhancer = applyMiddleware(thunkMiddleware, routerMiddleware(getHistoryInstance()));
 
 module.exports = function configureStore(initialState) {
   // Note: only Redux >= 3.1.0 supports passing enhancer as third argument.

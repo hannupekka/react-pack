@@ -1,15 +1,13 @@
 /* eslint-env jest */
 import configureMockStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
-import { createLogicMiddleware } from 'redux-logic';
 import nock from 'nock';
 import { normalize } from 'normalizr';
 import { API_HOST } from 'constants/config';
 import reducer, * as Repos from 'redux/modules/repo';
 import { repos } from 'redux/modules/repo/schemas';
 
-const logicMiddleware = createLogicMiddleware([Repos.fetchReposLogic]);
-const middlewares = [thunkMiddleware, logicMiddleware];
+const middlewares = [thunkMiddleware];
 const mockStore = configureMockStore(middlewares);
 
 const TEST_REPOS = [
