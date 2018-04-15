@@ -1,26 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogicMiddleware } from 'redux-logic';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
-import { rootReducer, logics } from 'redux/index';
+import { rootReducer } from 'redux/index';
 import getHistoryInstance from 'utils/history';
 
 // Logger.
 const noopLogger = () => next => action => next(action);
 const loggerMiddleware = process.env.TEST_RUNNER ? noopLogger : createLogger();
 
-// Logics.
-const logicMiddleware = createLogicMiddleware(logics);
-
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(
-    thunkMiddleware,
-    logicMiddleware,
-    loggerMiddleware,
-    routerMiddleware(getHistoryInstance())
-  )
+  applyMiddleware(thunkMiddleware, loggerMiddleware, routerMiddleware(getHistoryInstance()))
 );
 
 module.exports = function configureStore(initialState) {

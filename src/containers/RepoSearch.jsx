@@ -49,7 +49,7 @@ export class RepoSearch extends PureComponent {
 
     return (
       <button styleName="button" onClick={this.onToggleShowForks}>
-        {text} <i className="fa fa-filter" />
+        {text}
       </button>
     );
   };
@@ -85,7 +85,7 @@ export class RepoSearch extends PureComponent {
           <input type="text" styleName="input" defaultValue="hannupekka" ref={this.bindUsername} />
         </label>
         <button styleName="button" onClick={this.onFetchRepos}>
-          Get users repositories <i className="fa fa-search" />
+          Get users repositories
         </button>
         {this.maybeRenderFilter()}
         {isLoading && <Loader />}

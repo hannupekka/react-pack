@@ -3,10 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
-import Header from 'components/Header';
-import ConnectedIndex from 'containers/Index';
-import ConnectedRepoSearch from 'containers/RepoSearch';
+import Loadable from 'react-loadable';
 import CSSModules from 'react-css-modules';
+
+const loading = () => '';
+
+const Header = Loadable({ loader: () => import('components/Header'), loading });
+const ConnectedIndex = Loadable({ loader: () => import('containers/Index'), loading });
+const ConnectedRepoSearch = Loadable({ loader: () => import('containers/RepoSearch'), loading });
 
 const Routes = props => (
   <ConnectedRouter history={props.history}>

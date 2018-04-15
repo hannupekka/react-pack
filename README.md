@@ -5,7 +5,6 @@ HMR-enabled boilerplate for:
 * React
 * Redux
 * React Router
-* redux-logic
 * React CSS Modules + LESS
 * Jest
 * Webpack + HMR

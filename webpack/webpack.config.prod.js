@@ -5,6 +5,7 @@ const postcssFixes = require('postcss-fixes');
 const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const baseConfig = require('./webpack.base');
 
 const postcssOptions = {
@@ -48,6 +49,7 @@ module.exports = merge(baseConfig, {
     new HtmlWebpackPlugin({
       template: './src/html/index.prod.html',
     }),
+    // new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
