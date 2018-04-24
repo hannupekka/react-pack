@@ -1,12 +1,11 @@
 {
   "presets": [
     "react",
-    "stage-0",
-    [
+    "stage-0", [
       "env",
       {
         "targets": {
-          "browsers": [">0.25%"]
+          "browsers": ["last 2 versions", "ie >= 11"]
         },
         "useBuiltIns": true
       }
